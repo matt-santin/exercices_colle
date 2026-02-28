@@ -662,6 +662,38 @@ et déterminer les constantes $\alpha$, $\beta$ et $\gamma$.
 
 \newpage
 
+\section*{Augmenter la vitesse du jet d'eau à la sortie d'un tuyau* (\textit{PSI})}
+
+Dans un jardin, un tuyau d'arrosage de longueur $L$ et de diamètre constant $d_B=2$ cm est branché sur une arrivée d'eau en $A$, connectée à un réservoir de taille très grande où la pression en $O$ (loin de $A$) est $P_1=3$ bar. A l'autre extrémité du tuyau, on dispose d'un rétrécissement (entre les points $B$ et $C$, de longueur négligeable), faisant passer le diamètre de $d_B$ à $d_C$. On note $\sigma=d_C/d_B$. La pression en sortie de tuyau (au point $C$) est la pression atmosphérique $P_0=1$ bar.
+
+\begin{center}
+	\includegraphics[scale=1.0]{meca_flu_tuyau.pdf}
+\end{center}
+
+\begin{enumerate}
+
+	\item Si l'écoulement était parfait, quelle serait la vitesse du jet d'eau à la sortie du tuyau ? Est-ce que le rétrécissement joue un rôle ? Commenter.
+	
+	\item L'écoulement est-il parfait ? Quel phénomène doit-on prendre en compte ? On donne pour l'eau : $\eta = 1,0\times 10^{-3}$ SI et $\rho=1,0\times 10^3$.
+	
+	\item On suppose qu'il n'y a pas de rétrécissement. Quelle est la vitesse du jet d'eau à la sortie du tuyau ? Application numérique pour $L=4$m, et une rugosité relative du tuyau de $\varepsilon=0,01$.
+	
+	\item Le rétrécissement provoque une perte de charge singulière que l'on peut écrire sous la forme :
+	\begin{align*}
+		\Delta_B^CP=-\frac{1}{2}\rho\left(1-\sigma^2\right) \chi U_C^2
+	\end{align*}
+avec $\chi=0,3$. Montrer que la vitesse de sortie s'écrit sous la forme :
+\begin{align*}
+	U_C=\frac{U_T}{\sqrt{\alpha+\beta\sigma^2+\gamma\sigma^4}} 
+\end{align*}
+et déterminer les constantes $\alpha$, $\beta$ et $\gamma$.
+
+\item A quelle condition sur la longueur $L$ du tuyau la vitesse du jet d'eau augmente d'elle lorsqu'on réduit le diamètre de sortie $d_C$ ? Le débit augmente t-il ?
+
+\end{enumerate}
+
+\newpage
+
 \begin{correction}
 
 \begin{enumerate}

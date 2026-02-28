@@ -1,0 +1,659 @@
+\chapter{Électromagnétisme - transport électronique}
+
+\newpage
+
+\section{Conduction dans un semi-conducteur bidimensionnel}
+ 
+Les techniques récentes de micro-fabrication permettent de créer, dans des plaques de silicium dopé, des conducteurs où les électrons sont quantiquement confinés dans un plan : leur déplacement est parfaitement bidimensionnel. On s'intéresse au conducteur 2D rectangulaire ci-dessous de largeur $W$, de longueur $L$ ci-dessous et d'épaisseur $\varepsilon\ll W, L$, contenant un total de $N_0=n^*\times W\times L\times \varepsilon$ électrons, où $n^*$ est la densité volumique d'électron.
+
+\begin{figure}[h!]
+\centering
+		\includegraphics[scale=0.5]{electromagnetisme_2DEG_square.pdf}
+\end{figure}
+
+On admet que les électrons de masse $m_e$ dans ce conducteur ne sont soumis qu'au champ électrique $\vec{E}$ (supposé uniforme) lorsqu'on impose une différence de potentiel $V_1-V_2$ aux bornes du rectangle, ainsi qu'à une force de frottement $\vec{f}=-m_e\vec{v}/\tau$, où $\tau$ est un paramètre imposé par la qualité du réseau cristallin.
+
+L'objectif de l'exercice est de déterminer les propriétés de conduction d'un tel matériau, en fonction de ses caractéristiques $n^*$ et $\tau$.
+
+\begin{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item En appliquant le principe fondamental de la dynamique sur un électron, montrer que la conductivité de ce conducteur s'écrit, en régime permanent :
+	\begin{align*}
+		\sigma=\frac{n^*e^2\tau}{m_e}
+	\end{align*}
+	
+	\item L'opérateur impose une différence de potentiel $U=V_1-V_2$, générant un courant total $I$ supposé uniforme dans le conducteur. En déduire la résistance $R$ du conducteur en fonction de $n^*$, $\tau$, $L$, $\varepsilon$ et $W$.
+	
+	\item En pratique, l'épaisseur $\varepsilon$ de conduction et la densité d'électron $n^*$ sont toujours identiques d'une plaque de silicium à l'autre. On définit donc $n_s=n^*\times\varepsilon$. Que représente cette quantité ? Pourquoi appelle t-on alors $R_\boxdot=\frac{m_e}{e^2\tau n_s}$ la résistance par carré ? En déduire la résistance $R$ d'un échantillon tel que $L=3W$ en fonction de $R_\boxdot$.
+	
+\end{enumerate}
+
+\item
+
+On s'intéresse à un conducteur bidimensionnel avec une géométrie en "sablier", proposée ci-dessous, permettant d'étudier les propriétés quantiques des électrons dans ces matériaux.
+
+\begin{figure}[h!]
+\centering
+		\includegraphics[scale=0.5]{electromagnetisme_2DEG_QPC.pdf}
+\end{figure}
+
+\begin{enumerate}
+
+	\item En supposant que la densité de courant est uniforme dans la largeur du conducteur 2D, calculer la résistance totale $R$ de ce conducteur en fonction de $R_\boxdot$, $W$, $l$ et $d$.
+	
+	\item Calculer la puissance locale dissipée par effet Joule, $p=\vec{j}\cdot\vec{E}$, puis la puissance totale $P_J$ dissipée dans le conducteur. A t-on $P_J=RI^2$ ?
+
+\end{enumerate}
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item $\vec{j}=-en^*\vec{v}$ et $\vec{j}=I/(W\times \varepsilon)$.
+
+	\item Entre $t$ et $t+dt$, les électrons ont acquis une quantité de mouvement $-eN_0\vec{E}dt$, mais en ont perdu par collision $-\vec{P}(t)dp=-\vec{P}(t)\times dt/\tau$ (comme une fraction $dt/\tau$ d'électrons ont perdu \textbf{en moyenne} leur quantité de mouvement). On a donc :
+	\begin{align*}
+		\vec{P}(t+dt) = \vec{P}(t)-eN_0\vec{E}dt-\vec{P}(t)\frac{dt}{\tau}
+	\end{align*}
+	En régime permanent, $\vec{P}(t+dt) = \vec{P}(t)$, donc :
+	\begin{align*}
+		\vec{P}=-eN_0\tau\vec{E}
+	\end{align*}
+	Et alors :
+	\begin{align*}
+		\vec{v}=-\frac{e\tau}{m}\vec{E}
+	\end{align*}
+	
+	\item Le courant volumique est donc :
+	\begin{align*}
+		\vec{j}=\frac{e^2\tau n^*}{m}\vec{E}
+	\end{align*}
+	
+	Et comme $V_1-V_2 = \int_1^2\vec{dl}\cdot \vec{E}=E\times L$ et que $I=j\times \varepsilon \times W$, on obtient :
+	\begin{align*}
+		V_1-V_2 = I\times\frac{m}{e^2\tau n^*}\frac{L}{W\varepsilon}
+	\end{align*}
+	Donc $R = \frac{m}{e^2\tau n^*}\frac{L}{W\varepsilon}$
+	
+	\item La quantité $n_s$ est une densité surfacique d'électrons : elle correspond aux nombre d'électrons par unité de surface du conducteur. La quantité $R_\boxdot=\frac{m}{e^2\tau n_s}$ est indépendante de la dimension de l'échantillon, du moment que la largeur $W$ est égale à la longueur $L$, c'est-à-dire que l'échantillon est une forme carrée. L'intérêt de la résistance par carré est de pouvoir rapidement estimer la résistance en fonction de la forme de l'échantillon en faisant les lois d'addition de résistance en série et en parallèle).
+	
+\end{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item On note $x$ la dimension le long du conducteur (selon $l$) et on décompose le conducteur en 3 parties : la première partie du sablier, le carré central et la seconde partie en sablier, notées 1, 2 et 3.
+	
+	Dans la partie $1$, on a $j=I/\varepsilon(w-ax)$, avec $a=\frac{l}{W-d}$. Comme on a toujours $\vec{j}=\frac{e^2\tau n^*}{m}\vec{E}$, on obtient :
+	\begin{align*}
+		\Delta V_1=\frac{m}{e^2\tau n^*}\int_{x=0}^{x=l}dxj(x)=\frac{m}{e^2\tau n_s}\times\frac{I}{a}\ln\left(\frac{w}{d} \right) 
+	\end{align*}
+	où $\Delta V_1 = V_1-V(x=l)$ est la chute de tension dans la partie 1. On a $\Delta V_1+\Delta V_2+\Delta V_3=V_1-V_2 = E\times (2l+d) $.
+	
+	Finalement, on obtient :
+	\begin{align*}
+		R_1=\frac{m}{e^2\tau n_sa}\ln\left(\frac{w}{d} \right) =\frac{R_\boxdot}{a}\ln\left(\frac{w}{d} \right)
+	\end{align*}
+	
+	Comme la résistance centrale est une résistance "carrée", on a $R_2=R_\boxdot$. Enfin, par symétrie, on a $R_1=R_3$. Donc :
+	\begin{align*}
+		R = R_1+R_2+R_3 = R_\boxdot\left(\frac{2}{a}\ln\left(\frac{w}{d} \right)+1 \right) 
+	\end{align*}
+	
+	\textit{Autre solution} : On utilise l'addition des résistances en série et en parallèle. Dans la partie 1, à une position $x$ donnée, la résistance est d'une longueur $dx$ est $dR=R_\boxdot dx/w(x)$, avec $w(x)=w-ax$. La résistance totale dans la partie 1 est alors :
+	\begin{align*}
+		R_1=R_\boxdot\int_0^l \frac{dx}{w-ax}
+	\end{align*}
+	On retrouve alors le résultat. 
+	
+	\item Calculer la puissance locale dissipée par effet Joule, $p=\vec{j}\cdot\vec{E}$, puis la puissance totale $P_J$ dissipée dans le conducteur. A t-on $P_J=RI^2$ ?
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Résistance d'une plaque infinie}
+
+On considère une plaque métallique de conductivité $\gamma$, infinie dans le plan $xy$ et d'épaisseur $e$ selon $z$. Cette plaque est connectée à deux fils de même métal (et donc de même conductivité $\gamma$) en $A$ et $B$, séparés l'un de l'autre de la distance $d$. Ces deux fils peuvent être assimilés à des cylindres de rayon $a$ et de longueur $l$. 
+
+\begin{figure}[h!]
+\centering
+		\includegraphics[scale=0.3]{electromagnetisme_plaque.pdf}
+\end{figure}
+
+\begin{enumerate}
+
+	\item Quelle est la résistance de chaque fil, indépendamment de la plaque ? 
+	
+	\item A l'aide des symétries du problème, proposez une expression pour la densité de courant à l'intérieur de la plaque. \textit{Indication : on pourra considérer la distribution issue uniquement du courant arrivant au point $A$, puis celui au point $B$ et utiliser le théorème de superposition.}
+	
+	\item En déduire la résistance équivalente entre les points $A$ et $B$. Quelle est la résistance totale du dispositif ?
+	
+	\item On considère désormais que les fils sont reliés ne sont plus reliés à une plaque mais à un volume du même métal, c'est-à-dire, $e\longrightarrow\infty$. Par le même raisonnement, en déduire la résistance équivalente. 
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Résistance classique d'un cylindre : $R=L/(\gamma\pi a^2)$.
+	
+	\item Isolons le câble arrivant en $A$. Par symétrie, le courant $I$ partira dans tous les directions. La densité de courant va s'écrire en un point $M$ :
+	\begin{align*}
+		\vec{j_A}=\frac{I}{2\pi e }\frac{\vec{AM}}{\|\vec{AM} \|^2}
+	\end{align*}
+	C'est une décroissance typique en $1/r$, où $r=AM$.
+	On effectue le même raisonnement pour la source de courant en $B$, mais où la source de courant est $-I$. Par superposition, la densité de courant totale est alors :
+	\begin{align*}
+		\vec{j}=\frac{I}{2\pi e }\left[ \frac{\vec{AM}}{\|\vec{AM} \|^2} - \frac{\vec{BM}}{\|\vec{BM} \|^2}\right] 
+	\end{align*}
+	
+	\item En intégrant la relation $\vec{j}=\gamma\vec{E}$ le long du chemin $AB$, dont la coordonnée sera donnée par $x$, en faisant varier $x$ de $a$ à $d-a$ (pour éviter une divergence de la densité de courant) :
+	\begin{align*}
+		\int_a^{d-a}dx j(x)=\frac{I}{2\pi e}\int_a^{d-a}dx\left(\frac{1}{x}+\frac{1}{d-x} \right) =\gamma\int_a^{d-a}dxE=-\gamma\int_a^{d-a}dx\frac{dV}{dx}
+	\end{align*}
+	
+	\textit{Remarque} : Lorsque $M$ est strictement contenu sur le segment $AB$, on a : $\vec{BM} = -\|BM\|\vec{e}_x=-(d-a)\vec{e}_x$ où $\vec{e}_x$ est le vecteur normé orientant ce segment. 
+	
+	On trouve alors :
+	\begin{align*}
+		\Delta V = \frac{I}{\pi e\gamma}\log\left(\frac{d-a}{a} \right) 
+	\end{align*}
+
+	\item En se plaçant en coordonnées sphériques, on a :
+	\begin{align*}
+		\vec{j}=\frac{I}{2\pi}\left[ \frac{\vec{e_r}}{\|\vec{AM} \|^2} - \frac{\vec{e_r}}{\|\vec{BM} \|^2}\right] 
+	\end{align*}
+	Attention, il y a un facteur 2 par rapport à la surface d'une sphère car il s'agit de demi-sphères.
+		On trouve alors :
+	\begin{align*}
+		\Delta V = \frac{I}{\pi \gamma}\frac{d}{a(d-a)}
+	\end{align*}
+	
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Divergence d'un champ électrique}
+
+On considère un champ électrique $\vec{E}$, s'écrivant en coordonnées sphériques sous la forme :
+\begin{align*}
+  \vec{E}=\frac{\alpha\vec{r}}{r^{n+1}}
+\end{align*}
+où $\alpha$ est une constante. On rappelle par ailleurs que le vecteur position $\vec{r}$ s'écrit par ailleurs en coordonnées cartésiennes $\vec{r}=x\vec{e}_x+y\vec{e}_y+z\vec{e}_z$.
+
+\begin{enumerate}
+
+	\item Calculer la divergence de $\vec{E}$.
+	
+	\item Pour quelle valeur de $n$ la divergence est nulle ? \'A quelle situation physique (cad distribution de charge) correspond ce champ ? 
+	
+	\item Pour $n$ tel que $\mathrm{div}\vec{E}=0$, calculer le flux de $\vec{E}$ à travers la surface d'une sphère de rayon $R$ centrée en $O$. Le théorème de Green-Ostrogradski est-il valable ? Commenter.
+	
+	\item Calculer le rotationnel de $\vec{E}$. Ce champ est-il compatible avec les équations de Maxwell ?
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item En coordonnées cartésiennes :
+	\begin{align*}
+		\vec{E} = \alpha\frac{x\vec{e}_x+y\vec{e}_y+z\vec{e}_z}{\left(x^2+y^2+z^2 \right)^\frac{n+1}{2}}
+	\end{align*}
+	La dérivée par rapport à $x$ donne :
+	\begin{align*}
+		\frac{\partial E_x}{\partial x}=\alpha\frac{x^2+y^2+z^2-(n+1)x^2}{\left(x^2+y^2+z^2 \right)^\frac{n+3}{2}}
+	\end{align*}
+	La divergence donne donc :
+	\begin{align*}
+		\mathrm{div}\vec{E} &=\alpha\frac{3(x^2+y^2+z^2)-(n+1)(x^2+y^2+z^2)}{\left(x^2+y^2+z^2 \right)^\frac{n+3}{2}} \\
+		&=\alpha\frac{(2-n)(x^2+y^2+z^2)}{\left(x^2+y^2+z^2 \right)^\frac{n+3}{2}} \\
+		&=\alpha\frac{(2-n)}{r^{n+1}}
+	\end{align*}
+	
+	\item La divergence est nulle pour $n=2$. Cela correspond à un champ en $\propto 1/r^2$, c'est-à-dire un champ Coulombien : une charge ponctuelle située en $r=0$.
+	
+	\item Le flux de $\vec{E}$ à travers la surface $\Sigma$ demandée est tout simplement $4\pi\alpha$. Or, l'intégrale $\iiint_\Sigma\mathrm{div}\vec{E}\cdot d\tau=0$. Le théorème de Green ici ne s'applique pas car $\vec{E}$ n'est pas une fonction dérivable en $\vec{r}=\vec{0}$. 
+	
+	\item Calculons la composante suivant $\vec{e}_x$ du rotationnel :
+	\begin{align*}
+		\frac{\partial E_z}{\partial y}-\frac{\partial E_y}{\partial z}=&\frac{\partial }{\partial y}\left( \frac{z}{{\left(x^2+y^2+z^2 \right)^\frac{n+1}{2}}}\right) -\frac{\partial }{\partial z}\left( \frac{y}{{\left(x^2+y^2+z^2 \right)^\frac{n+1}{2}}}\right) \\
+		=& -\frac{(n+1)yz}{{\left(x^2+y^2+z^2 \right)^\frac{n+3}{2}}}+\frac{(n+1)zy}{{\left(x^2+y^2+z^2 \right)^\frac{n+3}{2}}} \\
+		=&0
+	\end{align*}
+	Le calcul est similaire avec les autres composantes. Ce champ est donc compatible avec les équations de Maxwell, la densité de charge étant alors :
+	\begin{align*}
+		\rho(r)=\varepsilon_0\alpha\frac{(2-n)}{r^{n+1}}
+	\end{align*}
+	
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Rotationnel d'un champ magnétique}
+
+On considère un champ magnétique $\vec{B}$, s'écrivant en coordonnées cylindriques sous la forme :
+\begin{align*}
+  \vec{B}=\beta\frac{\vec{e_\theta}}{r^{n}}
+\end{align*}
+où $\beta$ est une constante. On rappelle que le vecteur position $\vec{r}$ s'écrit par ailleurs en coordonnées cartésiennes $\vec{r}=r\vec{e}_r=x\vec{e}_x+y\vec{e}_y$.
+
+\begin{enumerate}
+
+	\item Donner l'expression de $\vec{B}$ en coordonnées cartésiennes. 
+
+	\item Calculer le rotationnel de $\vec{B}$.
+	
+	\item Pour quelle valeur de $n$ le rotationnel est nul ? A quelle situation physique (cad distribution de courant) correspond ce champ ? 
+	
+	\item Pour $n$ tel que $\vec{\mathrm{rot}}\vec{B}=0$, calculer la circulation de $\vec{B}$ le long d'un cercle compris dans le plan ($\vec{e}_x$, $\vec{e}_y$), de rayon $r$, centré en $O$. Le théorème de Kelvin-Stockes est-il valable ? Commenter.
+	
+	\item Calculer la divergence de $\vec{B}$. Ce champ est-il compatible avec les équations de Maxwell ?
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Il faut écrire le vecteur $\vec{e}_\theta$ en coordonnées cartésiennes : $\vec{e}_\theta=-y/\sqrt{x^2+y^2}\vec{e}_x+x/\sqrt{x^2+y^2}\vec{e}_y$. Alors :
+	\begin{align*}
+		\vec{B} = -\frac{\beta y}{\left(x^2+y^2\right)^{\frac{n+1}{2}}}\vec{e}_x+\frac{\beta x}{\left(x^2+y^2\right)^{\frac{n+1}{2}}}\vec{e}_y
+	\end{align*}
+
+	\item Les composantes suivant $\vec{e}_x$ et $\vec{e}_y$ du rotationnel sont nulles :
+	\begin{align*}
+		\frac{\partial B_z}{\partial y}-\frac{\partial B_y}{\partial z}=&0 \\
+		\frac{\partial B_x}{\partial z}-\frac{\partial B_z}{\partial x}=&0
+	\end{align*}
+	
+	La composante suivant $\vec{e}_z$ donne :
+	\begin{align*}
+		\frac{\partial B_y}{\partial x}-\frac{\partial B_x}{\partial y}=&\beta\frac{\partial }{\partial x}\left( \frac{x}{{\left(x^2+y^2 \right)^\frac{n+1}{2}}}\right) +\beta\frac{\partial }{\partial y}\left( \frac{y}{{\left(x^2+y^2 \right)^\frac{n+1}{2}}}\right) \\
+		=& \beta\frac{x^2+y^2-(n+1)x^2}{{\left(x^2+y^2 \right)^\frac{n+3}{2}}}+\beta\frac{x^2+y^2-(n+1)y^2}{{\left(x^2+y^2\right)^\frac{n+3}{2}}} \\
+		=& \beta\frac{(1-n)(x^2+y^2)}{{\left(x^2+y^2 \right)^\frac{n+3}{2}}} \\
+		=& \beta\frac{(1-n)}{{\left(x^2+y^2 \right)^\frac{n+1}{2}}} \\
+		=& \beta\frac{(1-n)}{{r^{n+1}}}
+	\end{align*}
+	
+	\item Le rotationnel est nul pour $n=1$. Cela correspond à la situation du champ magnétique créé par un fil infini suivant l'axe $\vec{e}_z$.
+	
+	\item La circulation de $\vec{B}$ pour $n=1$ s'écrit $\oint_\Gamma\vec{B}\cdot d\vec{l}=2\pi \beta$. Or le rotationnel de $\vec{B}$ étant nul, le théorème de Stockes ne s'applique pas. En effet, le champ magnétique admet une singularité (non dérivable) en $r=0$, le théorème ne s'applique pas.
+	
+	\item On trouve facilement que $\mathrm{div}\vec{B}=0$. Ce champ est donc compatible avec les équations de Maxwell, avec une densité volumique de courant :
+	\begin{align*}
+		\vec{j}=\beta\frac{(1-n)}{{\mu_0r^{n+1}}}\vec{e}_z
+	\end{align*}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Sphère radioactive}
+
+On considère une sphère de rayon $R_0$ constituée d'un matériau initialement neutre électriquement, devenant radioactif lorsqu'on le soumet à $t=0$ à un bombardement bref et intense de particules $\alpha$. A partir de ce moment-là, la sphère émet de manière isotrope des particules chargées $+e$ à la vitesse $v_0$, que l'on supposera constante. On suppose que ces particules sont émises, à un instant $t$, au rythme de $n(t)$ particules par unité de temps.
+
+\begin{enumerate}
+
+	\item On considère une particule émise à l'instant $t_0$. Où se situe t-elle à l'instant $t>t_0$ ? En déduire l'existence d'un rayon critique $r_c$. Donner le lien entre $t_0$ et $t$ pour $r=R_0$, $r$ quelconque et $r=r_c$.
+	
+	\item Pour $R_0<r<r_c$, déterminer la densité de charge $\rho(r,t)$. On pourra dénombrer le nombre de particules comprises dans le volume compris entre les sphères de rayon $r$ et $r+dr$. 
+	
+	\item De la même façon, déterminer la densité volumique de courant $\vec{j}(r,t)$. 
+	
+	\item L'équation de conservation de la charge est-elle respectée ? On donne, en coordonnées sphériques, la divergence d'un vecteur : $\mathrm{div}\vec{A}=\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2A_r \right)+\ldots$ 
+	
+	\item Exprimer la charge $Q(r,t)$ comprise dans une sphère de rayon $r<r_c$ à l'instant $t$, en fonction de $N(t)=\int_0^t dt_0 n(t_0)$, la quantité totale de particules $+e$ émises depuis $t=0$ jusqu'à $t$.
+	
+	\item Donner l'expression du champ électrique $\vec{E}(r,t)$, puis celle du champ magnétique $\vec{B}$. On pourra utiliser les symétries du problème.
+	
+	\item Exprimer le vecteur de Poynting, puis l'énergie du champ électromagnétique. Établir un bilan d'énergie électromagnétique et conclure.
+	
+	\item \textit{Bonus} : La probabilité qu'un noyau atomique de la sphère émette une particule $+e$ entre $t$ et $t+dt$ est constante et vaut $dP=dt/\tau$. En déduire $n(t)$ et $N(t)$, sachant qu'il y a, à $t=0$, $N_0$ noyaux susceptibles de se désintégrer.
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Une particule en $r$ à l'instant $t$ a été émise à $t_0$ en $R_0$. On a donc $r-R_0=v_0(t-t_0)$. En $r=0$, on a donc $t=t_0$ (la particule vient juste d'être émise). Pour $t_0=0$, la particule a parcouru la plus grande distance possible (rien était émis avant), correspondant au rayon critique $r_c=v_0t$
+	
+	\item Il y a entre les sphères de rayon $r$ et $r+dr$ $dN$ particules, qui ont été émises à $t_0=t-\frac{r-R_0}{v_0}$ au rythme de $n(t_0)$ particules par unité de temps :
+	\begin{align*}
+		edN=4\pi r^2dr\rho(r,t)=en(t_0)dt
+	\end{align*}
+	On a donc :
+	\begin{align*}
+		\rho(r,t)=\frac{e}{4\pi r^2 v_0}\times n\left(t-\frac{r-R_0}{v_0} \right) 
+	\end{align*}
+	
+	\item Façon facile, avec la définition de $\vec{j}=\rho \vec{v}$, sachant que les particules sont émises radialement (selon $\vec{e}_r$) :
+	\begin{align*}
+		\vec{j}(r,t)=\frac{e}{4\pi r^2}\times n\left(t-\frac{r-R_0}{v_0} \right) \vec{e}_r
+	\end{align*}
+	Version plus "compliquée" : on fait un bilan sur le nombre de particules entre les sphères de rayon $r$ et $r+dr$ pendant $dt$ avec le flux $\vec{j}$.
+	
+	\item On a :
+	\begin{align*}
+		\frac{\partial \rho}{\partial t}=&\frac{e}{4\pi r^2 v_0}\times \frac{d}{dt} \left[ n\left(t-\frac{r-R_0}{v_0} \right) \right] \\
+		=&\frac{e}{4\pi r^2 v_0}\times n'\left(t-\frac{r-R_0}{v_0} \right)
+	\end{align*}
+	D'autre part : 
+	\begin{align*}
+		\mathrm{div}\vec{j}(r,t)&=\frac{1}{r^2}\frac{\partial r^2j_r}{\partial r}
+		&=\frac{e}{4\pi r^2}\times\frac{d}{dr} \left[ n\left(t-\frac{r-R_0}{v_0} \right) \right] \\
+		&=-\frac{e}{4\pi r^2 v_0}\times n'\left(t-\frac{r-R_0}{v_0} \right)
+	\end{align*}
+	L'équation de conservation est bel et bien respectée.
+	
+	\item On intègre d'abord la densité volumique de charge sur une boule de rayon $r$ pour avoir la charge positive :
+	\begin{align*}
+		Q_+(r,t)=&4\pi\int_{R_0}^r r'^2\rho(r',t)dr' \\
+		=& \frac{e}{v_0}\times\int_{R_0}^r dr' n\left(t-\frac{r'-R_0}{v_0} \right) 
+	\end{align*}
+	On effectue le changement de variable $r'\longleftarrow t_0=t-\frac{r-R_0}{v_0}$. Physiquement, cela correspond à intégrer non plus sur l'espace, mais sur le moment durant les particules ont été émises : intégrer $r'$ de $R_0$ à $r$ correspond à intégrer sur le moment d'émission $t_0$ de $t$ (la dernière particule émise se situe en $R_0$) à $t-\frac{r-R_0}{v_0}$ (la particule en $r$ à l'instant $t$ a été émise à $t-\frac{r-R_0}{v_0}$) :
+	\begin{align*}
+		Q_+(r,t)=&-v_0\frac{e}{v_0}\times\int_{t}^{t-\frac{r-R_0}{v_0}}dt_0 n\left(t_0\right) \\
+		=&eN(t)-eN\left( t-\frac{r-R_0}{v_0}\right) &
+	\end{align*}
+	C'est bien cohérent : $N\left( t-\frac{r-R_0}{v_0}\right)$ correspond aux charges dans le volume entre $r$ et $r_c$. 
+	
+	Il faut aussi tenir compte du fait que la sphère radioactive a perdu des charges (elle était neutre à l'origine), plus précisément elle en a perdu $eN(t)$. On a donc :
+	\begin{align*}
+		Q(t)&=Q_+(r,t)-eN(t)\\
+		&=-eN\left( t-\frac{r-R_0}{v_0}\right)		
+	\end{align*}
+	
+	\item On peut utiliser soit le théorème de Gauss, soit l'équation de Maxwell-Gauss (attention à la constante d'intégration). On trouve alors :
+	\begin{align*}
+		\vec{E}(r,t) = -\frac{e}{4\pi r^2\varepsilon_0}N\left( t-\frac{r-R_0}{v_0}\right)\vec{e}_r
+	\end{align*}
+	
+	Par les symétries, on a nécessairement un champ magnétique nul :
+	\begin{align*}
+		\vec{B}=\vec{0}
+	\end{align*}
+	
+	\item Le champ magnétique étant nul, on a :
+	\begin{align*}
+		\vec{\Pi}=\vec{0}
+	\end{align*}
+	Il n'y a pas de propagation de l'énergie électromagnétique. Pour l'énergie électromagnétique, il n'y a uniquement le terme électrique :
+	\begin{align*}
+		\varepsilon_m=-\frac{e^2}{32\pi r^4\varepsilon_0}N\left( t-\frac{r-R_0}{v_0}\right)^2
+	\end{align*}
+	On peut alors vérifier que le bilan d'énergie électromagnétique est cohérent :
+		\begin{align*}
+		\frac{\partial \varepsilon_m}{\partial t}=-\frac{e^2}{16\pi r^4\varepsilon_0}n\left( t-\frac{r-R_0}{v_0}\right)N\left( t-\frac{r-R_0}{v_0}\right)
+	\end{align*}
+	On trouve bien que c'est égal au produit scalaire $-\vec{j}\cdot\vec{E}$. La variation de l'énergie électromagnétique se transmet intégralement aux charges.
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Potentiel créé par une sphère sur un plan relié à la masse}
+
+On considère une charge $q$ placée à une distance $d$ fixe au-dessus d'un plan conducteur infini, confondu avec le plan $Oxy$. Le plan est relié à la masse, de sorte qu'en toutes circonstances, le potentiel électrique est nul sur ce plan $V(x,y,z=0)=0$. 
+
+\begin{figure}[h!]
+\centering
+		\includegraphics[scale=1.3]{electromagnetisme_images.pdf}
+\end{figure}
+
+\begin{enumerate}
+
+	\item Après avoir rappelé les équations de Maxwell, établir l'équation de Poisson sur le potentiel $V$ dans la partie $z>0$.
+	
+	\item Montrer que les conditions aux limites du problème sont identiques à la situation où l'on aurait placé une charge $q$ en $z=d$ et une charge $-q$ en $z=-d$. En déduire le potentiel $V(x,y,z)$ dans la partie $z>0$.
+	
+	\item Rappeler les relations de passage du champ électrique et en déduire la charge surfacique $\sigma$ sur le plan.
+	
+	\item On suppose désormais que la charge oscille très légèrement autour de sa position : $d(t)=d_0+d_1\cos(\omega t)$. 
+	
+	\item Montrer que le plan conducteur porte une charge totale $-q$. Justifier l'appellation d'écrantage.
+	
+	\begin{enumerate}
+	
+		\item Qu'entend t-on par "très légèrement" ? Quantifier cette remarque avec les données de l'énoncé. Justifier que ce mouvement engendre une densité surfacique de courant $\vec{j}_s$ au niveau de la plaque.
+		
+		\item En utilisant la rayon polaire $r=\sqrt{x^2+y^2}$, montrer que cette densité de courant vérifie la relation suivante :
+		\begin{align*}
+			\frac{1}{r}\frac{\partial}{\partial r}\left(r j_{s,r} \right) +\frac{\partial \sigma}{\partial t}=0
+		\end{align*}
+		
+		\item En déduire l'expression de $\vec{j}_s$.
+	
+	\end{enumerate}
+	 
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Les équation de Maxwell s'écrivent :
+	\begin{align*}
+		& \mathrm{div}\vec{E}=\frac{\rho}{\varepsilon_0} \\
+		& \mathrm{div}\vec{B}=0 \\
+		& \vec{\mathrm{rot}}\vec{E}=-\frac{\partial\vec{B}}{\partial t} \\
+		& \vec{\mathrm{rot}}\vec{B}=\mu_0\vec{j}+\frac{1}{c^2}\frac{\partial\vec{E}}{\partial t} \\
+	\end{align*}
+	
+	On retrouve facilement l'équation de Poisson sur le champ électrique dans le vide : $\Delta \vec{E}=\vec{0}$.
+	
+	\item La charge $q$ en $z=d$ génère un potentiel :
+	\begin{align*}
+		V=\frac{q}{4\pi\varepsilon_0 \sqrt{x^2+y^2+(z-d)^2}}
+	\end{align*}
+	Une charge $-q$ en $z=-d$ génèrerait un potentiel :
+	\begin{align*}
+		V=-\frac{q}{4\pi\varepsilon_0 \sqrt{x^2+y^2+(z+d)^2}}
+	\end{align*}	
+	Par le théorème de superposition, le potentiel des deux charges serait :
+	\begin{align*}
+		V=\frac{q}{4\pi\varepsilon_0 \sqrt{x^2+y^2+(z-d)^2}}-\frac{q}{4\pi\varepsilon \sqrt{x^2+y^2+(z+d)^2}}
+	\end{align*}
+	On remarque que la condition $V(x,y,z=0)=0$ est aussi vérifiée avec cette distribution de charge. Comme l'équation de Laplace, vérifiée par $\vec{E}$, n'admet qu'une unique solution pour des conditions aux limites données, cette solution est aussi solution du problème proposé dans l'énoncé. 
+	
+	\item Les relations de passage s'écrivent :
+	\begin{align*}
+		&\vec{E}_{x,y}(z>0)-\vec{E}_{x,y}(z<0)=\vec{0} \\
+		&\vec{E}_{z}(z>0)-\vec{E}_{z}(z<0)=\frac{\sigma}{\varepsilon_0}
+	\end{align*}
+	
+	Sous le plan conducteur, on a $\vec{E}_{z}(z<0)=\vec{0}$. On a donc :
+	\begin{align*}
+		\frac{\partial V}{\partial z}\mid_{z=0}=\frac{\sigma}{\varepsilon_0}
+	\end{align*}
+	
+	On trouve donc :
+	\begin{align*}
+		\sigma = \frac{-qd}{2\pi (x^2+y^2+d^2)^{3/2}}
+	\end{align*}
+	
+	\item La charge totale porté par le plan est :
+	\begin{align*}
+		Q_{tot}&=\int_{x=-\infty}^{\infty}\int_{y=-\infty}^{\infty}dxdy\sigma \\
+		&=\int_{x=-\infty}^{\infty}\int_{y=-\infty}^{\infty}dxdy\frac{-qd}{2\pi (x^2+y^2+d^2)^{3/2}}\\
+		&=\int_{r=0}^{\infty}\int_{\theta=0}^{2\pi}rdrd\theta\frac{-qd}{2\pi (r^2+d^2)^{3/2}} \\
+		&=\int_{r=0}^{\infty}dr\frac{d}{dr}\left( \frac{qd}{(r^2+d^2)^{1/2}}\right)  \\
+		&=-q
+	\end{align*}
+	
+	\item 
+	
+	\begin{enumerate}
+	
+		\item Si la charge oscille très lentement, à chaque instant, la distribution de charge dans le plan est donnée par $\sigma$, où $d$ est simplement remplacé par $d(t)$ car il n'y a pas de retard dû à la propagation de l'onde électromagnétique, ni champ magnétique perturbant les charges. Il faut donc que $d_0\omega \ll c$ pour s'affranchir de ces phénomènes (ARQS). 
+		
+		Le mouvement de la charge $q$ engendre entre deux instants $t$ et $t+dt$ une distribution de charge passant de $\sigma(t)$ à $\sigma(t+dt)$. Une variation de distribution des charges impliquant un déplacement de charge au cours du temps, et donc un courant. Les charges étant contraintes dans le plan $z=0$, il s'agit de courants surfaciques. 
+		
+		\item On refait la démonstration de l'équation de conservation de la charge, mais dans le plan. Par symétrie, la distribution $\vec{j}_s$ n'a qu'une composante suivant $\vec{e}_z$. Faisons un bilan de charge sur la surface polaire $r\times dr \times d\theta$ entre $t$ et $t+dt$ : 
+		\begin{align*}
+			&j_{s,r}(r)\times r \times d\theta\times dt-j_{s,r}(r+dr)\times (r+dr) \times d\theta\times dt \\
+			&= (\sigma(r,t+dt)-\sigma(r,t))\times r\times dr \times d\theta
+		\end{align*}
+		
+		On retrouve alors facilement l'équation :
+		\begin{align*}
+			\frac{1}{r}\frac{\partial}{\partial r}\left(r j_{s,r} \right) +\frac{\partial \sigma}{\partial t}=0
+		\end{align*}
+		
+		\item L'équation précédente donne, en injectant l'expression de la charge surfacique trouvée : 
+		\begin{align*}
+			\frac{1}{r}\frac{\partial}{\partial r}\left(r j_{s,r} \right) = \frac{q}{2\pi}\frac{\partial}{\partial t}\frac{d(t)}{(r^2+d^2)^{3/2}}
+		\end{align*}
+		On commence par intégrer sur $r$ avant de dériver sur $t$ :
+		\begin{align*}
+			& \frac{\partial}{\partial r}\left(r j_{s,r} \right) = \frac{q}{2\pi}\frac{\partial}{\partial t}d(t)\frac{r}{(r^2+d(t)^2)^{3/2}} \\
+			\Rightarrow & r j_{s,r}= -\frac{q}{2\pi}\frac{\partial}{\partial t}d(t)\frac{1}{(r^2+d(t)^2)^{1/2}} \\
+			& r j_{s,r}=-\frac{q}{2\pi}\left[\frac{\dot{d}(t)}{(r^2+d(t)^2)^{1/2}}-\frac{d^2(t)\dot{d}(t)}{(r^2+d^2)^{3/2}}\right] \\
+			& r j_{s,r}=-\frac{q}{2\pi}\frac{\dot{d}(t)}{(r^2+d^2)^{1/2}}\left[1-\frac{d^2(t)}{r^2+d(t)^2}\right]
+		\end{align*}
+		En supposant que $d_1\ll d_0$, on trouve : 
+		\begin{align*}
+			j_{s,r}=\frac{q}{2\pi r}\frac{d_1\omega\sin(\omega t)}{(r^2+d_0^2)^{1/2}}\left[1-\frac{d^2_0}{r^2+d_0^2}\right]
+		\end{align*}
+		
+	
+	\end{enumerate}
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Ontologie du champ magnétique}
+
+On considère un fil électrique de section $\Sigma$ dirigé suivant l'axe $x$. Il est constitué d'atomes séparés d'une distance $a$, de charge $+e$  et d'autant d'électrons de conduction de charge $-e$ ; on suppose qu'atomes et électrons sont confondus sur l'axe $x$ et uniformément répartis à travers la section $\Sigma$. On impose un courant $I$ dans le fil, les électrons se déplacent alors avec une vitesse $\vec{v'}=-v'\vec{e_{x}}$ uniforme le long du fil.
+
+Une particule de charge $q$ se déplace à la vitesse $\vec{v}=v\vec{e_{x}}$ à l'extérieur du fil à une distance $r>a$ de l'axe $x$.
+
+\begin{figure}[h!]
+\centering
+		\includegraphics[scale=0.25]{electromagnetisme_cable.pdf}
+\end{figure}
+
+\begin{enumerate} 
+	
+\item On s'intéresse aux forces électromagnétiques exercées par les charges du fil sur la particule de charge $q$ par deux approches différentes. On commence ici avec une approche en mécanique classique.
+
+\begin{enumerate}
+	\item Quelle est la densité de charge $\rho_{+}$ (respectivement $\rho_{-}$) due aux atomes (resp. aux électrons) dans le fil ? En déduire le champ électrique $\vec{E}$ créé par cette distribution de charge pour $r>a$.
+	\item Quelle est la densité de courant $\vec{j}$ dans le fil ? Exprimer la vitesse $\vec{v'}$ des électrons de conduction en fonction de $I$. En déduire le champ magnétique $\vec{B}$ créé par ce courant en fonction de $v'$ et des autres données de l'énoncé.
+	\item Exprimer la force totale s'exerçant alors sur la charge $+q$, en fonction de $q$, $v$, $v'$, $a$, $r$ et de constantes fondamentales. Quels sont les contributions des forces électriques et magnétiques sur cette particule ?
+	\item Que devient cette force dans le référentiel en mouvement de la charge $+q$ ? En quoi est-ce une contradiction ?
+\end{enumerate}
+
+\item On s'intéresse désormais à une seconde approche, considérant les effets relativistes de la relativité restreinte. Cette théorie affirme que tout objet se déplaçant relativement par rapport à un autre voit sa longueur contractée dans le sens du déplacement. Ainsi, Einstein a démontré en 1905 qu'un objet à la vitesse $v$ par rapport à un autre objet, voit la longueur de ce dernier contractée d'un facteur $\gamma(v)=1/\sqrt{1-v^{2}/c^{2}}$ (où $c=1/\sqrt{\epsilon_{0}\mu_{0}}$ est la vitesse de la lumière). Dans son référentiel, la charge $q$ voit donc la densité de charge des atomes $\rho_+$ et des électrons $\rho_-$ augmenter, mais pas dans les mêmes proportions. 
+	\begin{enumerate}
+		\item Que deviennent les densités de charge $\rho_{+}$ et $\rho_{-}$ dans le référentiel de la particule $+q$ ? %On admettra que les électrons se déplacent à la vitesse $v'-v$ dans le référentiel de $+q$. 
+		\item Déterminer le champ électrique créé par cette nouvelle distribution de charges en fonction de $v$, $v'$, $a$, $r$ et de constantes fondamentales. On supposera que $v'\ll v\ll c$.
+		\item Quelle est la force électrique s'exerçant sur la particule $+q$ ? 
+		\item Comparer avec le résultat trouvé en approche classique (non relativiste). Que peut-on en dire sur la nature du champ magnétique ?
+	\end{enumerate}
+			
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\subsubsection*{Approche en mécanique classique}
+
+\begin{enumerate}
+	\item Dans une volume $a\Sigma$, on a une charge $+e$ et une charge $-e$, comme celle-ci sont réparties uniformément. Les densités de charges sont donc respectivement $\rho_+=e/(a\Sigma)$ et $\rho_-=-e/(a\Sigma)$.
+	\item Par définition, $\vec{j}=\rho\vec{v}$. Comme seuls les électrons ont une vitesse non nulle, $\vec{j}=\rho_-\vec{v'}=ev'/(a\Sigma)\vec{e}_x$. Et donc $I=\oiint_\Sigma\dif\vec{S}\vec{j}=ev'/a$.
+	\item $\rho_{tot}=\rho_++\rho_-=0$ donc $\vec{E}=0$.
+	\item Avec le théorème d'Ampère appliqué uniquement en dehors du fil, on trouve :
+	\begin{align*}
+		\vec{B}=\frac{\mu_0I}{2\pi r}\vec{e_\theta}
+	\end{align*}
+	(résultat classique d'un fil parcouru par un courant $I$)
+	La force qui s'exerce sur la charge $q$ est donc :
+	\begin{align*}
+		\vec{F}=-\frac{qv\mu_0I}{2\pi r}\vec{e_r}
+	\end{align*}
+\end{enumerate}
+
+\subsubsection*{Approche en mécanique relativiste}
+
+	\begin{enumerate}
+	
+	\item Ainsi, en se déplaçant à la vitesse $\vec{v}$, la charge $+q$ voit dans son référentiel la distance entre atomes réduite d'un facteur $\gamma_{+}=1/\sqrt{1-v^{2}/c^{2}}$ et la distance entre électrons de conduction d'un facteur $\gamma_{-}=1/\sqrt{1-(v-v')^{2}/c^{2}}$. 
+		On trouve donc que :
+		\begin{align*}
+			\rho_+=\frac{e}{a\Sigma}\sqrt{1-v^{2}/c^{2}}
+		\end{align*}
+		\begin{align*}
+			\rho_-=\frac{e}{a\Sigma}\sqrt{1-(v+v')^{2}/c^{2}}
+		\end{align*}		
+		Attention, l'hypothèse que la vitesse relative des électrons par rapport à la charge $q$ est $v'+v$ est une approximation. En mécanique relativiste, la vitesse relative serait :
+		\begin{equation}
+			v_{e_-/q}=\frac{v'-v}{1-\frac{vv'}{c^2}}
+		\end{equation}
+		
+	\item On trouve facilement avec le théorème de Gauss que :
+	\begin{align*}
+		\vec{E}=\frac{\Sigma(\rho_++\rho_-)}{2\pi r\varepsilon_0}
+	\end{align*}
+	
+	 En développant à l'ordre 2, on trouve :
+	\begin{align*}
+		\rho_++\rho_-\approx -\frac{e}{a\Sigma}\frac{vv'}{c^2}
+	\end{align*}
+	On trouve alors que :
+	\begin{align*}
+		\vec{E}=-\frac{e vv'}{2\pi r a\varepsilon_0 c^2}\vec{e_r}=-\frac{I\mu_0 v}{2\pi r}\vec{e_r}
+	\end{align*}
+	
+	\item
+	La force de Lorentz associée est donc :
+	\begin{align*}
+		\vec{F}=-\frac{qe vv'}{2\pi r a\varepsilon_0 c^2}\vec{e_r}=-\frac{qI\mu_0 v}{2\pi r}\vec{e_r}
+	\end{align*}
+	
+	Cette expression est identique à celle trouvée par le calcul du champ magnétique en mécanique classique. Le champ magnétique est-il est une approximation à l'ordre 2 de la force de Coulomb ? 
+	\end{enumerate}
+
+\end{correction}
