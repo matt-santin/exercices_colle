@@ -669,6 +669,13 @@ On considère un fil semi-infini parcouru par un courant I constant. Déterminer
 \begin{correction}
 
 	La loi de Biot et Savard n'est pas au programme, on ne peut donc pas l'utiliser. On va donc la redémontrer à l'aide du théorème de Stockes et de l'équation de Maxwell Ampère. 
+	
+	Le premier réflexe peut être de tenter de trouver le champ magnétique à l'aide du théorème d'Ampère : $\oint_\Gamma \vec{dl}\cdot\vec{B}=\mu_0I_{enlace}$. On se retrouve rapidement face à une difficulté : pour un contour $\Gamma_1$ (en vert) en $z\le0$, on retrouve facilement le résultat classique du fil infini ; mais on trouve $\vec{B}=\vec{0}$ pour un contour $\Gamma_2$ (en vert ci-dessous) pour $z>0$. Cela soulève des contradictions, notamment sur la continuité de $\vec{B}$ dans le plan $z=0$, ou parce que le résultat dépend de la surface délimitée par le contour. 
+	
+	{\centering
+		\includegraphics[scale=0.9]{electromagnetisme_biot_et_savard3.pdf}\par }
+
+	Cette contradiction est levée dans le cadre de le théorème d'Ampère généralisé, en introduisant le courant de déplacement $\vec{j}_D=\varepsilon_0\frac{\partial \vec{E}}{\partial t}$, qui rétablit la cohérence d'ensemble du problème. Le champ électrique variable est créé par l'accumulation de charge en bout de fil, accumulation engendrée par le courant $I$. Cette situation est l'équivalent de l'anaylse électromagnétique du condensateur.
 
 	On va d'abord commencer par décomposer le fil semi-infini en sections de longueur $d$, orientées selon $\vec{e}_z$, toutes parcourues par le courant $I$ constant. Chaque section étant un circuit ouvert, cela peut poser au premier abord une difficulté. Pour s'en affranchir, on se place en régime non stationnaire, où les charges vont s'accumuler en bout de ligne (les sphères sur le schéma ci-dessous) :
 	
@@ -679,7 +686,7 @@ On considère un fil semi-infini parcouru par un courant I constant. Déterminer
 	
 	On se place en coordonnées sphériques, pertinentes pour décrire le problème dans le cas où $r\gg d$ (la portion de fil étant alors ponctuelle). Au point $M$, le plan formé par $(\vec{e}_r,\vec{e}_\theta)$ est plan de symétrie de la distribution des courants : le champ magnétique est donc orthogonal à ce plan et est donc dirigé suivant $\vec{e}_\varphi$. Par invariance par rotation autour de l'axe $z$, le champ magnétique ne dépend pas de l'angle $\varphi$.
 
-	Utilisons le théorème d'Ampère sur le contour $\Gamma$, le cercle de rayon $\rho$ dont le centre est situé à une distance $z$ de l'origine $O$ et dont la surface du disque $\Sigma$ qu'il délimite a pour vecteur normal $\vec{e}_z$ (en bleu sur la figure).
+	Utilisons le théorème d'Ampère sur le contour $\Gamma$, le cercle de rayon $\rho$ dont le centre est situé à une distance $z$ de l'origine $O$ et dont la surface du disque $\Sigma$ qu'il délimite a pour vecteur normal $\vec{e}_z$ (en bleu sur la figure)\footnote{Plus précisément, le calcul ci-dessous est fait dans le cas $|z|>d/2$ pour éviter à la fois une divergence dans le cas $z=d/2$, mais aussi s'assurer que la condition $r\gg d$ reste tout le temps valide. Cette condition n'est plus valide si $|z|<d/2$.}.
 
 	{\centering
 		\includegraphics[scale=0.9]{electromagnetisme_biot_et_savard2.pdf}\par }
