@@ -695,7 +695,19 @@ On considère un fil semi-infini parcouru par un courant I constant. Déterminer
 	\begin{align}
 		\oint_\Gamma \vec{dl}\cdot\vec{B}=\mu_0\varepsilon_0\iint_\Sigma d\vec{S}\cdot\frac{\partial \vec{E}}{\partial t}
 	\end{align}
-	Il faut expliciter le champ électrique $\vec{E}$ créé par les charges accumulées du fait du courant $I$. Il s'agit du champ électrique d'un dipôle composé de deux charges $\pm It$ :
+	Il faut expliciter le champ électrique $\vec{E}$ créé par les charges accumulées $q(t) \pm It$ du fait du courant $I$ constant. Comme la charge dépend du temps, il faut se placer dans le cadre des potentiels retardés. Pour une charge ponctuelle $q(t)=It$ placée à l'origine, on obtient :
+	\begin{align*}
+		V(r,t)=\frac{q\left(t-\frac{r}{c}\right)}{4\pi\varepsilon_0 r}=\frac{I}{4\pi\varepsilon_0 r}\times\left(t-\frac{r}{c}\right)
+	\end{align*}
+	Le champ électrique s'en déduit alors facilement :
+	\begin{align*}
+		\vec{E}&=-\frac{\partial V}{\partial t}\vec{e}_r \\
+		&=\frac{I}{4\pi\varepsilon_0}\left[\frac{1}{r^2}\left(t-\frac{r}{c}\right)+\frac{1}{cr}\right]\vec{e}_r\\
+		&=\frac{It}{4\pi\varepsilon_0 r^2}\vec{e}_r
+	\end{align*}
+	Le champ électrique est, dans le cas où $q(t)=It$, le même qu'en électrostatique. Il n'y a pas besoin de formuler l'hypothèse de l'ARQS. 
+
+	Une fois cela montré, le champ électrique créé par nos deux charges $\pm It$ est celui d'un dipôle électrostatique composé de deux charges $\pm It$ :
 	\begin{align}
 		\vec{E}&=\frac{It}{4\pi\varepsilon_0}\left[\frac{x\vec{e}_x+y\vec{e}_y+(z-d/2)\vec{e}_z}{\left(x^2+y^2+\left(z-\frac{d}{2}\right)^2\right)^\frac{3}{2}}-\frac{x\vec{e}_x+y\vec{e}_y+(z+d/2)\vec{e}_z}{\left(x^2+y^2+\left(z+\frac{d}{2}\right)^2\right)^\frac{3}{2}}\right] 
 	\end{align}
