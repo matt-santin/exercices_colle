@@ -4,37 +4,38 @@
 
 \section{Hacheur - convertisseur SEPIC}
 
-Les supercondensateurs sont des dispositifs de stockage électrique prometteurs, mais leur inconvénient par rapport à des batteries lithium-ion est la grande variation de tension à leurs bornes lors de leur décharge. On s'intéresse au cas d'un supercondensateur, modélisé par une source de tension $V_e$ pouvant varier de 54 à 27V, servant à alimenter un moteur (représenté par la résistance $R_C$) avec une tension et une intensité constantes $V_s=36$V et $I_s=10$A.
-Pour maintenir une tension constante aux bornes du moteur, on utilise un converstisseur SEPIC (Single Ended Primary Inductor Convertor) représenté ci-dessous :
+Les supercondensateurs sont des dispositifs de stockage électrique prometteurs, mais leur inconvénient par rapport à des batteries lithium-ion est la grande variation de tension à leurs bornes lors de leur décharge. On s'intéresse au cas d'un supercondensateur, modélisé par une source de tension $V_e$ pouvant varier de $54$ à $27$~V, servant à alimenter un moteur (représenté par la résistance $R_C$) avec une tension et une intensité constantes $V_s=36$~V et $I_s=10$~A.
+Pour maintenir une tension constante aux bornes du moteur, on utilise un convertisseur SEPIC (\textit{Single Ended Primary Inductor Converter}) représenté ci-dessous :
 
 \begin{center}
 	\includegraphics[scale=0.38]{conversion_electronique_puissance1_1.png}
 \end{center}
 
-On fera les hypothèses suivantes pour le fonctionnement : 
+On fera les hypothèses suivantes pour le fonctionnement :
 \begin{itemize}
 
-    \item les interrupteurs travaillent à la fréquence de découpage $f=300$kHz et avec le rapport cyclique $\alpha$ ;
-    \item Sur une période de fonctionnement, l'interrupteur $K_1$ (resp. $K_2$) est fermé (resp. ouvert) sur l'intervalle $[0,\alpha T]$, ouvert (resp. fermé) sur l'intervalle $[\alpha T,T]$ ;
-    \item On tolère des ondulations relatives (par rapport aux valeurs moyennes) de 10\% pour l'intesité du courant d'entrée $I_e$ et de 1\% pour la tension de sortie $V_s$.
+    \item le convertisseur est étudié en régime permanent : toutes les tensions et toutes les intensités sont périodiques de période $T$ ;
+    \item les interrupteurs travaillent à la fréquence de découpage $f=300$~kHz et avec le rapport cyclique $\alpha$ ;
+    \item sur une période de fonctionnement, l'interrupteur $K_1$ (resp. $K_2$) est fermé (resp. ouvert) sur l'intervalle $[0,\alpha T]$, ouvert (resp. fermé) sur l'intervalle $[\alpha T,T]$ ;
+    \item on tolère des ondulations relatives crête à crête (rapportées aux valeurs moyennes) de $10$~\% pour l'intensité du courant d'entrée $I_e$ et de $1$~\% pour la tension de sortie $V_s$.
 
 \end{itemize}
 \begin{enumerate}
-    
-    \item A partir d'un bilan de puissance, calculer la valeur moyenne maximale du courant d'entrée $I_{e,max}$. 
-    \item Montrer que les valeurs moyennes de $V_{L_1}$ et $V_{L_2}$ sont nulles. En déduire la valeur moyenne $<V_{C_1}>$ de la tension aux bornes de $C_1$.
+
+    \item À partir d'un bilan de puissance, calculer la plus grande valeur que peut prendre la valeur moyenne $\langle I_e\rangle$ du courant d'entrée.
+    \item Montrer que les valeurs moyennes de $V_{L_1}$ et $V_{L_2}$ sont nulles. En déduire la valeur moyenne $\langle V_{C_1}\rangle$ de la tension aux bornes de $C_1$.
 
 \end{enumerate}
 
-Pour la suite, on suppose que $V_{C_1}(t)\simeq<V_{C_1}>$.
+Pour la suite, on suppose que $V_{C_1}(t)\simeq\langle V_{C_1}\rangle$.
 
 \begin{enumerate}
     \setcounter{enumi}{2}
-    \item Tracer le chronogramme de la tension aux bornes de la bobine d'induction $L_2$, $V_{L_2}$.
+    \item Tracer le chronogramme de la tension $V_{L_2}$ aux bornes de la bobine $L_2$.
     \item En déduire le gain du convertisseur $V_s/V_e$ en fonction de $\alpha$. Quel est l'intérêt du convertisseur SEPIC ?
-    \item Calculer le rapport cyclique $\alpha$ si la tension d'entrée est $V_e=54$V, puis pour $V_e=27$V. 
-    \item Calculer la valeur minimale de l'inductance $L_1$ permettant que l'ondulation du courant d'entrée soit inférieure à 10\% de sa valeur moyenne $<I_e>$, quelque soit $V_e$.
-    \item En supposant le courant de sortie $I_s$ constant, calculer la valeur minimale de $C_2$ permettant de limiter l'ondulation maximale de la tension de sortie $V_s$ à 1\% de sa valeur moyenne, prise égale à 36V, pour une tension  d'entrée à 36V.
+    \item Calculer le rapport cyclique $\alpha$ si la tension d'entrée est $V_e=54$~V, puis pour $V_e=27$~V.
+    \item Calculer la valeur minimale de l'inductance $L_1$ permettant que l'ondulation du courant d'entrée soit inférieure à $10$~\% de sa valeur moyenne $\langle I_e\rangle$, quelle que soit $V_e$.
+    \item En supposant le courant de sortie $I_s$ constant, calculer la valeur minimale de $C_2$ permettant de limiter l'ondulation de la tension de sortie $V_s$ à $1$~\% de sa valeur moyenne, prise égale à $36$~V, pour une tension d'entrée de $36$~V.
 
 \end{enumerate}
 
@@ -44,60 +45,76 @@ Pour la suite, on suppose que $V_{C_1}(t)\simeq<V_{C_1}>$.
 
     \begin{enumerate}
 
-        \item Hormis la résistance $R_C$, tout le circuit est composé d'éléments non dissipatifs. En conséquence, la puissance moyenne à l'entrée du circuit doit être égale à celle à la sortie : $<V_eI_e>=<V_sI_s>$. Sur un cycle de durée $T=1/300\times10^5$s, on peut raisonnablement supposer que la tension du supercondensateur n'a pas varié (étant un dispositif de stockage, sa tension doit varier sur une durée de plusieurs heures), donc $V_e$ est constante. 
-        Comme $I_s$ est constante, on a $V_e<I_e>=<V_s>I_s$. La valeur maximale de l'intensité d'entrée est atteinte lorsque la tension $V_e=27$V est minimale :
+        \item Hormis la résistance $R_C$, tout le circuit est composé d'éléments non dissipatifs : la puissance moyenne à l'entrée est donc égale à celle en sortie, $\langle V_eI_e\rangle=\langle V_sI_s\rangle$. Sur une période $T=1/f=3,3~\mu$s, on peut raisonnablement supposer que la tension du supercondensateur n'a pas varié : c'est un dispositif de stockage, sa tension évolue sur plusieurs heures. $V_e$ est donc constante, et $I_s$ l'est aussi par hypothèse, d'où $V_e\langle I_e\rangle=V_sI_s$. La valeur moyenne du courant d'entrée est maximale lorsque la tension $V_e=27$~V est minimale :
         \begin{align*}
-            \boxed{I_{e,max}=<I_e>=\frac{<V_s>I_s}{V_e}=13\mathrm{A}}
+            \boxed{\langle I_e\rangle_{\max}=\frac{V_sI_s}{V_{e,\min}}=13,3~\mathrm{A}}
+        \end{align*}
+        \textit{Attention à ne pas confondre cette valeur moyenne maximale avec la valeur instantanée crête du courant, qui lui est supérieure de la moitié de l'ondulation, soit $5$~\% de plus d'après le cahier des charges.}
+
+        \item En régime permanent, $I_{L_1}$ et $I_{L_2}$ sont $T$-périodiques. En conséquence,
+        \begin{align*}
+            \langle V_{L_1}\rangle=\frac{1}{T}\int_0^T L_1\frac{\dif I_{L_1}}{\dif t}\dif t
+            =\frac{L_1}{T}\big(I_{L_1}(T)-I_{L_1}(0)\big)
+            =0
+        \end{align*}
+        et de même pour $V_{L_2}$. C'est un résultat général : \textbf{la tension moyenne aux bornes d'une bobine est nulle en régime périodique}, sans quoi son courant dériverait indéfiniment.
+
+        La maille qui part de la source, traverse $L_1$, $C_1$ puis $L_2$ et revient à la masse donne, avec les orientations de la figure, $V_e=V_{L_1}+V_{C_1}+V_{L_2}$. En moyenne :
+        \begin{align*}
+            \boxed{\langle V_{C_1}\rangle=V_e}
         \end{align*}
 
-        \item Comme toutes les tensions et intensités dans le circuit sont $T-$périodiques, $I_{L_1}$ et $I_{L_2}$ sont périodiques. En conséquence,
+        \item Durant la première phase $t\in[0,\alpha T]$, $K_1$ est fermé et court-circuite son n\oe ud à la masse, $K_2$ est bloqué. La maille formée par $C_1$ et $L_2$ donne alors $V_{L_2}+V_{C_1}=0$, soit
         \begin{align*}
-            <V_{L_1}>=&\frac{1}{T}\int_0^TdtL_1\frac{dI_{L_1}}{dt} \\
-            =&\frac{1}{T}(I_{L_1}(T)-I_{L_1}(0))\\
-            =&0
+            V_{L_2}(0<t<\alpha T)=-\langle V_{C_1}\rangle=-V_e
         \end{align*}
-        Même chose pour $V_{L_2}$.
-        
-        Avec la loi des mailles, on a : $<V_e>=<V_{L_1}>+<V_{C_1}>+<V_{L_2}>$. Donc $\boxed{<V_{C_1}>=V_e}$.
-
-        \item Durant la première phase $t\in[0,\alpha T]$, $K_1$ est fermé et $K_2$ est ouvert, on a donc $V_{L_2}+V_{C_1}=0$. On a alors :
-        \begin{align*}
-            V_{L_1}(0<t<\alpha T)=-V_e
-        \end{align*}
-        Durant la seconde phase $t\in[\alpha T,T]$, $K_1$ est ouvert et $K_2$ est fermé et donc $V_{L_2}=V_s$. Le condensateur $C_2$ a pour but de lisser les variations de $V_s$ et n'intervient pas ici. 
-        Comme $<V_{L_2}>=0$, cela donne ce chronogramme : 
+        Durant la seconde phase $t\in[\alpha T,T]$, $K_1$ est ouvert et $K_2$ conduit : la bobine $L_2$ se retrouve reliée à la sortie et $V_{L_2}=V_s$. Le condensateur $C_2$ n'a ici pour rôle que de lisser $V_s$ et n'intervient pas dans ce raisonnement. D'où le chronogramme :
 
         {\centering
-                \includegraphics[scale=1.0]{conversion_puissance_electronique1_2.pdf}\par }
+                \includegraphics[scale=1.0]{conversion_electronique_puissance1_2.pdf}\par }
 
-        \item La condition $<V_{L_2}>=0$ s'écrit $<V_{L_2}>=-\alpha T\times V_e + (1-\alpha)T\times V_s=0$. On en déduit :
+        \item La condition $\langle V_{L_2}\rangle=0$ signifie que l'aire algébrique du chronogramme est nulle sur une période :
         \begin{align*}
+            \frac{1}{T}\Big(-\alpha T\,V_e+(1-\alpha)T\,V_s\Big)=0
+            \qquad\text{soit}\qquad
             \boxed{V_s = \frac{\alpha}{1-\alpha}V_e}
         \end{align*}
+        Ce gain vaut $1$ pour $\alpha=1/2$ : le convertisseur est \textbf{abaisseur pour $\alpha<1/2$ et élévateur pour $\alpha>1/2$}, et il l'est \textbf{sans inverser le signe} de la tension de sortie. C'est là tout son intérêt, et c'est exactement ce qu'exige le cahier des charges : la tension du supercondensateur passe de $54$~V à $27$~V au cours de la décharge, donc traverse la valeur $36$~V à maintenir en sortie. Aucun hacheur série ni parallèle ne saurait couvrir les deux régimes, et le Buck-Boost, qui le pourrait, délivrerait une tension de signe opposé.
 
-        \item Pour $V_s/V_e=36/54=2/3$, on trouve $\alpha=2/5=0,4$. Pour $V_s/V_e=36/27=4/3$, on trouve $\alpha=4/7\simeq0,6$.
+        \item Pour $V_s/V_e=36/54=2/3$, on trouve $\alpha=2/5=0,40$. Pour $V_s/V_e=36/27=4/3$, on trouve $\alpha=4/7\simeq0,57$. On balaie bien de part et d'autre de $\alpha=1/2$.
 
-        \item Pour $t\in[0,\alpha T]$, $K_1$ est fermé, la bobine est simplement en série avec le supercondensateur : $V_{L_1}=L_1di_{L_1}/dt=V_e$. On a donc :
+        \item Pour $t\in[0,\alpha T]$, $K_1$ est fermé et la bobine $L_1$ est directement aux bornes du supercondensateur : $V_{L_1}=L_1\dif i_{L_1}/\dif t=V_e$, d'où
         \begin{align*}
-            i_e(t)=i_{L_1}(t)=i(t=0)+\frac{V_e}{L_1}t
+            i_e(t)=i_{L_1}(t)=i_e(0)+\frac{V_e}{L_1}t
         \end{align*}
-        L'ondulation est donc $\Delta i_e=\alpha TV_e/L_1$. Comme le critère donné par l'énoncé est $\Delta i_e<0,1I_e$, on a, en utilisant la conservation de la puissance $I_eV_e=I_sV_s$ :
+        L'ondulation crête à crête vaut donc $\Delta i_e=\alpha TV_e/L_1$. Le critère $\Delta i_e<0,1\,\langle I_e\rangle$ s'écrit, en utilisant $\langle I_e\rangle=V_sI_s/V_e$ :
         \begin{align*}
-            L_1&>10\times \frac{\alpha V_e}{fI_e} \\
-            &>10\times \frac{V_s}{fI_s}\frac{\alpha^2}{1-\alpha}
+            L_1>10\,\frac{\alpha V_e}{f\,\langle I_e\rangle}=10\,\frac{\alpha V_e^2}{f\,V_sI_s}
         \end{align*}
-        Pour trouver la valeur minimale de $L_1$, il faut savoir comment celle-ci évolue en fonction de $\alpha$ (donc dérivation, on trouve que c'est une fonction décroissante de $\alpha$), soit en testant les deux valeurs extrêmes de $\alpha$. 
-        La valeur maximale de $L_1$ est obtenue lorsque $\alpha=0,4$ (soit $V_e=54$V), donc on trouve $\boxed{L_1>108\mu\mathrm{H}}$.
+        puis, en éliminant $V_e=V_s(1-\alpha)/\alpha$ pour n'avoir plus qu'une variable :
+        \begin{align*}
+            L_1>10\,\frac{V_s}{f I_s}\cdot\frac{(1-\alpha)^2}{\alpha}
+        \end{align*}
+        La dérivée de $g(\alpha)=(1-\alpha)^2/\alpha$ vaut $-\dfrac{(1-\alpha)(1+\alpha)}{\alpha^2}$, négative sur $]0,1[$ : la contrainte est donc d'autant plus sévère que $\alpha$ est petit, c'est-à-dire pour $\alpha=0,40$, soit $V_e=54$~V. On retient
+        \begin{align*}
+            \boxed{L_1>108~\mu\mathrm{H}}
+        \end{align*}
+        \textit{Vérification : avec $L_1=108~\mu$H, l'ondulation vaut $0,67$~A pour $\langle I_e\rangle=6,7$~A à $V_e=54$~V, soit exactement les $10$~\% visés, et seulement $0,48$~A pour $\langle I_e\rangle=13,3$~A à $V_e=27$~V, soit $3,6$~\%. C'est bien le premier cas qui dimensionne.}
 
-        \item Pour $t\in[0,\alpha T]$, $K_2$ est ouvert, donc on a $i_{C_2}=-I_s$ et ainsi $V_s(t)=U_{C_2}(t)=V_s(0)-I_St/C_2$. L'onudlation est donc :
+        \item Pour $t\in[0,\alpha T]$, $K_2$ est bloqué : le condensateur $C_2$ alimente seul la charge, $i_{C_2}=-I_s$ et $V_s(t)=V_s(0)-I_st/C_2$. L'ondulation vaut donc
         \begin{align*}
             \Delta V_s = \frac{\alpha I_s}{fC_2}
         \end{align*}
-        Comme la contrainte sur l'ondulation est $\Delta V_s<0,01V_s$ pour $V_s=V_e=36$V :
+        La contrainte $\Delta V_s<0,01\,V_s$ donne
         \begin{align*}
-            C_2 > 100\times\frac{\alpha I_s}{fV_s}
+            C_2 > 100\,\frac{\alpha I_s}{f V_s}
         \end{align*}
-        La condition $V_e=V_s$ impose $\alpha=0,5$, ce qui donne $\boxed{C_2>46\mu\mathrm{F}}$.
+        et la condition $V_e=V_s=36$~V impose $\alpha=0,50$, d'où
+        \begin{align*}
+            \boxed{C_2>46~\mu\mathrm{F}}
+        \end{align*}
+
+        \textit{Remarque pour le colleur : contrairement à la question 6, cette question fixe un point de fonctionnement et ne cherche pas le cas le plus défavorable. Or $\Delta V_s$ croît avec $\alpha$ : le pire cas est $\alpha=4/7$, c'est-à-dire $V_e=27$~V, et il exige $C_2>53~\mu$F. Avec les $46~\mu$F obtenus ici, l'ondulation atteindrait $1,1$~\% en fin de décharge. C'est une bonne question à poser à un élève qui aurait fini en avance.}
 
     \end{enumerate}
 

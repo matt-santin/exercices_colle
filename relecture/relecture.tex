@@ -1,0 +1,671 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage[top=2.2cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=MidnightBlue, urlcolor=MidnightBlue}
+
+\newcommand*\dif{\mathop{}\!\mathrm{d}}
+\newcommand*\diver{\mathop{}\!\mathrm{div}}
+
+\pagestyle{fancy}
+\renewcommand\headrulewidth{0.6pt}
+\fancyhead[L]{Relecture des exercices de colle}
+\fancyhead[R]{Matthieu Santin}
+\fancyfoot[C]{\thepage/\pageref{LastPage}}
+
+% Marqueurs de relecture
+\newcommand{\exo}[1]{\vspace{0.7\baselineskip}\noindent\textbf{\large #1}\par\nopagebreak\vspace{0.2\baselineskip}}
+\newcommand{\erreur}{\textcolor{BrickRed}{\textbf{Erreur}}}
+\newcommand{\suggestion}{\textcolor{MidnightBlue}{\textbf{Suggestion}}}
+\newcommand{\verifie}{\textcolor{ForestGreen}{\textbf{Vérifié}}}
+\newcommand{\rien}{\textcolor{ForestGreen}{\textbf{Rien à corriger.}}}
+\newcommand{\traite}{\textcolor{ForestGreen}{\textbf{Traité}}}
+
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.25\baselineskip, topsep=0.3\baselineskip, label=\textbullet}
+
+\title{\vspace{-1.5cm}Relecture des exercices de colle\\[0.3em]\large Recueil \texttt{main.pdf}}
+\author{}
+\date{Septembre 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\noindent\textbf{Objet.} Relecture exercice par exercice du recueil \texttt{exercices\_colle/main.pdf} :
+vérification des calculs et des applications numériques, contrôle des corrigés contre les schémas,
+cohérence des renvois aux figures, et suggestions de fond ou de rédaction.
+
+\medskip
+\noindent\textbf{Méthode.} Chaque résultat encadré et chaque valeur numérique sont recalculés
+indépendamment. Les schémas sont relus pour vérifier que la topologie décrite dans le corrigé est
+bien celle qui est dessinée, et les renvois aux couleurs des courbes sont contrôlés sur les figures.
+
+\medskip
+\noindent\textbf{Conventions.} \erreur{} signale ce qui est faux et doit être repris.
+\suggestion{} signale une amélioration possible, sans urgence. \verifie{} récapitule ce qui a été
+recalculé et confirmé, pour mémoire.
+
+\medskip
+\noindent\textbf{Suivi.} \traite{} en tête de chapitre signifie que les corrections ont
+déjà été reportées dans \texttt{main.pdf}. Le détail reste consigné ici pour mémoire.
+
+\medskip
+\noindent\textbf{Périmètre.} Les sections 1.5 à 1.8 du chapitre \'Electronique ont été rédigées au
+cours de ce travail de relecture et ne sont pas reprises ici.
+
+\section{\'Electronique}
+
+Les exercices 1.2, 1.3 et 1.4 forment une série cohérente : même structure de questions, et surtout
+\textbf{la même pulsation propre} $\omega_0 = 6{,}29\times10^{6}$~rad$\cdot$s$^{-1}$ dans les trois cas,
+obtenue avec des composants différents. C'est un choix heureux, qui permet de les donner en
+comparaison et de faire sentir qu'à fréquence propre identique trois filtres agissent très
+différemment sur le même créneau. Autant l'assumer explicitement dans une phrase d'introduction au
+groupe.
+
+\exo{1.1 Générateur de triangles (Mines-Ponts PSI 2022)}
+
+\rien{}
+
+\verifie{} : les régimes de fonctionnement des trois ALI contre le schéma (rétroaction sur $-$ pour
+$(A1)$ et $(A2)$, sur $+$ seulement pour $(A3)$), la relation $v_1=-\frac{R_2}{R_1}v_e$, la relation
+d'intégrateur, le sens horaire du cycle d'hystérésis, la durée $t_b=\frac{2R_1R_3RC}{R_2(R_3+R_4)}$,
+la période $T=\frac{4R_1R_3RC}{R_2(R_3+R_4)}$ et l'application numérique ($v_b=7{,}5$~V,
+$T=200~\mu$s, $f=5$~kHz).
+
+\begin{itemize}
+	\item \suggestion{} Cinq questions dont deux tracés à main levée : c'est long pour une colle de
+	vingt minutes. Si l'exercice est donné en entier, autant fournir le résultat de la question 2 pour
+	que l'élève démarre à la question 3.
+	\item \suggestion{} Le titre mentionne « Mines-Ponts PSI 2022 » sans préciser l'épreuve. La base
+	\texttt{annales/base/} permet de retrouver le sujet ; indiquer l'épreuve et la partie faciliterait
+	le retour à l'énoncé d'origine.
+\end{itemize}
+
+\exo{1.2 Effet d'un filtre passif $RLC$ parallèle}
+
+\erreur{} \textbf{question 1.} Le corrigé écrit :
+
+\begin{quote}
+« dans les deux cas l'impédance de la branche série $L\parallel C$ tend vers zéro, \textit{aucun
+courant ne circule dans $R$} et $V_s = V_e$ »
+\end{quote}
+
+Les deux affirmations sont incompatibles. Si l'impédance de la branche série tend vers zéro, celle-ci
+se comporte comme un fil : la totalité de $V_e$ se retrouve aux bornes de $R$, et le courant $V_e/R$
+y circule bel et bien. La conclusion $V_s=V_e$ est juste, c'est l'argument qui ne l'est pas. Il faut
+dire que la branche série ne présente \textit{aucune chute de tension}.
+
+À noter que la tournure est correctement employée dans les exercices 1.3 et 1.4, où le courant est
+réellement nul parce que c'est la branche \textit{série} qui est ouverte. C'est probablement un
+report machinal d'un exercice à l'autre.
+
+\medskip
+\verifie{} : $\omega_0=1/\sqrt{LC}=6{,}29\times10^{6}$~rad$\cdot$s$^{-1}$, $Q=R\sqrt{C/L}=15{,}9$,
+les quatre lignes du tableau de la question 4 (modules et phases recalculés harmonique par
+harmonique), l'équation différentielle, les deux conditions initiales, la solution
+$V_s=E_0\left[1-\frac{2\mu}{\Omega}e^{-\mu t}\sin\Omega t\right]$ et l'identité $2\mu/\Omega\simeq1/Q$.
+Les renvois aux couleurs (entrée orange, sortie rouge en pointillé) correspondent bien à la figure.
+
+\exo{1.3 Effet d'un filtre passif $RC$}
+
+\rien{}
+
+\verifie{} : $\underline{H}=\frac{jRC\omega}{1+3jRC\omega-(RC\omega)^2}$, $H_0=Q=1/3$,
+$\omega_0=1/RC=6{,}29\times10^{6}$~rad$\cdot$s$^{-1}$, le gain de $-9{,}5$~dB à la résonance, les
+quatre lignes du tableau, la décroissance des amplitudes de sortie en $1/n^2$, l'équation
+différentielle, les conditions initiales, la solution $V_s=\frac{E_0}{\mu'RC}\sinh(\mu't)e^{-\mu t}$
+avec $\mu=\frac{3}{2RC}$ et $\mu'=\frac{\sqrt5}{2RC}$, et le temps de décroissance
+$1/(\mu-\mu')=0{,}42~\mu$s. Les couleurs (entrée noire, sortie verte en pointillé) et le facteur de
+dilatation $10$ de la figure sont cohérents avec l'amplitude annoncée de $0{,}14$~V.
+
+\begin{itemize}
+	\item \suggestion{} $C=1{,}59\times10^{-2}$~nF se lit mal. $15{,}9$~pF serait plus naturel et
+	donnerait tout de suite le bon ordre de grandeur.
+	\item \suggestion{} La remarque « le facteur de qualité $Q=1/3$ est indépendant de $R$ et $C$ »
+	mérite la précision « à composants appariés » : elle suppose les deux résistances égales entre
+	elles et les deux condensateurs égaux entre eux. La figure le montre, le texte ne le dit pas.
+	\item \suggestion{} Le pont de Wien étant nommé, un mot de plus situerait l'exercice : c'est le
+	réseau sélectif de l'oscillateur à pont de Wien, dont le gain $1/3$ à la résonance impose un
+	amplificateur de gain $3$. Cela fait le lien avec l'oscillateur quasi-sinusoïdal du \S~1.8.
+\end{itemize}
+
+\exo{1.4 Effet d'un filtre passif $RLC$ série}
+
+\rien{}
+
+\verifie{} : $\omega_0=6{,}29\times10^{6}$~rad$\cdot$s$^{-1}$, $Q=\frac{1}{R}\sqrt{L/C}=0{,}629$, les
+quatre lignes du tableau, la largeur de bande $\Delta\omega=\omega_0/Q>\omega_0$, le caractère
+pseudo-périodique de la réponse indicielle, $\Omega=3{,}81\times10^{6}$~rad$\cdot$s$^{-1}$, le
+maximum de la réponse à $0{,}68\,E_0$ (recalculé par annulation de la dérivée), la constante de temps
+$\tau=1/\mu=0{,}2~\mu$s, et la cohérence entre les pics de la question 4 ($0{,}75$~V) et le double de
+la réponse indicielle ($1{,}35\,E_0$). Les couleurs (entrée noire, sortie bleue en pointillé)
+correspondent à la figure.
+
+\begin{itemize}
+	\item \suggestion{} La discussion de la question 4 est la plus riche des trois exercices, parce
+	qu'elle explique pourquoi l'approximation du dérivateur est \textit{grossière} ici. Elle gagnerait
+	à être signalée comme le point d'arrivée de la série : c'est là qu'on voit qu'un filtre peu
+	sélectif ne fait ni tout à fait un dérivateur ni tout à fait rien.
+\end{itemize}
+
+\section{Puissance électrique en régime sinusoïdal}
+
+\erreur{} \textbf{titre du chapitre.} \texttt{régime sinuo\"idal} : il manque un \texttt{s}.
+La coquille apparaît dans le titre du chapitre et dans la table des matières de \texttt{main.pdf}.
+
+\medskip
+Le chapitre ne contient qu'un seul exercice. Soit il mérite d'être étoffé, soit il gagnerait à être
+rattaché au chapitre \'Electronique, quitte à y former une section à part.
+
+\exo{2.1 Puissance absorbée par une installation}
+
+\erreur{} \textbf{question 1, relation tension-courant inversée.} Le corrigé écrit
+$\underline{i_1}=(R_1+jL_1\omega)\,\underline{u}$. C'est l'inverse : l'impédance multiplie le courant,
+pas la tension, et il faut lire $\underline{u}=(R_1+jL\omega)\,\underline{i_1}$. La formule qui suit,
+$L=\frac{1}{\omega}\sqrt{U^2/I_1^2-R_1^2}$, est quant à elle correcte, c'est bien
+$|\underline{Z}|=U/I_1$ qui est utilisé. Seule la ligne intermédiaire est fausse, mais c'est
+exactement le genre d'inversion qu'un élève recopie.
+
+\medskip
+\erreur{} \textbf{question 1, déphasage sans signe.} $i_1(t)=\sqrt{2}I_1\cos(\omega t\,\varphi_1)$ :
+il manque l'opérateur. La charge étant inductive, le courant est en retard et il faut
+$\cos(\omega t-\varphi_1)$.
+
+\medskip
+\erreur{} \textbf{question 2, $R_2$ n'est jamais calculée.} L'énoncé demande explicitement
+« calculer les valeurs efficaces $I_2$ et $I$, \textit{la résistance $R_2$}, la puissance $P$ et le
+facteur de puissance ». Le corrigé traite les quatre autres grandeurs et oublie celle-là. Il
+manque $R_2=U^2/P_2=48{,}4~\Omega$.
+
+\medskip
+\erreur{} \textbf{notation de l'inductance, trois écritures pour une même grandeur.} Le préambule
+de l'énoncé parle de $(R_1,L_1)$, la question 1 demande « l'inductance $L$ », la figure porte $L$ sur
+les trois schémas, et le corrigé utilise $L_1$. Comme la figure est la plus difficile à modifier,
+$L$ semble le choix à retenir partout.
+
+\medskip
+\verifie{} : $R_1=P_1/I_1^2=6{,}04~\Omega$, $\cos\varphi_1=P_1/(UI_1)=0{,}4995$ donc bien
+$\varphi_1=\pi/3$, $L=33{,}3$~mH, $I_2=P_2/U=4{,}55$~A, $I=20{,}9$~A par somme vectorielle,
+$\cos\varphi_2=0{,}654$ (recoupé par $P/(UI)$, qui donne la même valeur), $P=3{,}0$~kW, et
+$C=I_1\sin\varphi_1/(U\omega)=2{,}28\times10^{-4}$~F. Le diagramme de Fresnel est cohérent avec le
+texte, et il contient bien $I_3$ : le renvoi « cf schéma ci-dessus » de la question 3 est donc
+légitime.
+
+\begin{itemize}
+	\item \suggestion{} \textbf{Le chapitre s'appelle « puissance en régime sinusoïdal » et seule la
+	puissance active y apparaît.} Introduire la puissance réactive $Q=UI\sin\varphi$ et la puissance
+	apparente $S=UI$ rendrait la question 3 immédiate : le condensateur doit fournir
+	$Q_C=Q_1=P_1\tan\varphi_1=3{,}46$~kVAR, d'où $C=\frac{P_1\tan\varphi_1}{U^2\omega}$, soit la même
+	valeur sans passer par le diagramme de Fresnel. C'est la méthode standard en électrotechnique, et
+	elle se généralise à un nombre quelconque de récepteurs.
+	\item \suggestion{} \textbf{$R_1$ n'est pas une résistance dissipative.} Le corrigé écrit que « la
+	puissance est, en moyenne, uniquement dissipée dans la résistance ». C'est vrai du \textit{modèle
+	équivalent}, mais l'installation est faite de machines tournantes : l'essentiel de ces $2$~kW part
+	en travail mécanique, pas en chaleur. La confusion entre le schéma équivalent et la réalité
+	physique est un classique, autant la désamorcer en une phrase.
+	\item \suggestion{} La condition imposée par le distributeur mérite d'être précisée. En France on
+	n'impose pas $\cos\varphi=1$ mais on facture l'énergie réactive au-delà de $\tan\varphi=0{,}4$.
+	L'explication donnée, les pertes en ligne, est la bonne ; la règle de facturation la rendrait
+	concrète.
+	\item \suggestion{} Un ordre de grandeur sur le résultat final aiderait : $C=228~\mu$F sous
+	$220$~V, c'est une batterie de condensateurs de $3{,}5$~kVAR, encombrante et coûteuse pour une
+	installation de $3$~kW. C'est précisément pourquoi on se contente en pratique de relever
+	$\cos\varphi$ à $0{,}93$ au lieu de $1$.
+	\item \suggestion{} Le diagramme de Fresnel est introduit à la question 2 alors qu'il porte déjà
+	$I_3$, qui ne sert qu'à la question 3. Soit le signaler d'un mot, soit le scinder en deux figures.
+	\item \suggestion{} \textbf{Unités.} Aucune espace insécable avant les unités dans tout l'exercice
+	(\texttt{\$U=220\$V}, \texttt{\$f=50\$Hz}, \texttt{\$P\_1=2,0\$kW}), là où le reste de
+	\texttt{main.pdf} écrit \texttt{\$220\$\textasciitilde V}. À harmoniser.
+	\item \suggestion{} Coquilles : « distribiteur », « Pourquoi le distributeur impose cette
+	condition ? » (il manque l'inversion : « impose-t-il »), « les deux puissances dissipée » (accord),
+	et $P$ écrit pour $P_1$ dans la première relation du corrigé.
+\end{itemize}
+
+\section{Conversion électronique de puissance}
+
+\traite{} \textbf{le 14 septembre 2026.} Les quatre erreurs et les deux relâchements de calcul
+relevés ci-dessous sont corrigés dans \texttt{main.pdf}, ainsi que les suggestions qui ne modifiaient
+pas la nature des questions : hypothèse de régime permanent et convention d'ondulation crête à crête
+ajoutées à la liste des hypothèses, notation $\langle I_e\rangle_{\max}$, unités et coquilles,
+vérification numérique des ondulations obtenues, et renommage de
+\texttt{conversion\_puissance\_electronique1\_2.pdf}.
+
+\medskip
+Deux points ont été traités autrement que suggéré. La question 7 continue de fixer $V_e=36$~V comme
+dans l'énoncé d'origine, mais le mot « maximale » a été retiré et le cas le plus défavorable
+($C_2>53~\mu$F) fait désormais l'objet d'une remarque pour le colleur. Les notations $V_S$, $I_S$ et
+$V_E$ des figures n'ont pas été touchées, faute de source modifiable ; seul le texte a été harmonisé.
+
+\medskip
+Le détail des erreurs est conservé ci-dessous.
+
+\exo{3.1 Hacheur, convertisseur SEPIC}
+
+Bon exercice, bien ancré dans une situation réelle, et dont le fil conducteur (une tension d'entrée
+qui traverse la tension de sortie) justifie pleinement le choix de la topologie SEPIC. Le schéma est
+juste et complet. Le corrigé, en revanche, porte plusieurs confusions d'indices.
+
+\medskip
+\erreur{} \textbf{question 3, $L_1$ écrit pour $L_2$.} Après avoir correctement établi
+$V_{L_2}+V_{C_1}=0$ pendant la première phase, le corrigé conclut
+$V_{L_1}(0<t<\alpha T)=-V_e$. C'est $V_{L_2}$ qu'il faut lire. La question porte d'ailleurs sur
+$V_{L_2}$, et le chronogramme donné juste après est bien celui de $V_{L_2}$. La contradiction est
+flagrante avec la question 6, qui établit, correctement, que $V_{L_1}=+V_e$ sur ce même intervalle.
+
+\medskip
+\erreur{} \textbf{question 6, expression inversée.} Le corrigé écrit
+\begin{align*}
+	L_1>10\,\frac{V_s}{fI_s}\cdot\frac{\alpha^2}{1-\alpha}
+	\qquad\text{alors qu'il faut}\qquad
+	L_1>10\,\frac{V_s}{fI_s}\cdot\frac{(1-\alpha)^2}{\alpha}
+\end{align*}
+en substituant $V_e=V_s(1-\alpha)/\alpha$ dans la ligne précédente, qui est juste. L'erreur se
+détecte sans calcul : le corrigé affirme dans la phrase suivante que la fonction est
+\textit{décroissante} de $\alpha$ et que le maximum est atteint en $\alpha=0{,}4$, or l'expression
+écrite est croissante. C'est bien la version corrigée qui est décroissante, et c'est elle qui donne
+le résultat encadré $L_1>108~\mu$H, lequel est juste.
+
+\medskip
+\erreur{} \textbf{question 4, la seconde moitié n'est pas traitée.} « Quel est l'intérêt du
+convertisseur SEPIC ? » reste sans réponse, alors que c'est le cœur de l'exercice : le gain
+$\alpha/(1-\alpha)$ vaut $1$ pour $\alpha=1/2$, il est donc \textbf{abaisseur pour $\alpha<1/2$ et
+élévateur pour $\alpha>1/2$}, et cela \textbf{sans inversion de signe} contrairement au Buck-Boost.
+C'est exactement ce qu'exige un supercondensateur dont la tension traverse les $36$~V en se
+déchargeant, et c'est ce qui justifie tout le préambule de l'énoncé.
+
+\medskip
+\erreur{} \textbf{question 1, période fausse.} « un cycle de durée $T=1/300\times10^5$~s » : l'exposant
+est faux et la parenthèse manquante. Pour $f=300$~kHz, $T=1/f=3{,}3~\mu$s.
+
+\medskip
+Deux relâchements de calcul, sans conséquence sur les résultats :
+\begin{itemize}
+	\item question 2, le facteur $L_1$ disparaît entre $\frac{1}{T}\int_0^T L_1\frac{\dif I_{L_1}}{\dif t}\dif t$
+	et $\frac{1}{T}\big(I_{L_1}(T)-I_{L_1}(0)\big)$ ;
+	\item question 4, $\langle V_{L_2}\rangle=-\alpha T V_e+(1-\alpha)TV_s$ : il manque le $1/T$. C'est
+	l'aire algébrique qui est nulle, pas cette expression qui serait une moyenne.
+\end{itemize}
+
+\medskip
+\verifie{} : le bilan de puissance et $I_{e,\max}=V_sI_s/V_e=13{,}3$~A, la maille
+$V_e=V_{L_1}+V_{C_1}+V_{L_2}$ relue sur le schéma avec les conventions d'orientation des flèches,
+d'où $\langle V_{C_1}\rangle=V_e$, le chronogramme ($-V_e$ puis $+V_s$, cohérent avec la figure), le
+gain $V_s/V_e=\alpha/(1-\alpha)$, les deux rapports cycliques $\alpha=0{,}4$ et $\alpha=4/7$, la
+borne $L_1>108~\mu$H (recalculée par les deux chemins, avec $V_e$ et avec $\alpha$), et
+$C_2>46~\mu$F.
+
+\begin{itemize}
+	\item \suggestion{} \textbf{La question 7 ne traite pas le cas le plus défavorable.} L'énoncé
+	demande de limiter « l'ondulation \textit{maximale} » tout en fixant $V_e=36$~V, ce qui est
+	contradictoire. Or $\Delta V_s=\alpha I_s/(fC_2)$ croît avec $\alpha$ : le pire cas est
+	$\alpha=4/7$, c'est-à-dire $V_e=27$~V, et il conduit à $C_2>53~\mu$F et non $46~\mu$F. Soit on
+	aligne la question sur la question 6 en écrivant « quel que soit $V_e$ », soit on retire le mot
+	« maximale ». En l'état un élève rigoureux se trouve piégé.
+	\item \suggestion{} Le \textbf{régime permanent périodique} n'est jamais posé en hypothèse, alors
+	que toute la question 2 et l'ensemble des bilans reposent dessus. Une ligne dans la liste des
+	hypothèses suffirait.
+	\item \suggestion{} La convention d'ondulation n'est pas précisée. Le corrigé prend $\Delta i_e$
+	crête à crête, ce qui est l'usage, mais l'énoncé ne le dit pas et la valeur change d'un facteur
+	deux selon la lecture.
+	\item \suggestion{} Notation $I_{e,\max}$ : la question demande la \textit{valeur moyenne} maximale,
+	le corrigé répond correctement, mais l'indice « max » évoque plutôt la valeur instantanée crête,
+	qui vaut ici $1{,}05\,\langle I_e\rangle$. Un indice du type $\langle I_e\rangle_{\max}$ lèverait
+	l'ambiguïté.
+	\item \suggestion{} Les figures écrivent $V_S$, $I_S$, $V_E$ et $V_{L2}$ là où le texte écrit
+	$V_s$, $I_s$, $V_e$ et $V_{L_2}$. À harmoniser, au moins dans le texte.
+	\item \suggestion{} Les deux fichiers de figures ont leurs mots inversés :
+	\texttt{conversion\_electronique\_puissance1\_1.png} et
+	\texttt{conversion\_puissance\_electronique1\_2.pdf}. Autant renommer le second.
+	\item \suggestion{} L'exercice dimensionne $L_1$ et $C_2$ mais laisse de côté $L_2$ et $C_1$. Si
+	l'on cherche à l'allonger, c'est l'extension naturelle ; sinon, un mot expliquant pourquoi ces
+	deux-là suffisent au dimensionnement demandé.
+	\item \suggestion{} Aucune application numérique sur les ondulations elles-mêmes une fois les
+	composants choisis, alors que c'est ce qui rend le résultat parlant.
+	\item \suggestion{} Coquilles : « converstisseur », « Convertor » (SEPIC = \textit{Single Ended
+	Primary Inductor \textbf{Converter}}), « l'intesité », « quelque soit » pour « quel que soit »,
+	« A partir » pour « À partir », « L'onudlation », $I_St$ pour $I_st$, et « bobine d'induction »
+	là où « bobine » suffit.
+	\item \suggestion{} Si l'exercice provient d'un sujet de concours, l'attribuer comme le fait le
+	\S~1.1 aiderait à retrouver l'énoncé complet.
+\end{itemize}
+
+\section{Magnétostatique}
+
+\traite{} \textbf{le 14 septembre 2026, par réécriture.} Le défaut étant structurel, l'exercice a été
+refait plutôt que rapiécé. Il s'appelle désormais « Solénoïde épais à densité de courant variable »
+et compte quatre questions : symétries, théorème d'Ampère donnant $B(r)-B(0)$, puis
+\textbf{la question qui manquait} (champ nul à l'extérieur, d'où $B(0)$ et $\vec B$ partout), et
+enfin la vérification par superposition de solénoïdes emboîtés, qui remplace l'ancienne question 3.
+L'énoncé décrit maintenant un bobinage à densité de spires variable et non un conducteur massif, et
+porte des valeurs numériques ($a=10$~cm, $j_0=5{,}0$~A$\cdot$mm$^{-2}$, d'où $B(0)=0{,}31$~T).
+Deux remarques pour le colleur ont été ajoutées : l'indétermination du cylindre rigoureusement infini,
+et la réalisation pratique du dispositif.
+
+\medskip
+Les deux figures à main levée ont été refaites, la première en TikZ sous forme de \textbf{coupe
+méridienne} (le courant orthoradial y traverse le plan de figure, ce qui est nettement plus lisible
+que la perspective d'origine) et la seconde en matplotlib. Les originales restent accessibles dans
+l'historique git et sous \texttt{Colle\_compilation/figures/magnetostat\_orthoradial*.pdf}.
+
+\medskip
+Le détail de ce qui n'allait pas est conservé ci-dessous.
+
+\exo{4.1 Champ magnétique dans un cylindre parcouru par un courant orthoradial}
+
+Le calcul est juste, et j'ai vérifié la cohérence des signes entre l'orientation du contour $ABCD$ de
+la figure et le sens du courant enlacé. Mais l'exercice a un défaut de construction qui dépasse la
+correction ligne à ligne, et qui justifie à mon sens une réécriture.
+
+\medskip
+\erreur{} \textbf{L'exercice contourne sa propre question centrale.} Le seul pas physique
+intéressant est la détermination de la constante d'intégration. Le cylindre étant long mais fini, le
+champ tend vers zéro loin de lui ; le théorème d'Ampère montre par ailleurs que $B$ est
+\textit{uniforme} pour $r>a$ ; donc $B(r>a)=0$, ce qui fixe
+\begin{align*}
+	B(0)=\frac{\mu_0j_0a}{2}
+	\qquad\text{et}\qquad
+	B(r)=\frac{\mu_0j_0}{2a}\left(a^2-r^2\right)
+\end{align*}
+Or la question 2 demande $B(r)$ « en fonction de la valeur du champ en $r=0$ », donc laisse la
+constante indéterminée, et la question 3 introduit un champ extérieur pour imposer $B(a)=0$,
+condition qui est \textbf{déjà vraie sans aucun champ extérieur}.
+
+\medskip
+\erreur{} \textbf{Conséquence : la question 3 est vide.} Le corrigé répond
+$B_{\mathrm{ext}}=-B(0)+\mu_0j_0a/2$, qui n'est pas un résultat : c'est une expression d'un
+inconnu en fonction d'un autre inconnu. Si l'on fait la physique correctement, $B(0)=\mu_0j_0a/2$ et
+donc $B_{\mathrm{ext}}=0$. La question demande d'ajouter un champ pour obtenir une situation qui est
+déjà celle du problème.
+
+\medskip
+\erreur{} \textbf{La seconde figure vend la mèche et contredit le texte.} Le tracé placé à la fin de
+la question 2 part de $\mu_0j_0a/2$ sur l'axe et s'annule en $r=a$ : c'est le résultat de la
+question 3, dessiné comme s'il était celui de la question 2, dont le texte affirme pourtant que
+$B(0)$ est indéterminé. Cette figure est la preuve que la confusion est réelle et pas seulement
+formelle.
+
+\medskip
+\verifie{} : les invariances et le plan de symétrie (le plan $z=\mathrm{cte}$ est bien plan de
+symétrie de la distribution, donc $\vec B$, pseudo-vecteur, lui est perpendiculaire, d'où
+$\vec B=B(r)\vec e_z$), le courant enlacé $h j_0 r^2/2a$, la circulation $-hB(r)+hB(0)$ avec
+l'orientation effectivement dessinée, et les deux expressions de $B(r)$ pour $r<a$ et $r>a$.
+Recoupé par une seconde méthode : en voyant le cylindre comme un empilement de solénoïdes
+élémentaires de courant surfacique $j(r')\dif r'$, chacun créant $\mu_0 j(r')\dif r'$ à l'intérieur
+et rien à l'extérieur, on retrouve $B(r)=\int_r^a\mu_0j_0\frac{r'}{a}\dif r'=\frac{\mu_0j_0}{2a}(a^2-r^2)$.
+
+\begin{itemize}
+	\item \suggestion{} \textbf{Le modèle physique n'est pas défendable tel qu'énoncé.} « Un cylindre
+	conducteur dans lequel circule une densité volumique de courant orthoradiale » : dans un
+	conducteur massif, un courant azimutal permanent supposerait un champ électrique orthoradial, donc
+	une circulation non nulle de $\vec E$ sur une boucle fermée, ce qui est impossible en régime
+	stationnaire. La distribution est mathématiquement licite ($\diver\vec\jmath=0$), mais sa
+	réalisation est un \textbf{bobinage} dont la densité de spires varie avec $r$, pas un bloc
+	conducteur. C'est exactement la question que pose un bon élève.
+	\item \suggestion{} \textbf{Les deux figures sont dessinées à main levée}, à la tablette, ce qui
+	détonne dans un recueil par ailleurs entièrement en Inkscape et matplotlib. La première est peu
+	lisible et, surtout, représente le cylindre comme un disque aplati alors que l'énoncé pose
+	$L\gg a$. L'annotation de la seconde est indéchiffrable à la taille d'impression et se lit
+	volontiers $\propto-1/r^2$, alors que la dépendance est en $-r^2$.
+	\item \suggestion{} Aucune valeur numérique. Avec $a=10$~cm et $j_0=5\times10^{6}$~A$\cdot$m$^{-2}$,
+	soit $5$~A$\cdot$mm$^{-2}$, ordre de grandeur d'un bobinage bien refroidi, on obtient
+	$B(0)=0{,}31$~T : un électroaimant de laboratoire honnête. Cela ancre l'exercice.
+	\item \suggestion{} Le profil obtenu mérite d'être commenté : le champ est \textbf{maximal sur
+	l'axe et nul au bord}, à l'inverse du fil massif à courant axial que les élèves connaissent. La
+	lecture en solénoïdes emboîtés l'explique d'une phrase : en $r$, seules les couches extérieures
+	contribuent.
+	\item \suggestion{} Coquilles et notations : « l'axe $O_z$ » pour $Oz$, « A l'aide » pour
+	« À l'aide », « Quel est l'expression » pour « Quelle », « de sorte à ce que » pour « de sorte
+	que », $\oint\dif\vec l\cdot\vec B$ au lieu de $\oint\vec B\cdot\dif\vec l$, les $\dif$ droits, et
+	$B_{ext}$ en italique. Le point le plus gênant est l'usage de $B$ à la fois comme sommet du
+	contour et comme norme du champ, dans la même ligne de calcul. Enfin l'équation du théorème
+	d'Ampère est en \texttt{align} alors que tout le reste est en \texttt{align*}, ce qui produit un
+	numéro d'équation isolé.
+\end{itemize}
+
+\section{Induction}
+
+\traite{} \textbf{le 14 septembre 2026.} Les cinq erreurs ci-dessous sont corrigées dans
+\texttt{main.pdf} : dépendance temporelle rétablie dans $E(r,t)$ et donc facteur $1/2$ de la valeur
+moyenne, expression de $j(r,t)$ ajoutée, application numérique refaite, numérotation alignée sur
+l'énoncé, notations $\sigma$, $P_{\mathrm{Joule}}$ et $\iint$ harmonisées.
+
+\medskip
+Trois changements de fond. \textbf{Une cinquième question a été ajoutée}, qui fait calculer
+l'épaisseur de peau et vérifier a posteriori l'hypothèse admise au début : c'est le point le plus
+instructif de l'exercice, et il se retourne en argument positif puisque le chauffage par induction
+repose précisément sur $\delta\ll e$. \textbf{Le rayon de l'inducteur est passé à $a=7{,}0$~cm}
+contre $b=10$~cm pour le disque, de sorte que le terme en $\ln(b/a)$, qui représentait la moitié du
+calcul, ne soit plus annulé. \textbf{Le solénoïde a été rallongé} à $\ell=50$~cm, ce qui rend la
+formule $B=\mu_0NI/\ell$ défendable, avec une remarque rappelant que seul $nI=B_m/\mu_0$ a un sens
+physique et qu'un inducteur réel est une spirale plate.
+
+\medskip
+L'objet chauffé est désormais décrit comme un \textbf{disque de cuivre} et non comme un fond de
+casserole : $\sigma=6{,}0\times10^{7}$~S$\cdot$m$^{-1}$ est exactement la conductivité du cuivre. Une
+remarque explique en quoi les valeurs de l'énoncé ne décrivent pas une plaque de cuisine.
+
+\medskip
+\textbf{La version antérieure est conservée} dans
+\texttt{relecture/versions/induction\_avant-correction\_2026-09-14.tex} : il suffit de la recopier sur
+\texttt{themes/induction.tex} pour revenir en arrière. La figure n'a pas été touchée.
+
+\medskip
+Le détail des erreurs est conservé ci-dessous.
+
+\exo{5.1 Chauffage par induction}
+
+Le sujet est excellent et la figure est claire et correcte. Le calcul de la puissance est juste dans
+sa structure, y compris la séparation en deux domaines $r<a$ et $r>a$, que j'ai refaite. Mais le
+corrigé perd la dépendance temporelle dès la première ligne, et l'application numérique ne suit pas.
+
+\medskip
+\erreur{} \textbf{Le facteur $1/2$ de la valeur moyenne manque.} Le corrigé écrit
+$E(r)=rB_m\omega/2$, sans la dépendance temporelle. Avec $\vec B=B_m\cos(\omega t)\vec e_z$, la loi de
+Faraday donne en réalité
+\begin{align*}
+	E(r,t)=\frac{rB_m\omega}{2}\sin(\omega t) \qquad (r<a)
+\end{align*}
+La puissance faisant intervenir $E^2$, sa moyenne temporelle vaut la moitié de la valeur calculée.
+La question demandant explicitement $\langle P_{\mathrm{Joule}}\rangle$, il faut
+\begin{align*}
+	\langle P\rangle=\frac{\pi}{4}\,e\,\sigma\,a^4B_m^2\omega^2\left[\frac14+\ln\frac{b}{a}\right]
+\end{align*}
+Ce que donne le corrigé est la puissance instantanée maximale.
+
+\medskip
+\erreur{} \textbf{La question 2 n'est pas traitée.} Elle demande $j(r,t)$ ; le corrigé calcule $E(r)$
+puis enchaîne sur la puissance. L'expression $j(r,t)=\sigma\frac{rB_m\omega}{2}\sin(\omega t)$
+n'apparaît jamais, alors que c'est l'objet de la question.
+
+\medskip
+\erreur{} \textbf{L'application numérique ne correspond pas à la formule.} Avec $a=b=10$~cm on a
+$\ln(b/a)=0$ et le crochet se réduit à $1/4$. En reprenant toutes les données de l'énoncé je trouve
+\begin{align*}
+	P_{\mathrm{max}}=707~\mathrm{W} \qquad\text{et}\qquad \langle P\rangle=353~\mathrm{W}
+\end{align*}
+et non les $3769$~W annoncés, que je n'ai pu retrouver par aucune lecture plausible des données. Par
+ailleurs la question demande un \textit{ordre de grandeur} et la réponse est donnée à quatre chiffres
+significatifs.
+
+\medskip
+\erreur{} \textbf{Le « solénoïde » de la dernière question n'en est pas un.} Il est long de $5$~cm et
+doit englober la zone de champ de rayon $a=10$~cm : son rapport longueur sur rayon vaut au plus
+$0{,}5$, soit exactement l'inverse de la condition du solénoïde long. La formule $B=\mu_0NI/L$ n'y est
+pas applicable. Le résultat $I\simeq0{,}04$~A est cohérent avec la formule, mais la formule ne l'est
+pas avec la géométrie. Accessoirement, une plaque à induction réelle utilise une spirale plate, pas
+un solénoïde.
+
+\medskip
+\erreur{} \textbf{Décalage de numérotation.} L'énoncé compte cinq questions, le corrigé quatre items :
+l'item 2 répond aux questions 2 et 3 à la fois, et tout est décalé ensuite.
+
+\medskip
+Trois relâchements de notation : la conductivité est notée $\sigma$ dans l'énoncé et $\gamma$ dans le
+corrigé ; la puissance \textit{totale} est appelée $P_{vol}$, ce qui la confond avec une densité
+volumique ; et l'intégrale de flux est écrite avec $\oiint$, réservé aux surfaces fermées, alors que
+$\Sigma$ est un disque. S'ajoute une parenthèse non fermée à la question 1.
+
+\medskip
+\verifie{} : la forme $\vec\jmath=j(r,t)\vec e_\theta$, les deux expressions de $E(r)$ pour $r<a$ et
+$r>a$, les deux intégrales de puissance et leur regroupement en
+$\frac{\pi}{2}e\sigma a^4B_m^2\omega^2\left[\frac14+\ln\frac ba\right]$, et le courant
+$I=BL/(\mu_0N)=0{,}040$~A.
+
+\begin{itemize}
+	\item \suggestion{} \textbf{L'hypothèse centrale est violée par les valeurs numériques choisies.}
+	L'énoncé admet que le champ induit est négligeable devant le champ appliqué, c'est-à-dire que le
+	champ pénètre uniformément toute l'épaisseur. Or l'épaisseur de peau vaut
+	\begin{align*}
+		\delta=\sqrt{\frac{2}{\mu_0\sigma\omega}}=0{,}52~\mathrm{mm}
+	\end{align*}
+	contre $e=3$~mm : le courant est en réalité confiné dans une couche six fois plus mince que
+	l'épaisseur supposée traversée. Le corrigé conclut pourtant que le résultat « est cohérent avec la
+	puissance maximale des plaques à induction du commerce », ce qui donne une fausse confiance dans un
+	modèle invalide aux valeurs retenues. \textbf{C'est une très bonne question à ajouter} : vérifier a
+	posteriori la validité de l'hypothèse en calculant $\delta$. C'est d'ailleurs précisément parce que
+	$\delta\ll e$ que le chauffage par induction fonctionne.
+	\item \suggestion{} Les données ne décrivent pas une plaque à induction. $\sigma=6{,}0\times10^{7}$~S$\cdot$m$^{-1}$
+	est la conductivité du \textbf{cuivre} ; un fond de casserole compatible induction est en acier
+	ferromagnétique ($\sigma\sim10^{6}$~S$\cdot$m$^{-1}$, $\mu_r$ de l'ordre de $100$). Et
+	$B_m\sim10^{-4}$~T est cent fois trop faible : une plaque réelle produit quelques $10^{-2}$~T, ce
+	que confirme le résultat de la dernière question, $0{,}04$~A, quand une plaque réelle tire des
+	dizaines d'ampères.
+	\item \suggestion{} Poser $a=b$ dans l'application numérique annule le terme en $\ln(b/a)$ et rend
+	inutile toute la seconde intégrale, celle du domaine $r>a$, qui a pourtant demandé la moitié du
+	travail. Prendre par exemple $a=7$~cm et $b=10$~cm ferait travailler le résultat complet.
+	\item \suggestion{} L'argument de symétrie de la question 1 est affirmé plutôt que mené. Le plus
+	court est d'invoquer l'analogie explicitement : $-\partial\vec B/\partial t$ joue le rôle de
+	$\mu_0\vec\jmath$ dans le problème magnétostatique du cylindre parcouru par un courant uniforme
+	selon $\vec e_z$, dont le champ est orthoradial. Le corrigé l'esquisse mais parle de « théorème
+	d'Ampère » là où il s'agit de la forme intégrale de Maxwell-Faraday.
+	\item \suggestion{} Typographie : « A l'aide » pour « À l'aide », $P_{Joule}$ en italique,
+	$\vec{e_z}$ au lieu de $\vec{e}_z$, \texttt{rad.s\textasciicircum\{-1\}} et
+	\texttt{S.m\textasciicircum\{-1\}} avec des points au lieu de $\cdot$, aucune espace insécable
+	avant les unités, et un point final manquant à la question 4 du corrigé.
+\end{itemize}
+
+\section{Ferromagnétisme}
+
+\traite{} \textbf{le 14 septembre 2026.} Les six erreurs ci-dessous sont corrigées dans
+\texttt{main.pdf}. \textbf{La question 4 est désormais traitée} : matériau dur, condition
+$|I|<H_cL/N$, et le contraste chiffré entre un AlNiCo ($|I|<50$~A) et un fer doux ($|I|<10$~mA), qui
+est le c\oe ur de la question. \textbf{Les deux appels de figures sont remis dans le bon ordre.} Le
+moment magnétique vaut maintenant $\mu_r NIS$ et non $NIS$, est noté $m$ et non $M$, et le champ
+dipolaire sur l'axe porte son facteur $2$. L'argument de continuité est reformulé en composante
+normale.
+
+\medskip
+Deux ajouts. \textbf{Une figure de cycle d'hystérésis} a été tracée et placée à la question 2, avec
+le point de fonctionnement à courant négatif : sans elle, la question 4 n'avait aucun support
+graphique. Et l'exercice porte désormais des valeurs numériques ($L=20$~cm, $R=1{,}0$~cm, $N=200$,
+$I=1{,}0$~A), d'où $H=1{,}0\times10^{3}$~A$\cdot$m$^{-1}$, $B\simeq1{,}3$~T dans le matériau contre
+$1{,}3$~mT sans noyau, un moment de $63$~A$\cdot$m$^{2}$ et un champ lointain de $13~\mu$T à $1$~m,
+soit le quart du champ terrestre.
+
+\medskip
+Un point n'a pas été suivi. La question 4 demandait de \textit{tracer} les trois champs dans le cas
+$I<0$ ; le corrigé les décrit précisément par rapport à la figure de la question 3 plutôt que d'ajouter
+un cinquième tracé. Une figure matplotlib jurerait avec les trois figures Inkscape existantes : si tu
+veux la faire, le mieux est de reprendre \texttt{ferromagnetisme1\_2} en basculant le plateau de $H$
+sous l'axe.
+
+\medskip
+\textbf{La version antérieure est conservée} dans
+\texttt{relecture/versions/ferromagnetisme\_avant-correction\_2026-09-14.tex}.
+
+\medskip
+Le détail des erreurs est conservé ci-dessous.
+
+\exo{6.1 Matériau ferromagnétique}
+
+La progression $\vec H$, puis $\vec M$, puis $\vec B$, et enfin l'aimantation rémanente, est une très
+bonne idée : c'est exactement l'ordre dans lequel il faut penser un milieu magnétique. Mais le corrigé
+s'arrête avant la fin et comporte deux erreurs de fond sur le champ lointain.
+
+\medskip
+\erreur{} \textbf{La question 4 n'est pas corrigée.} Le corrigé en recopie l'énoncé mot pour mot, et
+s'arrête là. C'est pourtant la seule question qui exploite réellement le ferromagnétisme, et de loin
+la plus intéressante. Ce qu'elle appelle : il faut un matériau \textbf{dur}, à cycle d'hystérésis
+large. Avec $I<0$ on a $H=NI/L<0$, mais tant que $|H|<H_c$ on reste sur la branche supérieure du
+cycle, $M$ reste voisine de l'aimantation rémanente $M_r>0$, et $B=\mu_0(H+M)>0$ puisque
+$M\gg|H|$. « Légèrement » signifie donc
+\begin{align*}
+	|I|<\frac{H_c L}{N}
+\end{align*}
+Avec un aimant dur (ferrite, AlNiCo, NdFeB), $H_c$ va de $10^{4}$ à $10^{6}$~A$\cdot$m$^{-1}$.
+
+\medskip
+\erreur{} \textbf{Les deux figures sont interverties.} \texttt{ferromagnetisme1\_2.pdf}, appelée à la
+question 2 qui ne demande que $\vec M$, trace en fait $M$, $H$ et $B/\mu_0$ sur la totalité de l'axe :
+c'est la réponse complète de la question 3. Et \texttt{ferromagnetisme1\_3.pdf}, appelée à la
+question 3 juste après la phrase « ce qui permet d'avoir l'allure générale de la courbe ci-dessous »
+à propos de $\vec B$, ne montre ni $B$ ni le champ extérieur. Il suffit d'échanger les deux appels.
+
+\medskip
+\erreur{} \textbf{Le moment magnétique oublie le matériau.} Le corrigé pose $m=NIS$, qui est le moment
+du \textit{bobinage seul}. Avec un noyau aimanté, les courants liés ajoutent un courant surfacique
+d'intensité linéique $M$, et le moment total vaut
+\begin{align*}
+	m=(H+M)\,LS=\mu_r\,NIS
+\end{align*}
+soit environ mille fois plus. C'est précisément l'effet que l'exercice cherche à illustrer, et il
+disparaît au moment de calculer le champ lointain.
+
+\medskip
+\erreur{} \textbf{Le facteur $2$ du champ dipolaire sur l'axe manque.} Sur l'axe d'un dipôle,
+$B=\dfrac{\mu_0}{4\pi}\dfrac{2m}{z^3}$, et non $\dfrac{\mu_0}{4\pi}\dfrac{m}{z^3}$. Avec la correction
+précédente, le champ lointain vaut donc $B=\dfrac{\mu_0\mu_r NIR^2}{2z^3}$.
+
+\medskip
+\erreur{} \textbf{Le moment magnétique est noté $M$}, c'est-à-dire du même symbole que l'aimantation,
+dans le paragraphe qui manipule les deux.
+
+\medskip
+\erreur{} \textbf{« le champ magnétique doit être nécessairement continu (à cause de $\diver\vec B=0$) ».}
+L'équation $\diver\vec B=0$ n'impose la continuité que de la composante \textit{normale}. La composante
+tangentielle de $\vec B$ est d'ailleurs discontinue sur la surface latérale du solénoïde, là où
+circulent les courants. La conclusion est juste sur l'axe, où il s'agit bien de la composante normale
+aux faces d'extrémité, mais l'argument tel qu'il est écrit est trop fort.
+
+\medskip
+\verifie{} : $H=NI/L$, l'argument de symétrie (le plan $z=\mathrm{cte}$ contient les courants, donc
+$\vec H$, pseudo-vecteur, lui est perpendiculaire), la relation $\vec B=\mu_0(\vec H+\vec M)$,
+l'approximation $\vec B\simeq\mu_0\vec M$ dans le matériau, la décroissance en $1/z^3$, et le contenu
+physique de la figure \texttt{1\_2} : $B/\mu_0$ continu, $H$ et $M$ discontinus en sens opposés aux
+deux extrémités.
+
+\begin{itemize}
+	\item \suggestion{} \textbf{La question 2 répond en matériau linéaire alors que la question 4 exige
+	l'hystérésis.} Le corrigé invoque un « matériau ferro. linéaire et doux » de perméabilité relative
+	$10^{3}$, c'est-à-dire précisément le contraire de ce dont la question 4 a besoin : aimantation
+	rémanente et champ coercitif. Il faut introduire dès la question 2 la courbe de première
+	aimantation, la saturation et le cycle d'hystérésis, sans quoi la dernière question n'a aucun
+	support.
+	\item \suggestion{} La question 3 demande explicitement « l'allure de $\vec H$ sur la totalité de
+	l'axe », mais aucune figure ne trace $H$ seul. Le corrigé le décrit en mots, ce qui est dommage
+	pour une question de tracé.
+	\item \suggestion{} La question 1 utilise l'idéalisation du solénoïde infini ($H$ nul à
+	l'extérieur), et la question 3 étudie justement le champ à l'extérieur d'un solénoïde fini. La
+	tension mérite une phrase : on travaille d'abord dans la limite infinie, puis on revient au
+	solénoïde réel.
+	\item \suggestion{} Aucun résultat encadré, aucune valeur numérique, aucune remarque pour le
+	colleur, contrairement au standard du recueil. Un ordre de grandeur sur $M_r$ et $H_c$ rendrait la
+	question 4 concrète.
+	\item \suggestion{} L'origine de $z$ n'est pas marquée sur la figure du montage, alors que les deux
+	tracés placent le solénoïde entre $z=0$ et $z=L$.
+	\item \suggestion{} Coquilles : « connaitre », « un des côté de longueur $l$ en confondu avec
+	l'axe » (deux fautes dans la même proposition), « de sorte à ce que », « décroit », l'abréviation
+	« ferro. », $\vec{e_z}$ au lieu de $\vec{e}_z$, « En déduire l'allure $\vec H$ » où il manque
+	« de », et l'ordre des mots de la phrase d'introduction, difficile à lire.
+\end{itemize}
+
+\end{document}

@@ -4,89 +4,1048 @@
 
 \section{Générateur de triangles (Mines-Ponts PSI 2022)}
 
-On considère un générateur de triangles ci-dessous :
+On considère le générateur de triangles représenté ci-dessous :
 \begin{center}
 	\includegraphics[scale=0.4]{electronique_generateur_triangle_1.png}
 \end{center}
-Les trois ALI, nommés respectivement, $(A1)$, $(A2)$ et $(A3)$ sont supposés idéaux. On note $\pm V_{sat}$ la tension de saturation des ALI.
+Les trois ALI $(A1)$, $(A2)$ et $(A3)$ sont supposés idéaux. On note $\pm V_{sat}$ leur tension de saturation. Le montage est bouclé sur lui-même : la sortie de $(A3)$ est reliée à l'entrée du montage, de sorte que $v_e=v_s$.
 
 \begin{enumerate}
 
-    \item Après avoir rappelé la définition d'un ALI idéal, indiquer ceux qui fonctionnent en régime linéaire. 
+    \item Après avoir rappelé la définition d'un ALI idéal, indiquer ceux qui fonctionnent en régime linéaire.
 
-    \item Etablir la relation entre $v_e(t)$ et $v_1(t)$, puis entre $v_1(t)$ et $v_2(t)$.
+    \item Établir la relation entre $v_e(t)$ et $v_1(t)$, puis entre $v_1(t)$ et $v_2(t)$.
 
     \item Déterminer la valeur de $v_s$ selon le sens de variation de $v_2$, puis représenter graphiquement ces variations en reportant $v_s$ en ordonnée et $v_2$ en abscisse. On fera apparaître les valeurs remarquables.
 
-    \item A partir des questions précédentes, en déduire quelle tension une fonction triangulaire périodique du temps. 
-    
-    \item Déterminer les variations de $v_2$ et $v_s$ en fonction du temps. Représenter ces variations sur un même graphe. Calculer sa période $T$ en fonction de $R$, $C$, $R_1$, $R_2$, $R_3$ et $R_4$.
+    \item À partir des questions précédentes, en déduire laquelle de ces tensions est une fonction triangulaire périodique du temps.
 
+    \item Déterminer les variations de $v_2$ et $v_s$ en fonction du temps. Représenter ces variations sur un même graphe, et calculer la période $T$ du signal en fonction de $R$, $C$, $R_1$, $R_2$, $R_3$ et $R_4$.
 
 \end{enumerate}
 
 \newpage
 
 \begin{correction}
-    
+
     \begin{enumerate}
-        
-        \item Pour un ALI idéal : les courants $i_+$ et $i_-$ sont nuls, la tension de sortie $v_s$ et l'intensité $i_s$ de sortie sont indépendantes ; la tension de sortie est limitée à $\pm V_{sat}$. Dans le cas d'un fonctionnement en régime linéaire, on a $\varepsilon=v_+-v_-=0$.
-        Compte tenu des rétroactions, les ALI 1 et 2 sont en régime linéaire et le 3 en saturation (rétroaction sur la borne +).
 
-        \item Une simple loi des noeuds permet de trouver : 
+        \item Un ALI est dit \textbf{idéal} lorsque ses impédances d'entrée sont infinies (les courants d'entrée $i_+$ et $i_-$ sont nuls), son impédance de sortie est nulle (la tension de sortie ne dépend pas du courant $i_s$ débité) et son gain différentiel en boucle ouverte est infini. Sa tension de sortie reste bornée par $\pm V_{sat}$. En régime linéaire, le gain infini impose $\varepsilon=v_+-v_-=0$ ; sinon l'ALI est saturé et $v_s=\pm V_{sat}$.
+
+        Ici, $(A1)$ et $(A2)$ possèdent une rétroaction vers leur borne $-$ : ils fonctionnent en \textbf{régime linéaire}. $(A3)$ n'a de rétroaction que vers sa borne $+$, par $R_4$ : il fonctionne en \textbf{régime saturé}.
+
+        \item Comme $i_-=0$ pour $(A1)$, le courant qui traverse $R_1$ traverse aussi $R_2$, et la borne $-$ est au potentiel de la borne $+$, c'est-à-dire à la masse. La loi des n\oe uds en ce point donne donc
         \begin{align*}
-            v_1=-\frac{R_2}{R_1}v_e
+            \frac{v_e}{R_1}+\frac{v_1}{R_2}=0
+            \qquad\text{soit}\qquad
+            \boxed{v_1(t)=-\frac{R_2}{R_1}\,v_e(t)}
         \end{align*}
-        et :
+        $(A1)$ est donc un simple amplificateur inverseur. Le même raisonnement appliqué à $(A2)$, dont la borne $-$ est également au potentiel de la masse, donne
         \begin{align*}
-            v_2=-\frac{1}{jRC\omega}v_1
-        \end{align*}       
+            \frac{v_1}{R}+C\frac{\dif v_2}{\dif t}=0
+            \qquad\text{soit}\qquad
+            \boxed{\frac{\dif v_2}{\dif t}=-\frac{v_1(t)}{RC}} \\
+            \text{c'est-à-dire}\qquad
+            v_2(t)=-\frac{1}{RC}\int_0^{t}v_1(t')\dif t'+v_2(0)
+        \end{align*}
+        $(A2)$ est un montage \textbf{intégrateur}.
 
-        \item On a affaire au comparateur à hystérésis. L'ALI fonctionnant en régime non linéaire, il faut comparer les tensions d'entrée $v_+=\pm V_{sat}R_3/(R_3+R_4)$ et $v_-=v_2$. On appelera $v_b=V_{sat}R_3/(R_3+R_4)$ la tension de basculement. 
-        
+        \textit{On prendra garde à ne pas écrire cette seconde relation sous la forme $\underline{v_2}=-\underline{v_1}/(jRC\omega)$ : la notation complexe suppose un régime sinusoïdal permanent, or les signaux sont ici des créneaux et des rampes. C'est bien la relation différentielle qui sera utilisée à la question 5.}
+
+        \item $(A3)$ est un \textbf{comparateur à hystérésis}. Fonctionnant en régime saturé, sa sortie vaut $v_s=+V_{sat}$ si $v_+>v_-$ et $v_s=-V_{sat}$ si $v_+<v_-$. Ici $v_-=v_2$, et le pont diviseur formé par $R_3$ et $R_4$ donne
+        \begin{align*}
+            v_+=\frac{R_3}{R_3+R_4}\,v_s=\pm v_b
+            \qquad\text{avec}\qquad
+            v_b=\frac{R_3}{R_3+R_4}V_{sat}
+        \end{align*}
+        La tension de basculement $v_b$ dépend donc elle-même de l'état de la sortie, ce qui crée l'hystérésis :
+
         \begin{itemize}
-            \item Supposons dans un premier temps que $v_s=+V_{sat}$ et $v_2<v_+=v_b$. La condition $v_+>v_-$ est vérifiée, l'ALI est stable quelque soit la valeur de $v_2$ (tant qu'elle est inférieure à $v_b$).
-            \item On augmente $v_2$ jusqu'à atteindre $v_b$. A ce moment-là, $v_+<v_-$, l'ALI bascule à $v_s=-V_{sat}$ et $v_+=-v_b$. Comme $v_2>v_b$, la situation est stable quelque soit la valeur de $v_2$ (tant qu'elle est supérieure à $-v_b$).
-            \item On diminue $v_2$ jusqu'à atteindre $-v_b$. A ce moment-là, $v_+>v_-$, l'ALI bascule à $v_s=+V_{sat}$ et $v_+=v_b$. On se retrouve à la situation de départ. 
+            \item Supposons $v_s=+V_{sat}$, donc $v_+=+v_b$. Tant que $v_2<v_b$, on a $v_+>v_-$ et cet état est stable.
+            \item Lorsque $v_2$ croît jusqu'à atteindre $v_b$, on passe à $v_+<v_-$ : la sortie bascule à $v_s=-V_{sat}$, et le seuil devient $v_+=-v_b$. Cet état est à son tour stable tant que $v_2>-v_b$.
+            \item Lorsque $v_2$ décroît jusqu'à atteindre $-v_b$, on repasse à $v_+>v_-$ : la sortie rebascule à $v_s=+V_{sat}$ et le seuil redevient $+v_b$. On est revenu à la situation de départ.
         \end{itemize}
 
-        Cela permet de tracer le graphe de $v_s$ en fonction de $v_2$ :
+        Le cycle est donc parcouru dans le sens \textbf{horaire} (comparateur inverseur, l'entrée agissant sur la borne $-$) :
 
         {\centering
 		\includegraphics[scale=0.7]{electronique_generateur_triangle_2.pdf}\par }
 
-        \item L'ALI A3 est en régime saturé ; la tension $v_s$ est nécessairement un créneau au cours du temps $\pm V_{sat}$, donc $v_e$ aussi. L'ALI A1 étant un simple amplificateur, $v_1$ est aussi une fonction créneau périodique du temps. 
-        Ainsi, seule la tension à la sortie de l'ALI A2 peut être traingulaire ; de plus, il s'agit d'un intégrateur, le signal $v_2$ est l'intégrale au cours du temps de $V_1$ (qui est un créneau), c'est donc bien un signal triangle périodique du temps. 
+        \item $(A3)$ étant saturé, $v_s$ ne prend que les deux valeurs $\pm V_{sat}$ : c'est un créneau. Le montage étant bouclé, $v_e=v_s$ est donc aussi un créneau, et $(A1)$ n'étant qu'un amplificateur inverseur, $v_1=-\frac{R_2}{R_1}v_e$ en est un également.
 
-        \item Pour trouver la période du signal, on suppose que l'ALI A3 vient de basculer à $-V_{sat}$ à $t=0$, donc $v_2(0)=+v_b=+V_{sat}R_3/(R_3+R_4)$ et $v_s(0)=-V_{sat}$. 
-        Tant que A3 n'a pas basculé, on a donc $v_1(t>0)=\frac{R_2}{R_1}V_{sat}$. Ensuite, $v_2$ s'écrit :
+        Seule $v_2$ peut donc être triangulaire, et elle l'est effectivement : $(A2)$ étant un intégrateur, $v_2$ est l'intégrale du créneau $v_1$, c'est-à-dire une succession de rampes de pentes opposées, soit un \textbf{signal triangulaire} périodique.
+
+        \item Supposons que $(A3)$ vienne de basculer à $-V_{sat}$ à l'instant $t=0$ ; d'après la question 3, ce basculement se produit lorsque $v_2$ atteint $+v_b$, donc
         \begin{align*}
-            v_2(t)&=-\frac{1}{RC}\int_0^t dt v_1(t) \\
-            &=-\frac{R_2}{R_1RC}V_{sat}\times t+v_2(0) \\
-            &=-\frac{R_2}{R_1RC}V_{sat}\times t+V_{sat}\frac{R_3}{R_3+R_4}
+            v_s(0)=-V_{sat} \qquad\text{et}\qquad v_2(0)=+v_b=+\frac{R_3}{R_3+R_4}V_{sat}
         \end{align*}
-        La tension $v_2$ décroît donc linéairement au cours du temps, jusqu'à atteindre à $t=t_b$ la condition de basculement $v_2(t_b)=-v_b=-V_{sat}R_3/(R_3+R_4)$, qu'on trouve à l'aide de l'expression précédente :
+        \textbf{Première rampe.} Tant que $(A3)$ n'a pas rebasculé, $v_e=v_s=-V_{sat}$, donc $v_1=+\frac{R_2}{R_1}V_{sat}$ est constante et
         \begin{align*}
-            t_b=\frac{2R_3R_1RC}{R_2(R_3+R_4)}
+            v_2(t)&=-\frac{1}{RC}\int_0^{t}v_1(t')\dif t'+v_2(0) \\
+            &=-\frac{R_2}{R_1RC}V_{sat}\,t+\frac{R_3}{R_3+R_4}V_{sat}
         \end{align*}
-        
-        Pour $t>t_b$, on a donc $v_s=+V_{sat}$ et $v_2$ s'écrit alors :
+        La tension $v_2$ décroît linéairement jusqu'à atteindre le second seuil $v_2(t_b)=-v_b$, ce qui donne
         \begin{align*}
-            v_2(t>t_b)&=-\frac{1}{RC}\int_{t_b}^t dt v_1(t) \\
-            &=+\frac{R_2}{R_1RC}V_{sat}\times t+v_2(t_b) \\
-            &=-\frac{R_2}{R_1RC}V_{sat}\times t-V_{sat}\frac{R_3}{R_3+R_4}
+            \frac{R_2}{R_1RC}V_{sat}\,t_b=\frac{2R_3}{R_3+R_4}V_{sat}
+            \qquad\text{soit}\qquad
+            t_b=\frac{2R_1R_3RC}{R_2(R_3+R_4)}
         \end{align*}
-        La tension $v_2$ croît alors linéairement, jusqu'à atteindre de nouveau la condition de basculement, $v_2(t_b)=-v_b$, , à $t=2t_b$, à partir de laquelle on se retrouve de nouveau dans la situation initiale $v_s=-V_{sat}$, donc $v_2=+v_b$.
+        \textbf{Seconde rampe.} Pour $t>t_b$ on a $v_s=+V_{sat}$, donc $v_1=-\frac{R_2}{R_1}V_{sat}$ et la pente change de signe. En intégrant à partir de $t_b$, où $v_2(t_b)=-v_b$ :
+        \begin{align*}
+            v_2(t)&=-\frac{1}{RC}\int_{t_b}^{t}v_1(t')\dif t'+v_2(t_b) \\
+            &=+\frac{R_2}{R_1RC}V_{sat}\,(t-t_b)-\frac{R_3}{R_3+R_4}V_{sat}
+        \end{align*}
+        \textit{Attention à ne pas oublier le décalage $t-t_b$ : l'intégration ne repart pas de l'origine des temps.} La tension $v_2$ croît alors linéairement jusqu'au seuil $v_2=+v_b$, atteint après une durée $2v_b\times\frac{R_1RC}{R_2V_{sat}}=t_b$, c'est-à-dire à $t=2t_b$. La sortie rebascule alors à $-V_{sat}$ et l'on retrouve exactement les conditions de $t=0$ : le régime est périodique, de période
+
+        \begin{align*}
+            \boxed{T=2t_b=\frac{4R_1R_3RC}{R_2(R_3+R_4)}}
+        \end{align*}
 
         {\centering
 		\includegraphics[scale=0.7]{electronique_generateur_triangle_3.pdf}\par }
 
-        On en déduit donc facilement la période $T$ :
-        \begin{align*}
-            T=2t_b=\frac{4R_3R_1RC}{R_2(R_3+R_4)}
-        \end{align*}
+        Le signal $v_2$ est bien un triangle symétrique, d'amplitude crête à crête $2v_b$, et $v_s$ un créneau de rapport cyclique $1/2$.
+
+        \textit{Application numérique pour fixer les idées : avec $R_1=R_2=R_3=R_4=R=10$~k$\Omega$, $C=10$~nF et $V_{sat}=15$~V, on obtient $v_b=7,5$~V et $T=200~\mu$s, soit une fréquence de $5$~kHz.}
+
+        \textit{Remarque pour le colleur : l'intégrateur $(A2)$ est ici idéal, sans résistance en parallèle sur $C$. Un tel montage n'a aucune contre-réaction en continu et dériverait vers la saturation dans un circuit réel ; c'est le bouclage sur le comparateur qui stabilise ici le fonctionnement. En pratique on place toujours une résistance en parallèle sur le condensateur.}
 
     \end{enumerate}
+
+\end{correction}
+\newpage
+
+\section{Effet d'un filtre passif $RLC$ parallèle}
+
+On considère le quadripôle suivant, supposé non chargé :
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\linewidth]{electronique_rlc_parallele_1.pdf}
+\end{figure}
+
+On prendra $L = 0,10$~mH, $C = 0,253$~nF et $R = 10$~k$\Omega$.
+
+\begin{enumerate}
+
+	\item Quel est le comportement de ce filtre à basse et à haute fréquence ? Quelle est sa nature ?
+
+	\item Montrer que la fonction de transfert peut se mettre sous la forme canonique
+	\begin{align*}
+		\underline{H}(x) = \frac{1+(jx)^2}{1+\dfrac{jx}{Q}+(jx)^2}
+	\end{align*}
+	où $x=\omega/\omega_0$, et déterminer la pulsation propre $\omega_0$ ainsi que le facteur de qualité $Q$. Tracer l'allure du diagramme de Bode correspondant.
+
+	\item On envoie en entrée le signal suivant, de fréquence $f = 1,0\times10^{6}$~Hz :
+	\begin{align*}
+		V_e(t)=\frac{4}{\pi}\left(\sin(2\pi ft)+\frac{1}{3}\sin(6\pi ft)+\frac{1}{5}\sin(10\pi ft)+\frac{1}{7}\sin(14\pi ft)\right)
+	\end{align*}
+	Décrire brièvement ce signal. À quelle courbe de la figure ci-dessous correspond-il ?
+
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\linewidth]{electronique_rlc_parallele_3.pdf}
+	\end{figure}
+
+	\item Déterminer le signal de sortie $V_s(t)$ en donnant l'amplitude et la phase de chaque harmonique. À quelle courbe correspond-il ? Commenter.
+
+	\item On envoie maintenant en entrée un échelon de tension : $V_e(t\leq0)=0$ et $V_e(t>0)=E_0$. Déterminer $V_s(t)$. On supposera le condensateur déchargé et la bobine non parcourue par un courant à $t=0$.
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item À basse fréquence la bobine se comporte comme un fil, à haute fréquence c'est le condensateur : dans les deux cas l'impédance de la branche série $L\parallel C$ tend vers zéro, aucun courant ne circule dans $R$ et $V_s = V_e$. Le filtre laisse donc passer les deux extrémités du spectre. Ce n'est pas pour autant un passe-tout : à la résonance du circuit bouchon, l'impédance $L\parallel C$ diverge et $V_s=0$. Il s'agit d'un \textbf{coupe-bande} (ou filtre réjecteur).
+
+	\item L'impédance du circuit bouchon vaut
+	\begin{align*}
+		\underline{Z}_{LC}=\frac{jL\omega\times\dfrac{1}{jC\omega}}{jL\omega+\dfrac{1}{jC\omega}}=\frac{jL\omega}{1-LC\omega^2}
+	\end{align*}
+	et un pont diviseur de tension donne
+	\begin{align*}
+		\underline{H}=\frac{R}{R+\underline{Z}_{LC}}=\frac{1-LC\omega^2}{1-LC\omega^2+j\dfrac{L\omega}{R}}
+	\end{align*}
+	Par identification avec la forme canonique :
+	\begin{align*}
+		\omega_0=\frac{1}{\sqrt{LC}}=6,29\times10^{6}~\mathrm{rad\cdot s^{-1}}
+		\qquad\text{et}\qquad
+		Q=R\sqrt{\frac{C}{L}}=15,9
+	\end{align*}
+	\textit{Attention à l'écriture du facteur de qualité : ici $Q$ est grand, ce qui correspond à un coupe-bande étroit, donc très sélectif. La largeur relative de la bande rejetée à $-3$~dB vaut $\Delta\omega/\omega_0=1/Q\simeq6\times10^{-2}$.}
+
+	Le gain vaut $1$ (soit $0$~dB) en basse et haute fréquence et s'annule ($-\infty$~dB) en $x=1$ ; la phase passe de $0$ à $-\pi/2$ juste avant $\omega_0$, saute à $+\pi/2$ juste après, puis revient à $0$. Le tracé ci-dessous montre l'influence du facteur de qualité : plus $Q$ est grand, plus la bande rejetée est étroite. Le cas de l'énoncé ($Q=15,9$) est proche de la courbe $Q=10$.
+
+	\begin{center}
+	\includegraphics[width=\linewidth]{electronique_rlc_parallele_2.pdf}
+	\end{center}
+
+	\item Il s'agit d'un signal créneau de fréquence $f$ et d'amplitude $1$~V, tronqué après ses quatre premiers termes non nuls, c'est-à-dire jusqu'à l'harmonique de rang 7. Pour rappel, le développement en série de Fourier d'un créneau s'écrit
+	\begin{align*}
+		V_e(t) = \frac{4}{\pi}\sum_{k=0}^{\infty}\frac{\sin\big((2k+1)2\pi ft\big)}{2k+1}
+	\end{align*}
+	Les oscillations résiduelles visibles sur les paliers sont la signature de cette troncature (phénomène de Gibbs). Le signal d'entrée est donc la \textbf{courbe orange}.
+
+	\item Avec les valeurs de l'énoncé, $\omega_0 = 6,29\times10^{6}$~rad$\cdot$s$^{-1}$ et $2\pi f = 6,28\times10^{6}$~rad$\cdot$s$^{-1}$ : le fondamental tombe très précisément sur la fréquence de réjection ($x_1 = 0,9994$). Chaque harmonique de rang $n$ ressort avec l'amplitude $\frac{4}{\pi n}\,|\underline{H}(nx_1)|$ et le déphasage $\arg\underline{H}(nx_1)$ :
+
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Rang $n$ & $x=\omega/\omega_0$ & $|\underline{H}|$ & $\arg\underline{H}$ & Amplitude de sortie \\
+        \hline
+        1 & 0,999 & 0,019 & $-0,49\,\pi$ & 0,024 V \\
+        \hline
+        3 & 3,00 & 1,000 & $+0,008\,\pi$ & 0,42 V \\
+        \hline
+        5 & 5,00 & 1,000 & $+0,004\,\pi$ & 0,25 V \\
+        \hline
+        7 & 7,00 & 1,000 & $+0,003\,\pi$ & 0,18 V \\
+        \hline
+	\end{tabular}
+	\end{center}
+
+	\textit{Remarque pour le colleur : le gain du fondamental est rigoureusement nul si $\omega=\omega_0$. La valeur $0,019$ n'a pas de sens physique en tant que telle, elle dépend du troisième chiffre significatif de $C$ ; il faut seulement en retenir que le fondamental est éteint (atténuation de $-34$~dB). On n'attend évidemment pas de l'élève qu'il calcule $x_1$ à quatre chiffres : $x_1\simeq1$ et $|\underline{H}|\simeq0$ suffisent.}
+
+	En reportant ces quatre points sur le diagramme de Bode, on constate que seules les coordonnées du fondamental s'écartent de la courbe $0$~dB / phase nulle :
+
+	\begin{center}
+	\includegraphics[width=\linewidth]{electronique_rlc_parallele_4.pdf}
+	\end{center}
+
+	Le signal de sortie s'écrit donc, à très bonne approximation,
+	\begin{align*}
+		V_s(t)\simeq\frac{4}{\pi}\left(\frac{1}{3}\sin(6\pi ft)+\frac{1}{5}\sin(10\pi ft)+\frac{1}{7}\sin(14\pi ft)\right)
+	\end{align*}
+	C'est la \textbf{courbe rouge en pointillé} : un créneau privé de son fondamental. Toutes les autres harmoniques traversent le filtre sans être ni atténuées ni déphasées, ce qui illustre la grande sélectivité du coupe-bande.
+
+	\item La notation complexe n'est plus valable pour un échelon (elle suppose un régime sinusoïdal permanent), il faut revenir à l'équation différentielle. En repartant de
+	\begin{align*}
+		\underline{V_s}\left(1-LC\omega^2+j\frac{L\omega}{R}\right)=\underline{V_e}\left(1-LC\omega^2\right)
+	\end{align*}
+	et en substituant $j\omega\rightarrow\dif/\dif t$ :
+	\begin{align*}
+		LC\frac{\dif^2V_s}{\dif t^2}+\frac{L}{R}\frac{\dif V_s}{\dif t}+V_s=LC\frac{\dif^2V_e}{\dif t^2}+V_e
+	\end{align*}
+	La difficulté est ailleurs : $V_e$ étant un échelon, ses dérivées ne sont pas définies en $t=0$. On contourne le problème en se plaçant à $t>0$, où $V_e=E_0$ et $\dif^2V_e/\dif t^2=0$ :
+	\begin{align*}
+		\frac{\dif^2V_s}{\dif t^2}+\frac{1}{RC}\frac{\dif V_s}{\dif t}+\omega_0^2V_s=\omega_0^2E_0
+	\end{align*}
+	\textbf{Conditions initiales.} Le condensateur est déchargé, donc la tension $V_C$ à ses bornes (qui est aussi celle aux bornes du circuit bouchon) est nulle et continue : $V_C(0^+)=0$. Comme $V_e=V_C+V_s$, on obtient
+	\begin{align*}
+		V_s(0^+)=V_e(0^+)=E_0
+	\end{align*}
+	Pour la dérivée, on dérive $V_e=V_C+V_s$ en $t=0^+$, où $\dif V_e/\dif t=0$ :
+	\begin{align*}
+		\frac{\dif V_s}{\dif t}(0^+)=-\frac{\dif V_C}{\dif t}(0^+)=-\frac{i_C(0^+)}{C}
+	\end{align*}
+	Le courant dans la bobine est nul par continuité, donc tout le courant du circuit bouchon passe par le condensateur, puis dans $R$ : $i_C(0^+)=V_s(0^+)/R=E_0/R$. D'où
+	\begin{align*}
+		\frac{\dif V_s}{\dif t}(0^+)=-\frac{E_0}{RC}
+	\end{align*}
+	\textbf{Résolution.} En posant $\mu=\dfrac{1}{2RC}$, l'équation homogène a pour discriminant réduit $\mu^2-\omega_0^2$. Numériquement $\mu=1,98\times10^{5}$~s$^{-1}$ et $\omega_0=6,29\times10^{6}$~s$^{-1}$ : on a $\mu\ll\omega_0$, le régime est \textbf{pseudo-périodique} (ce qui était prévisible puisque $Q=\omega_0/2\mu=15,9\gg1/2$). En notant $\Omega=\sqrt{\omega_0^2-\mu^2}\simeq\omega_0$ la pseudo-pulsation, la solution générale est
+	\begin{align*}
+		V_s(t)=E_0+e^{-\mu t}\big(A\cos\Omega t+B\sin\Omega t\big)
+	\end{align*}
+	Les conditions initiales donnent $A=0$ puis $\Omega B=-E_0/RC=-2\mu E_0$, soit finalement
+	\begin{align*}
+		\boxed{V_s(t)=E_0\left[1-\frac{2\mu}{\Omega}\,e^{-\mu t}\sin(\Omega t)\right]}
+		\qquad\text{avec}\quad \mu=\frac{1}{2RC},\quad \Omega=\sqrt{\frac{1}{LC}-\frac{1}{4R^2C^2}}
+	\end{align*}
+	Comme $2\mu/\Omega\simeq1/Q=6,3\times10^{-2}$, la sortie recopie l'échelon à quelques pour cent près, en s'accompagnant d'une brève oscillation amortie de fréquence $\omega_0$ qui disparaît en $\tau=1/\mu\simeq5~\mu$s. C'est cohérent avec les questions précédentes : un échelon possède un spectre très large, dont le coupe-bande ne retire qu'une fine tranche autour de $\omega_0$ ; il ne peut donc que très peu le déformer. On vérifie enfin les deux régimes permanents : $V_s(0^+)=E_0$ et $V_s(+\infty)=E_0$, ce qui est attendu puisqu'en continu la bobine est un fil et impose $V_s=V_e$.
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Effet d'un filtre passif $RC$}
+
+On considère le quadripôle suivant, supposé non chargé :
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\linewidth]{electronique_rc_1.pdf}
+\end{figure}
+
+On prendra $C = 1,59\times10^{-2}$~nF et $R = 10$~k$\Omega$.
+
+\begin{enumerate}
+
+	\item Quel est le comportement de ce filtre à basse et à haute fréquence ? Quelle est sa nature ?
+
+	\item Montrer que la fonction de transfert peut se mettre sous la forme canonique
+	\begin{align*}
+		\underline{H}=\frac{H_0}{1+jQ\left(\dfrac{\omega}{\omega_0}-\dfrac{\omega_0}{\omega}\right)}
+	\end{align*}
+	Déterminer $H_0$, $\omega_0$ et $Q$, puis tracer l'allure du diagramme de Bode correspondant.
+
+	\item On envoie en entrée le signal suivant, de fréquence $f = 1,0\times10^{7}$~Hz :
+	\begin{align*}
+		V_e(t)=\frac{4}{\pi}\left(\sin(2\pi ft)+\frac{1}{3}\sin(6\pi ft)+\frac{1}{5}\sin(10\pi ft)+\frac{1}{7}\sin(14\pi ft)\right)
+	\end{align*}
+	Décrire brièvement ce signal. À quelle courbe de la figure ci-dessous correspond-il ?
+
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\linewidth]{electronique_rc_3.pdf}
+	\end{figure}
+	\textit{NB} : la courbe en pointillé a été dilatée d'un facteur 10.
+
+	\item Déterminer le signal de sortie $V_s(t)$ en donnant l'amplitude et la phase de chaque harmonique. À quelle courbe correspond-il ? Commenter.
+
+	\item On envoie maintenant en entrée un échelon de tension : $V_e(t\leq0)=0$ et $V_e(t>0)=E_0$. Déterminer $V_s(t)$. On supposera les deux condensateurs déchargés à $t=0$.
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item À haute fréquence, le condensateur de la branche parallèle se comporte comme un fil : il court-circuite la sortie à la masse et $V_s\rightarrow0$. À basse fréquence, le condensateur de la branche série se comporte comme un interrupteur ouvert : aucun courant ne circule, la chute de tension aux bornes de la résistance reliée à la masse est nulle et $V_s\rightarrow0$. Comme le gain n'est pas identiquement nul entre les deux (il vaut $1/3$ en $\omega_0$, cf. question suivante), il s'agit d'un \textbf{passe-bande}.
+
+	\item En posant $\underline{Z}_1=R+\dfrac{1}{jC\omega}$ pour la branche série et $\underline{Z}_2=\dfrac{R}{1+jRC\omega}$ pour la branche parallèle, le pont diviseur de tension donne
+	\begin{align*}
+		\underline{H}=\frac{\underline{Z}_2}{\underline{Z}_1+\underline{Z}_2}
+		=\frac{jRC\omega}{1+3jRC\omega-(RC\omega)^2}
+		=\frac{1/3}{1+\dfrac{j}{3}\left(\dfrac{\omega}{\omega_0}-\dfrac{\omega_0}{\omega}\right)}
+	\end{align*}
+	d'où
+	\begin{align*}
+		H_0=\frac{1}{3},\qquad Q=\frac{1}{3},\qquad \omega_0=\frac{1}{RC}=6,29\times10^{6}~\mathrm{rad\cdot s^{-1}}
+	\end{align*}
+	\textit{On reconnaît le pont de Wien, brique de base de nombreux oscillateurs. Le facteur de qualité $Q=1/3$ est indépendant de $R$ et $C$ : ce filtre est intrinsèquement très peu sélectif.}
+
+	Le diagramme de Bode présente des asymptotes à $\pm20$~dB/décade et un maximum en $\omega_0$, où le gain vaut $20\log(1/3)\simeq-9,5$~dB ; la phase décroît de $+\pi/2$ à $-\pi/2$. On y a reporté les quatre harmoniques de la question 4 :
+
+	\begin{center}
+	\includegraphics[width=\linewidth]{electronique_rc_2.pdf}
+	\end{center}
+
+	\item Il s'agit d'un signal créneau de fréquence $f$ et d'amplitude $1$~V, tronqué après ses quatre premiers termes non nuls, c'est-à-dire jusqu'à l'harmonique de rang 7. Pour rappel, le développement en série de Fourier d'un créneau s'écrit
+	\begin{align*}
+		V_e(t) = \frac{4}{\pi}\sum_{k=0}^{\infty}\frac{\sin\big((2k+1)2\pi ft\big)}{2k+1}
+	\end{align*}
+	Le signal d'entrée est donc la \textbf{courbe noire}.
+
+	\item Le fondamental est ici placé une décade au-dessus de la fréquence propre : $2\pi f=6,28\times10^{7}$~rad$\cdot$s$^{-1}$, soit $x_1=\omega/\omega_0=10,0$. Chaque harmonique de rang $n$ ressort avec l'amplitude $\frac{4}{\pi n}\,|\underline{H}(nx_1)|$ et le déphasage $\arg\underline{H}(nx_1)$ :
+
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Rang $n$ & $x=\omega/\omega_0$ & $|\underline{H}|$ & $\arg\underline{H}$ & Amplitude de sortie \\
+        \hline
+        1 & 10,0 & 0,0968 & $-0,41\,\pi$ & 0,123 V \\
+        \hline
+        3 & 30,0 & 0,0332 & $-0,47\,\pi$ & 0,014 V \\
+        \hline
+        5 & 50,0 & 0,0200 & $-0,48\,\pi$ & 0,0051 V \\
+        \hline
+        7 & 70,0 & 0,0143 & $-0,49\,\pi$ & 0,0026 V \\
+        \hline
+	\end{tabular}
+	\end{center}
+
+	Il est difficile de deviner la forme du signal reconstitué sans le tracer : c'est la \textbf{courbe verte en pointillé}, un signal triangulaire (d'amplitude réelle $0,14$~V, la courbe étant dilatée d'un facteur 10). On pouvait toutefois l'anticiper. Toutes les harmoniques sont situées au moins une décade au-dessus de $\omega_0$, c'est-à-dire sur l'asymptote à $-20$~dB/décade où
+	\begin{align*}
+		\underline{H}\simeq\frac{H_0}{jQ\,\omega/\omega_0}=\frac{\omega_0}{3jQ\omega}\qquad\text{soit}\qquad |\underline{H}|\propto\frac{1}{\omega}\quad\text{et}\quad\arg\underline{H}\simeq-\frac{\pi}{2}
+	\end{align*}
+	Une division par $j\omega$ étant une intégration, le filtre se comporte comme un \textbf{intégrateur} : la sortie est l'intégrale de l'entrée, et l'intégrale d'un créneau est bien un signal triangulaire. C'est confirmé par le tableau, où les phases sont toutes voisines de $-\pi/2$ et où les amplitudes décroissent en $1/n^2$ (un facteur $1/n$ vient du créneau, l'autre de l'intégration).
+
+	\item La notation complexe n'est plus valable pour un échelon (elle suppose un régime sinusoïdal permanent), il faut revenir à l'équation différentielle. En repartant de
+	\begin{align*}
+		\underline{V_s}\left(1+3jRC\omega-(RC\omega)^2\right)=\underline{V_e}\,jRC\omega
+	\end{align*}
+	et en substituant $j\omega\rightarrow\dif/\dif t$ :
+	\begin{align*}
+		R^2C^2\frac{\dif^2V_s}{\dif t^2}+3RC\frac{\dif V_s}{\dif t}+V_s=RC\frac{\dif V_e}{\dif t}
+	\end{align*}
+	La difficulté est ailleurs : $V_e$ étant un échelon, $\dif V_e/\dif t$ n'est pas définie en $t=0$ (c'est une distribution de Dirac). On contourne le problème en se plaçant à $t>0$, où $V_e=E_0$ et $\dif V_e/\dif t=0$ :
+	\begin{align*}
+		R^2C^2\frac{\dif^2V_s}{\dif t^2}+3RC\frac{\dif V_s}{\dif t}+V_s=0
+	\end{align*}
+	\textbf{Conditions initiales.} La tension aux bornes du condensateur de la branche parallèle est $V_s$ elle-même ; elle est continue et nulle à $t=0$, donc
+	\begin{align*}
+		V_s(0^+)=0
+	\end{align*}
+	De même, la tension aux bornes du condensateur de la branche série est nulle à $t=0^+$. La loi des mailles donne alors une chute de tension $E_0$ aux bornes de la résistance série, donc un courant $i(0^+)=E_0/R$. Ce courant ne peut pas passer dans la résistance parallèle, aux bornes de laquelle la tension $V_s(0^+)$ est nulle : il passe donc intégralement dans le condensateur parallèle. D'où
+	\begin{align*}
+		\frac{\dif V_s}{\dif t}(0^+)=\frac{i(0^+)}{C}=\frac{E_0}{RC}
+	\end{align*}
+	\textbf{Résolution.} En posant $\omega_0=\dfrac{1}{RC}$ et $\mu=\dfrac{3}{2RC}$, on a $\mu>\omega_0$ (soit $Q=1/3<1/2$) : le régime est \textbf{apériodique}. En notant $\mu'=\sqrt{\mu^2-\omega_0^2}=\dfrac{\sqrt5}{2RC}$, la solution générale est
+	\begin{align*}
+		V_s(t)=\left(Ae^{\mu' t}+Be^{-\mu' t}\right)e^{-\mu t}
+	\end{align*}
+	Les conditions initiales donnent $A+B=0$ puis $2A\mu'=E_0/RC$, soit
+	\begin{align*}
+		\boxed{V_s(t)=\frac{E_0}{\mu' RC}\,\sinh(\mu' t)\,e^{-\mu t}}
+		\qquad\text{avec}\quad \mu=\frac{3}{2RC},\quad \mu'=\frac{\sqrt5}{2RC}
+	\end{align*}
+	Numériquement $\mu=9,43\times10^{6}$~s$^{-1}$ et $\mu'=7,03\times10^{6}$~s$^{-1}$. La sortie part de $0$, passe par un maximum, puis tend vers $0$ avec la constante de temps $1/(\mu-\mu')\simeq0,4~\mu$s : c'est bien le comportement attendu d'un passe-bande soumis à une entrée qui devient continue.
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Effet d'un filtre passif $RLC$ série}
+
+On considère le quadripôle suivant, supposé non chargé :
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\linewidth]{electronique_rlc_serie_1.pdf}
+\end{figure}
+
+On prendra $L = 0,10$~mH, $C = 0,253$~nF et $R = 1,00$~k$\Omega$.
+
+\begin{enumerate}
+
+	\item Quel est le comportement de ce filtre à basse et à haute fréquence ? Quelle est sa nature ?
+
+	\item Montrer que la fonction de transfert peut se mettre sous la forme canonique
+	\begin{align*}
+		\underline{H}=\frac{H_0}{1+jQ\left(\dfrac{\omega}{\omega_0}-\dfrac{\omega_0}{\omega}\right)}
+	\end{align*}
+	Déterminer $H_0$, $\omega_0$ et $Q$, puis tracer l'allure du diagramme de Bode correspondant.
+
+	\item On envoie en entrée le signal suivant, de fréquence $f = 1,0\times10^{5}$~Hz :
+	\begin{align*}
+		V_e(t)=\frac{4}{\pi}\left(\sin(2\pi ft)+\frac{1}{3}\sin(6\pi ft)+\frac{1}{5}\sin(10\pi ft)+\frac{1}{7}\sin(14\pi ft)\right)
+	\end{align*}
+	Décrire brièvement ce signal. À quelle courbe de la figure ci-dessous correspond-il ?
+
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\linewidth]{electronique_rlc_serie_3.pdf}
+	\end{figure}
+
+	\item Déterminer le signal de sortie $V_s(t)$ en donnant l'amplitude et la phase de chaque harmonique. À quelle courbe correspond-il ? Commenter.
+
+	\item On envoie maintenant en entrée un échelon de tension : $V_e(t\leq0)=0$ et $V_e(t>0)=E_0$. Déterminer $V_s(t)$. On supposera le condensateur déchargé et la bobine non parcourue par un courant à $t=0$.
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item À haute fréquence, la bobine se comporte comme un interrupteur ouvert : aucun courant ne traverse $R$ et $V_s\rightarrow0$. À basse fréquence, c'est le condensateur qui joue ce rôle, et $V_s\rightarrow0$ également. Comme le gain vaut $1$ à la résonance série (cf. question suivante), il s'agit d'un \textbf{passe-bande}.
+
+	\item Le pont diviseur de tension donne directement
+	\begin{align*}
+		\underline{H}=\frac{R}{R+j\left(L\omega-\dfrac{1}{C\omega}\right)}
+	\end{align*}
+	En factorisant par $R$ au dénominateur et en faisant apparaître $\omega/\omega_0-\omega_0/\omega$ :
+	\begin{align*}
+		H_0=1,\qquad \omega_0=\frac{1}{\sqrt{LC}}=6,29\times10^{6}~\mathrm{rad\cdot s^{-1}},\qquad Q=\frac{1}{R}\sqrt{\frac{L}{C}}=0,629
+	\end{align*}
+	Le diagramme de Bode présente des asymptotes à $\pm20$~dB/décade et un maximum de $0$~dB en $\omega_0$ ; la phase décroît de $+\pi/2$ à $-\pi/2$. Le tracé ci-dessous donne l'allure pour plusieurs facteurs de qualité ; celui de l'énoncé ($Q=0,629$) se situe entre les courbes $Q=0,1$ et $Q=1$.
+
+	\begin{center}
+	\includegraphics[width=\linewidth]{electronique_rlc_serie_2.pdf}
+	\end{center}
+
+	\textit{Le facteur de qualité étant proche de $1/2$, ce passe-bande est peu sélectif : sa bande passante $\Delta\omega=\omega_0/Q$ est plus large que $\omega_0$ elle-même.}
+
+	\item Il s'agit d'un signal créneau de fréquence $f$ et d'amplitude $1$~V, tronqué après ses quatre premiers termes non nuls, c'est-à-dire jusqu'à l'harmonique de rang 7. Pour rappel, le développement en série de Fourier d'un créneau s'écrit
+	\begin{align*}
+		V_e(t) = \frac{4}{\pi}\sum_{k=0}^{\infty}\frac{\sin\big((2k+1)2\pi ft\big)}{2k+1}
+	\end{align*}
+	Le signal d'entrée est donc la \textbf{courbe noire}.
+
+	\item Le fondamental est ici placé une décade en dessous de la fréquence propre : $2\pi f=6,28\times10^{5}$~rad$\cdot$s$^{-1}$, soit $x_1=\omega/\omega_0=0,100$. Chaque harmonique de rang $n$ ressort avec l'amplitude $\frac{4}{\pi n}\,|\underline{H}(nx_1)|$ et le déphasage $\arg\underline{H}(nx_1)$ :
+
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Rang $n$ & $x=\omega/\omega_0$ & $|\underline{H}|$ & $\arg\underline{H}$ & Amplitude de sortie \\
+        \hline
+        1 & 0,100 & 0,158 & $+0,45\,\pi$ & 0,202 V \\
+        \hline
+        3 & 0,300 & 0,464 & $+0,35\,\pi$ & 0,197 V \\
+        \hline
+        5 & 0,500 & 0,727 & $+0,24\,\pi$ & 0,185 V \\
+        \hline
+        7 & 0,700 & 0,909 & $+0,14\,\pi$ & 0,165 V \\
+        \hline
+	\end{tabular}
+	\end{center}
+
+	\begin{center}
+	\includegraphics[width=\linewidth]{electronique_rlc_serie_4.pdf}
+	\end{center}
+
+	Le signal de sortie est la \textbf{courbe bleue en pointillé} : une succession de pics, un à chaque changement de signe du créneau d'entrée. On peut le comprendre à partir du fondamental, situé sur l'asymptote à $+20$~dB/décade où
+	\begin{align*}
+		\underline{H}\simeq jQ\frac{\omega}{\omega_0}\qquad\text{soit}\qquad |\underline{H}|\propto\omega\quad\text{et}\quad\arg\underline{H}\simeq+\frac{\pi}{2}
+	\end{align*}
+	Une multiplication par $j\omega$ étant une dérivation, le filtre se comporte comme un \textbf{dérivateur}, et la dérivée d'un créneau est une suite de pics alternés. L'approximation reste toutefois grossière : le tableau montre que l'harmonique de rang 7 est déjà proche de la résonance ($x=0,7$), avec un gain de $0,91$ et un déphasage de $0,14\,\pi$ seulement, très loin de $\pi/2$. Le résultat n'est donc pas la dérivée exacte de l'entrée. C'est d'ailleurs bien visible sur la courbe : le filtre étant peu sélectif ($Q=0,63$), il transmet les quatre harmoniques avec des amplitudes comparables (de $0,17$ à $0,20$~V), et les pics obtenus sont larges et suivis d'oscillations amorties.
+
+	\item La notation complexe n'est plus valable pour un échelon (elle suppose un régime sinusoïdal permanent), il faut revenir à l'équation différentielle. En multipliant numérateur et dénominateur de $\underline{H}$ par $jC\omega$ :
+	\begin{align*}
+		\underline{H}=\frac{jRC\omega}{1+jRC\omega-LC\omega^2}
+	\end{align*}
+	puis en substituant $j\omega\rightarrow\dif/\dif t$ :
+	\begin{align*}
+		LC\frac{\dif^2V_s}{\dif t^2}+RC\frac{\dif V_s}{\dif t}+V_s=RC\frac{\dif V_e}{\dif t}
+	\end{align*}
+	La difficulté est ailleurs : $V_e$ étant un échelon, $\dif V_e/\dif t$ n'est pas définie en $t=0$ (c'est une distribution de Dirac). On contourne le problème en se plaçant à $t>0$, où $V_e=E_0$ et $\dif V_e/\dif t=0$ :
+	\begin{align*}
+		LC\frac{\dif^2V_s}{\dif t^2}+RC\frac{\dif V_s}{\dif t}+V_s=0
+	\end{align*}
+	\textbf{Conditions initiales.} Le courant $i$ traversant la bobine est nul à $t=0$ et continu, donc $V_s(0^+)=Ri(0^+)=0$. Le condensateur étant déchargé, $V_C(0^+)=0$. La loi des mailles impose alors $V_L(0^+)=E_0-V_C(0^+)-V_s(0^+)=E_0$, d'où
+	\begin{align*}
+		\frac{\dif i}{\dif t}(0^+)=\frac{V_L(0^+)}{L}=\frac{E_0}{L}
+		\qquad\text{et donc}\qquad
+		\frac{\dif V_s}{\dif t}(0^+)=R\frac{\dif i}{\dif t}(0^+)=\frac{E_0R}{L}
+	\end{align*}
+	En résumé, à $t=0^+$ :
+	\begin{align*}
+		&V_e=E_0, \quad \frac{\dif V_e}{\dif t}=0 \\
+		&V_C=0, \quad \frac{\dif V_C}{\dif t}=\frac{i(0^+)}{C}=0 \\
+		&V_L=E_0, \quad \frac{\dif V_L}{\dif t}=-\frac{E_0R}{L} \\
+		&V_s=0, \quad \frac{\dif V_s}{\dif t}=\frac{E_0R}{L}
+	\end{align*}
+	\textbf{Résolution.} En posant $\mu=\dfrac{R}{2L}$, on a numériquement $\mu=5,0\times10^{6}$~s$^{-1}$ et $\omega_0=6,29\times10^{6}$~s$^{-1}$ : ici $\mu<\omega_0$, le régime est \textbf{pseudo-périodique} (ce qui était prévisible puisque $Q=\omega_0/2\mu=0,629>1/2$). En notant $\Omega=\sqrt{\omega_0^2-\mu^2}=3,81\times10^{6}$~rad$\cdot$s$^{-1}$ la pseudo-pulsation, la solution générale est
+	\begin{align*}
+		V_s(t)=e^{-\mu t}\big(A\cos\Omega t+B\sin\Omega t\big)
+	\end{align*}
+	Les conditions initiales donnent $A=0$ puis $\Omega B=E_0R/L=2\mu E_0$, soit finalement
+	\begin{align*}
+		\boxed{V_s(t)=\frac{2\mu}{\Omega}E_0\,e^{-\mu t}\sin(\Omega t)}
+		\qquad\text{avec}\quad \mu=\frac{R}{2L},\quad \Omega=\sqrt{\frac{1}{LC}-\frac{R^2}{4L^2}}
+	\end{align*}
+	La sortie est donc une oscillation amortie de constante de temps $\tau=1/\mu=0,2~\mu$s, qui culmine à $0,68\,E_0$ puis tend vers $0$ : c'est bien le comportement attendu d'un passe-bande soumis à une entrée qui devient continue. On retrouve là le pic observé à chaque front du créneau de la question 4, celui-ci n'étant qu'une succession d'échelons alternés espacés de $5~\mu$s $\gg\tau$. L'analogie reste toutefois qualitative : le créneau de la question 4 est tronqué à ses quatre premières harmoniques, ses fronts ont donc une pente finie et les pics y culminent à $0,75$~V, contre $1,35\,E_0$ pour un front raide d'amplitude $2E_0$.
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Déformation d'un signal par un filtre actif}
+
+Dans tout l'exercice, l'ALI est supposé idéal. On considère le montage suivant :
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\linewidth]{electronique_dephaseur_1.pdf}
+\end{figure}
+
+On prendra $R = 10$~k$\Omega$ et $C = 10$~nF.
+
+\begin{enumerate}
+
+	\item Déterminer la fonction de transfert $\underline{H}=\underline{U_s}/\underline{U_e}$ de ce filtre, puis son gain et son déphasage. On notera $\omega_0$ sa pulsation caractéristique. Quel est le rôle de ce montage ?
+
+	\item On envoie en entrée le signal
+	\begin{align*}
+		U_e(t)=U_0\cos^3(\omega t)
+	\end{align*}
+	Décrire l'effet du filtre sur ce signal et donner l'allure du signal de sortie, d'abord pour $\omega=\omega_0/3$, puis pour $\omega=10^{-2}\omega_0$. On donne $\arctan(1/3)\simeq\pi/10$.
+
+	\textit{NB : on pourra écrire $\cos^3$ comme une somme de deux harmoniques.}
+
+	\item À quelles conditions sur le circuit et sur le signal d'entrée le montage retarde-t-il un signal périodique \textit{sans le déformer}, c'est-à-dire $U_s(t)=U_e(t-\tau)$ ? Exprimer alors ce retard $\tau$ en fonction de $R$ et $C$.
+
+	\item On suppose le condensateur déchargé à $t=0$ et on envoie en entrée un échelon de tension d'amplitude $E$. Déterminer $U_s(t)$. Commenter.
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item La rétroaction se fait sur l'entrée $-$ : l'ALI fonctionne en régime linéaire et $u_+=u_-$. Aucun courant n'entre dans les entrées, donc un pont diviseur de tension sur la branche $RC$ d'une part, le théorème de Millman sur l'entrée $-$ d'autre part (où les deux résistances sont égales), donnent
+	\begin{align*}
+		\underline{u_+}=\frac{\underline{U_e}}{1+jRC\omega}
+		\qquad\text{et}\qquad
+		\underline{u_-}=\frac{\underline{U_e}+\underline{U_s}}{2}
+	\end{align*}
+	En égalant les deux expressions, $\underline{U_s}=2\underline{u_+}-\underline{U_e}$, soit
+	\begin{align*}
+		\boxed{\underline{H}=\frac{1-jRC\omega}{1+jRC\omega}=\frac{1-j\omega/\omega_0}{1+j\omega/\omega_0}}
+		\qquad\text{avec}\quad \omega_0=\frac{1}{RC}
+	\end{align*}
+	Numérateur et dénominateur étant conjugués, le module du rapport vaut $1$ à \textit{toute} fréquence :
+	\begin{align*}
+		|\underline{H}|=1 \qquad\text{et}\qquad \varphi(\omega)=\arg\underline{H}=-2\arctan\left(\frac{\omega}{\omega_0}\right)
+	\end{align*}
+	c'est-à-dire $\underline{H}=e^{-2j\arctan(\omega/\omega_0)}$. Le déphasage balaie continûment $0$ à $-\pi$ quand $\omega$ croît, et vaut $-\pi/2$ en $\omega=\omega_0$.
+
+	Il s'agit donc d'un \textbf{filtre passe-tout}, ou \textbf{déphaseur} : il ne touche pas aux amplitudes et n'agit que sur les phases. On l'utilise pour corriger la phase d'une chaîne de transmission, ou comme ligne à retard réglable.
+
+	\textit{Application numérique : $\omega_0=1/RC=1,0\times10^{4}$~rad$\cdot$s$^{-1}$, soit $f_0=1,6$~kHz.}
+
+	\textit{Remarque pour le colleur : gain unité ne veut pas dire « filtre sans effet », et c'est tout l'objet des questions suivantes. Attention aussi au rôle des trois résistances : seules les deux de la branche $-$ doivent être égales entre elles (c'est ce qui produit le facteur $2$), celle de la branche $RC$ est indépendante et fixe $\omega_0$ à elle seule. Si les deux premières diffèrent, en les notant $R_a$ (vers $U_e$) et $R_b$ (contre-réaction), on obtient $\underline{H}=\frac{1-j(R_b/R_a)RC\omega}{1+jRC\omega}$, dont le module n'est plus constant : le montage n'est plus un passe-tout.}
+
+	\item La linéarisation de $\cos^3$ donne
+	\begin{align*}
+		U_e(t)=U_0\cos^3(\omega t)=\frac{3U_0}{4}\cos(\omega t)+\frac{U_0}{4}\cos(3\omega t)
+	\end{align*}
+	Le signal ne contient que deux harmoniques, de rangs 1 et 3. Comme $|\underline{H}|=1$, \textbf{leurs deux amplitudes traversent le filtre intactes} : la seule chose qui puisse changer, c'est leur position relative dans le temps. La sortie s'écrit donc
+	\begin{align*}
+		U_s(t)=\frac{3U_0}{4}\cos\big(\omega t+\varphi(\omega)\big)+\frac{U_0}{4}\cos\big(3\omega t+\varphi(3\omega)\big)
+	\end{align*}
+
+	\textbf{Cas $\omega=\omega_0/3$.} On a $\varphi(\omega)=-2\arctan(1/3)\simeq-\pi/5$ et $\varphi(3\omega)=\varphi(\omega_0)=-2\arctan(1)=-\pi/2$, d'où
+	\begin{align*}
+		\boxed{U_s(t)\simeq\frac{3U_0}{4}\cos\left(\omega t-\frac{\pi}{5}\right)+\frac{U_0}{4}\cos\left(3\omega t-\frac{\pi}{2}\right)}
+	\end{align*}
+	Pour savoir si le signal est déformé, il faut comparer non pas les \textit{déphasages} mais les \textit{retards} des deux harmoniques, $\tau_\varphi=-\varphi/\omega$ :
+	\begin{align*}
+		\tau_\varphi(\omega)=\frac{2\arctan(1/3)}{\omega_0/3}=1,93\,RC
+		\qquad\text{et}\qquad
+		\tau_\varphi(3\omega)=\frac{\pi/2}{\omega_0}=1,57\,RC
+	\end{align*}
+	Les deux harmoniques ne sont pas retardées de la même durée : elles se décalent l'une par rapport à l'autre et \textbf{le signal est déformé}. Sur la figure ci-dessous, la sortie est comparée à l'entrée simplement retardée du retard du fondamental, c'est-à-dire à ce qu'on obtiendrait sans déformation :
+
+	\begin{center}
+	\includegraphics[width=\linewidth]{electronique_dephaseur_2.pdf}
+	\end{center}
+
+	La déformation reste modeste ici (l'écart entre les deux retards vaut $0,36\,RC$, soit $2$~\% de la période), mais elle est bien visible sur les épaulements du signal, vers $t/T=0,3$ et $t/T=0,85$.
+
+	\textbf{Cas $\omega=10^{-2}\omega_0$.} Les deux harmoniques sont maintenant à $\omega$ et $3\omega$, toutes deux très inférieures à $\omega_0$. On peut linéariser l'arctangente ($\arctan u\simeq u$ pour $u\ll1$, avec une erreur relative $u^2/3$, ici au plus $3\times10^{-4}$) :
+	\begin{align*}
+		\varphi(\omega)\simeq-\frac{2\omega}{\omega_0}=-2RC\omega
+		\qquad\text{et}\qquad
+		\varphi(3\omega)\simeq-6RC\omega
+	\end{align*}
+	Chaque déphasage est cette fois \textit{proportionnel} à la pulsation de l'harmonique, ce qui permet de factoriser :
+	\begin{align*}
+		U_s(t)&\simeq\frac{3U_0}{4}\cos\big(\omega(t-2RC)\big)+\frac{U_0}{4}\cos\big(3\omega(t-2RC)\big)\\
+		&=\boxed{U_e(t-2RC)}
+	\end{align*}
+	Les deux harmoniques subissent le \textit{même} retard $\tau=2RC$ : le signal ressort identique à lui-même, simplement décalé dans le temps.
+
+	\textit{Application numérique : $\omega=10^{2}$~rad$\cdot$s$^{-1}$, soit $f=16$~Hz et $T=63$~ms, pour un retard $\tau=2RC=0,20$~ms. Le retard ne représente que $0,3$~\% de la période : à l'oscilloscope, la sortie est pratiquement confondue avec l'entrée.}
+
+	\textit{Remarque pour le colleur : l'erreur classique est de conclure « le signal est retardé de $2\times10^{-2}$ ». C'est un \textit{angle} (le déphasage du fondamental, en radians), pas une durée. Le retard, lui, vaut $\tau=2RC$ et ne dépend pas de $\omega$, ce qui est précisément la raison pour laquelle il n'y a pas de déformation.}
+
+	\item Soit un signal d'entrée périodique quelconque, décomposé en série de Fourier :
+	\begin{align*}
+		U_e(t)=\sum_n C_n\cos(n\omega t+\varphi_n)
+	\end{align*}
+	Le gain valant $1$, aucune amplitude n'est modifiée et
+	\begin{align*}
+		U_s(t)=\sum_n C_n\cos\big(n\omega t+\varphi_n+\varphi(n\omega)\big)
+	\end{align*}
+	Pour identifier cette somme à $U_e(t-\tau)=\sum_n C_n\cos\big(n\omega t-n\omega\tau+\varphi_n\big)$, il faut
+	\begin{align*}
+		\varphi(n\omega)=-n\omega\tau \qquad\text{pour toute harmonique de poids non négligeable}
+	\end{align*}
+	c'est-à-dire que \textbf{le déphasage doit être proportionnel à la pulsation} : c'est la condition dite de \textbf{phase linéaire}. Un retard pur, et lui seul, correspond à une phase linéaire.
+
+	Ici $\varphi(\omega)=-2\arctan(\omega/\omega_0)$ n'est linéaire qu'au voisinage de l'origine. La condition porte donc sur l'harmonique la plus élevée qui compte encore dans le signal :
+	\begin{align*}
+		n_{\max}\,\omega\ll\omega_0=\frac{1}{RC}
+		\qquad\text{et alors}\qquad
+		\boxed{\tau=2RC=0,20~\text{ms}}
+	\end{align*}
+	Il ne suffit donc pas que le fondamental soit à basse fréquence : c'est le spectre \textit{entier} qui doit tenir sous $\omega_0$. Le montage convient bien à un signal dont les harmoniques décroissent vite (un triangle, dont les $C_n$ varient en $1/n^2$, est tronqué à quelques pour cent dès le rang 5), et bien moins à un créneau, dont les $C_n$ ne décroissent qu'en $1/n$.
+
+	\textit{Remarque pour le colleur : on peut formaliser en introduisant le temps de propagation de groupe $\tau_g=-\dif\varphi/\dif\omega=\frac{2RC}{1+(RC\omega)^2}$, à comparer au retard de phase $\tau_\varphi=-\varphi/\omega=\frac{2\arctan(RC\omega)}{\omega}$. Les deux ne coïncident (et ne valent $2RC$) que pour $\omega\ll\omega_0$ ; c'est une autre écriture de la condition de phase linéaire. Le tracé ci-dessous permet de relire la question 2 : les deux harmoniques du cas $\omega=\omega_0/3$ y tombent sur des retards nettement différents, alors qu'à $\omega=10^{-2}\omega_0$ toutes deux sont sur le plateau à $2RC$.}
+
+	\begin{center}
+	\includegraphics[width=\linewidth]{electronique_dephaseur_3.pdf}
+	\end{center}
+
+	\item La notation complexe suppose un régime sinusoïdal permanent : elle n'est pas applicable telle quelle à un échelon, qui n'est ni périodique ni établi (il faudrait une transformée de Fourier, et non une série). On revient donc au domaine temporel.
+
+	Les deux résistances de la branche $-$ sont sans mémoire : la relation $u_-=(U_e+U_s)/2$ vaut à \textit{chaque instant}, et avec $u_+=u_-$,
+	\begin{align*}
+		U_s(t)=2u_+(t)-U_e(t)
+	\end{align*}
+	Pour $t>0$, $U_e=E$ et le condensateur se charge à travers $R$ :
+	\begin{align*}
+		RC\frac{\dif u_+}{\dif t}+u_+=E
+		\qquad\text{avec}\qquad
+		u_+(0^+)=0
+	\end{align*}
+	la condition initiale traduisant la continuité de la tension aux bornes du condensateur. D'où $u_+(t)=E\left(1-e^{-t/RC}\right)$, puis
+	\begin{align*}
+		\boxed{U_s(t)=E\left(1-2e^{-t/RC}\right)}
+	\end{align*}
+
+	\begin{center}
+	\includegraphics[width=\linewidth]{electronique_dephaseur_4.pdf}
+	\end{center}
+
+	\textbf{Commentaire.} Le résultat le plus frappant est la valeur initiale : $U_s(0^+)=-E$. \textbf{La sortie part à l'opposé de l'échelon d'entrée}, avant de s'annuler en $t=RC\ln2=69~\mu$s puis de tendre vers $+E$ (atteint à $1$~\% près au bout de $5RC=0,5$~ms). L'interprétation est simple : à $t=0^+$ le condensateur est encore déchargé, donc $u_+=0$ ; l'ALI doit maintenir $u_-=u_+=0$, ce qui impose $U_s=-U_e=-E$.
+
+	Ce n'est donc en aucun cas un échelon retardé, mais un échelon \textbf{fortement déformé}, ce qui est cohérent avec la question 3 : le spectre d'un échelon s'étend jusqu'à $\omega\rightarrow\infty$, la condition $n\omega\ll\omega_0$ est violée par tout le haut du spectre. Une fois de plus, le gain vaut pourtant $1$ à toute fréquence : conserver toutes les amplitudes ne suffit pas à conserver la forme d'un signal.
+
+	On vérifie enfin le comportement asymptotique : en continu le condensateur est équivalent à un interrupteur ouvert, donc $u_+=U_e$ et $U_s=2U_e-U_e=U_e$, ce qui est bien la limite $\underline{H}(\omega\rightarrow0)=1$.
+
+	\textit{Remarque pour le colleur : deux prolongements possibles. (i) Le saut de $0$ à $-E$ en $t=0$ suppose une vitesse de balayage infinie ; un ALI réel a un \textit{slew rate} fini (de l'ordre de $0,5$~V$\cdot\mu$s$^{-1}$ pour un 741), qui arrondit ce front sur quelques microsecondes, durée négligeable devant $RC=0,10$~ms mais qui deviendrait limitante si l'on réduisait $RC$. (ii) Ce départ « du mauvais côté » n'a rien d'accidentel : en écrivant la fonction de transfert sous la forme $\underline{H}(p)=\frac{1-RCp}{1+RCp}$, le zéro se trouve en $p=+1/RC$, à partie réelle positive. C'est la signature d'un système à déphasage non minimal, et tout système possédant un tel zéro commence par évoluer dans le sens opposé à sa valeur finale.}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Capteur de position inductif différentiel}
+
+Un noyau ferromagnétique mobile se déplace à l'intérieur de deux bobines identiques montées en série. Son déplacement modifie leurs inductances en sens opposés,
+\begin{align*}
+	L_1=L_e+\delta L \qquad\text{et}\qquad L_2=L_e-\delta L
+	\qquad\text{avec}\quad \delta L\ll L_e
+\end{align*}
+$\delta L$ étant proportionnelle au déplacement : mesurer $\delta L$, c'est mesurer la position du noyau. C'est le principe des capteurs qui asservissent, par exemple, un objet en lévitation magnétique.
+
+L'ensemble est alimenté par une tension sinusoïdale $e(t)=E\cos(\omega t)$, et $R$ désigne la résistance totale du circuit (bobines et générateur). On néglige l'inductance mutuelle entre les deux bobines.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.60\linewidth]{electronique_capteur_inductif_1.pdf}
+\end{figure}
+
+On prendra $L_e = 10$~mH, $R = 100~\Omega$ et $E = 5,0$~V.
+
+\begin{enumerate}
+
+	\item Déterminer les tensions $u_1$ et $u_2$ en fonction de $E$, $\omega$, $R$, $L_1$ et $L_2$.
+
+	\item Pour accéder à $\delta L$, on dispose du montage soustracteur suivant :
+
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.60\linewidth]{electronique_capteur_inductif_2.pdf}
+	\end{figure}
+
+	\begin{enumerate}
+		\item Déterminer la tension de sortie $u_S$ en fonction de $u_A$ et $u_B$, et montrer qu'il s'agit bien d'un montage soustracteur.
+		\item Comment relier un ou des montages soustracteurs au capteur de façon à disposer de $u_1-u_2$ ? Préciser comment choisir les résistances $R_A$ et $R_B$.
+		\item On suppose le montage précédent réalisé. Exprimer la fonction de transfert de l'ensemble sous la forme
+		\begin{align*}
+			\underline{H}(\omega)=\frac{\underline{u_1}-\underline{u_2}}{\underline{e}}=H_0\,\frac{j\omega/\omega_0}{1+j\omega/\omega_0}
+		\end{align*}
+		et donner $\omega_0$ et $H_0$ en fonction de $L_e$, $R$ et $\delta L$.
+		\item Tracer le diagramme de Bode de $\underline{H}$. De quel type de filtre s'agit-il ? Dans quelle gamme de fréquence faut-il travailler pour que la sortie soit indépendante de la fréquence et proportionnelle à $\delta L$ ?
+	\end{enumerate}
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Les trois éléments $R$, $L_1$ et $L_2$ sont en série, parcourus par le même courant $\underline{i}=\underline{e}/\big(R+j(L_1+L_2)\omega\big)$. Un pont diviseur de tension donne directement
+	\begin{align*}
+		\boxed{\underline{u_1}=\frac{jL_1\omega}{R+j(L_1+L_2)\omega}\,\underline{e}
+		\qquad\text{et}\qquad
+		\underline{u_2}=\frac{jL_2\omega}{R+j(L_1+L_2)\omega}\,\underline{e}}
+	\end{align*}
+	Il n'y a pas à traiter $u_1$ différemment de $u_2$ : le pont diviseur porte sur des tensions aux bornes de composants en série, que ces bornes soient ou non reliées à la masse.
+
+	\item
+	\begin{enumerate}
+
+		\item Aucune des deux entrées n'absorbe de courant. Sur l'entrée $+$, un pont diviseur donne $\underline{u_+}=\underline{u_A}/2$ ; sur l'entrée $-$, le théorème de Millman donne $\underline{u_-}=(\underline{u_B}+\underline{u_S})/2$. La rétroaction se faisant sur l'entrée $-$, l'ALI est en régime linéaire et $u_+=u_-$, d'où
+		\begin{align*}
+			\boxed{u_S=u_A-u_B}
+		\end{align*}
+		Seules comptent les égalités des résistances deux à deux : les deux $R_A$ entre elles, les deux $R_B$ entre elles. Leurs valeurs communes n'interviennent pas dans le résultat.
+
+		\item Notons $V_A$ et $V_B$ les potentiels des deux points situés de part et d'autre de $L_1$, de sorte que $u_1=V_A-V_B$ et $u_2=V_B$. C'est ici qu'est la difficulté : les deux entrées d'un soustracteur sont repérées par rapport à la masse, ce qui est bien le cas de $u_2=V_B$, mais \textbf{$u_1$ est flottante} : aucune de ses bornes n'est à la masse. On ne peut donc pas l'appliquer directement sur une entrée. Il faut deux étages, le premier servant à ramener $u_1$ par rapport à la masse :
+		\begin{align*}
+			\text{étage 1 : } V_A \text{ sur la branche } + \text{, } V_B \text{ sur la branche } - \;\longrightarrow\; V_A-V_B=u_1
+		\end{align*}
+		\begin{align*}
+			\text{étage 2 : } u_1 \text{ sur la branche } + \text{, } V_B \text{ sur la branche } - \;\longrightarrow\; u_1-u_2
+		\end{align*}
+
+		\begin{center}
+		\includegraphics[width=0.95\linewidth]{electronique_capteur_inductif_3.pdf}
+		\end{center}
+
+		L'ordre des entrées fixe le signe, et il faut y prendre garde aux deux étages : intervertir celles du premier seul donnerait $u_2-u_1$, et les intervertir aux deux étages donnerait $u_1+u_2$. Quant aux résistances, il faut les prendre grandes devant $R$, $L_1\omega$ et $L_2\omega$ pour que la mesure ne charge pas le capteur.
+
+		\textit{Remarque pour le colleur : la contrainte la plus sévère en pratique n'est pas celle-là mais l'\textbf{appariement} des résistances. On verra en 2c que $H_0=\delta L/L_e\ll1$ : on extrait une petite différence entre deux tensions voisines, et le moindre écart entre les deux $R_A$ (ou entre les deux $R_B$) fait ressortir le mode commun, qui est grand, et noie le signal utile.}
+
+		\textit{Un seul étage suffirait d'ailleurs, puisque $u_1-u_2=V_A-2V_B$ : un amplificateur de différence à résistances pondérées, de gain $1$ sur $V_A$ et $2$ sur $V_B$, y parvient. La cascade de deux soustracteurs identiques est simplement plus lisible.}
+
+		\item En faisant la différence des deux résultats de la question 1,
+		\begin{align*}
+			\underline{H}=\frac{j(L_1-L_2)\omega}{R+j(L_1+L_2)\omega}
+			=\frac{L_1-L_2}{L_1+L_2}\cdot\frac{j\omega(L_1+L_2)/R}{1+j\omega(L_1+L_2)/R}
+		\end{align*}
+		et comme $L_1+L_2=2L_e$ et $L_1-L_2=2\delta L$,
+		\begin{align*}
+			\boxed{\omega_0=\frac{R}{2L_e} \qquad\text{et}\qquad H_0=\frac{\delta L}{L_e}}
+		\end{align*}
+		\textit{Application numérique : $\omega_0=5,0\times10^{3}$~rad$\cdot$s$^{-1}$, soit $f_0=0,80$~kHz.}
+
+		\textit{Attention à $\omega_0$ : c'est bien $R/2L_e$, homogène à l'inverse d'un temps. Noter aussi que ce résultat est exact, l'hypothèse $\delta L\ll L_e$ n'a servi nulle part ; elle ne sert qu'à garantir la proportionnalité entre $\delta L$ et le déplacement.}
+
+		\item Il s'agit d'un \textbf{passe-haut du premier ordre} : le gain croît de $20$~dB par décade puis sature à $H_0$, la phase passe de $+\pi/2$ à $0$.
+
+		\begin{center}
+		\includegraphics[width=\linewidth]{electronique_capteur_inductif_4.pdf}
+		\end{center}
+
+		Il faut donc travailler à $\omega\gg\omega_0$, où $\underline{H}\simeq H_0=\delta L/L_e$ : la sortie ne dépend plus de la fréquence et est proportionnelle au déplacement. Physiquement, à haute fréquence les impédances des bobines l'emportent sur $R$, le courant est fixé par les bobines seules et le rapport des tensions ne dépend plus de $\omega$.
+
+		\textit{Application numérique : à $f=10$~kHz, $\omega/\omega_0=13$, on est bien dans le plateau. Pour un déplacement tel que $\delta L/L_e=1$~\%, l'amplitude de sortie vaut $H_0E=50$~mV.}
+
+		\textit{Remarque pour le colleur : on peut demander pourquoi la source est alternative. En continu une inductance est invisible et la mesure ne donnerait rien : la porteuse à $\omega$ est indispensable, et l'information de position se retrouve dans son \textbf{amplitude}. Le déplacement du noyau module donc en amplitude la porteuse, ce qui suppose $\omega$ grande devant la fréquence du mouvement mécanique, et impose une démodulation en aval pour remonter à $\delta L(t)$. Le calcul mené ici, qui traite $\delta L$ comme une constante, n'est légitime que dans cette limite.}
+
+	\end{enumerate}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Multivibrateur astable}
+
+On considère le montage suivant, dans lequel on pose $\tau_1=RC$.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.38\linewidth]{electronique_astable_1.pdf}
+\end{figure}
+
+On prendra $R=R_1=R_2=10$~k$\Omega$, $C=10$~nF et $V_{sat}=15$~V.
+
+\begin{enumerate}
+
+	\item L'ALI est d'abord supposé idéal.
+	\begin{enumerate}
+		\item Rappeler les caractéristiques d'un ALI idéal. Comment se comporte-t-il dans ce montage, et pourquoi ?
+		\item Établir l'équation différentielle vérifiée par $u_-(t)$.
+		\item En déduire l'évolution temporelle de $u_-(t)$ et $u_s(t)$, puis la période $T$ des oscillations. On pourra partir de $u_-(t=0)=\dfrac{R_1}{R_1+R_2}V_{sat}$.
+	\end{enumerate}
+
+	\item L'ALI est désormais réel : ses trois tensions sont liées par
+	\begin{align*}
+		\tau_0\frac{\dif u_s}{\dif t}+u_s=\mu_0(u_+-u_-)
+	\end{align*}
+	avec un gain statique $\mu_0=10^{5}$ et un produit gain-bande $\dfrac{\mu_0}{2\pi\tau_0}=1$~MHz.
+	\begin{enumerate}
+		\item Établir l'équation différentielle vérifiée par $u_s(t)$, et commenter ses solutions.
+		\item En partant de $u_s(0)=0$ et $u_-(0)=0$, pourquoi retrouve-t-on très vite le régime de la première partie ?
+	\end{enumerate}
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item
+	\begin{enumerate}
+
+		\item Un ALI idéal n'absorbe aucun courant sur ses entrées ($i_+=i_-=0$), a un gain différentiel infini, et une sortie bornée par $\pm V_{sat}$. En régime linéaire il impose $u_+=u_-$ ; en régime saturé cette égalité tombe et $u_s=\pm V_{sat}$.
+
+		Ici les \textit{deux} entrées sont rebouclées sur la sortie, et c'est la comparaison des deux boucles qui tranche : celle sur l'entrée $+$ est un simple pont résistif, instantané, tandis que celle sur l'entrée $-$ passe par la cellule $RC$, qui retarde. La rétroaction positive l'emporte, le régime linéaire est instable, et \textbf{l'ALI fonctionne en régime saturé} : $u_s=\pm V_{sat}$. La question 2 démontre ce point.
+
+		\item Aucun courant n'entre dans les entrées. Un pont diviseur sur l'entrée $+$ donne
+		\begin{align*}
+			u_+=\beta\,u_s \qquad\text{avec}\quad \beta=\frac{R_1}{R_1+R_2}
+		\end{align*}
+		et sur l'entrée $-$, le condensateur se charge à travers $R$ depuis la sortie :
+		\begin{align*}
+			\boxed{\tau_1\frac{\dif u_-}{\dif t}+u_-=u_s} \qquad\text{avec}\quad \tau_1=RC
+		\end{align*}
+
+		\item Sur chaque demi-période $u_s$ est constante et vaut $\pm V_{sat}$ : $u_-$ relaxe exponentiellement vers cette valeur avec la constante de temps $\tau_1$. La bascule a lieu lorsque $u_-$ atteint le seuil $u_+=\beta u_s$.
+
+		Partons de $u_-(0)=+\beta V_{sat}$ : le seuil vient d'être atteint alors que $u_s$ valait $+V_{sat}$, la sortie vient donc de basculer à $u_s=-V_{sat}$, et $u_+=-\beta V_{sat}$. Alors
+		\begin{align*}
+			u_-(t)=-V_{sat}+(1+\beta)V_{sat}\,e^{-t/\tau_1}
+		\end{align*}
+		qui décroît jusqu'au seuil $-\beta V_{sat}$, atteint à
+		\begin{align*}
+			t_1=\tau_1\ln\frac{1+\beta}{1-\beta}=\tau_1\ln\left(1+\frac{2R_1}{R_2}\right)
+		\end{align*}
+		La sortie rebascule alors, et la demi-période suivante s'en déduit en changeant tous les signes :
+		\begin{align*}
+			u_-(t)=V_{sat}-(1+\beta)V_{sat}\,e^{-(t-t_1)/\tau_1}
+		\end{align*}
+		Le régime est donc périodique, de période
+		\begin{align*}
+			\boxed{T=2t_1=2RC\ln\left(1+\frac{2R_1}{R_2}\right)}
+		\end{align*}
+		$u_s$ est un \textbf{créneau} symétrique d'amplitude $V_{sat}$, et $u_-$ une succession d'arcs d'exponentielle entre les deux seuils $\pm\beta V_{sat}$.
+
+		\begin{center}
+		\includegraphics[width=\linewidth]{electronique_astable_2.pdf}
+		\end{center}
+
+		\textit{Application numérique : $\beta=1/2$, $\tau_1=0,10$~ms, d'où $T=2\tau_1\ln3=0,22$~ms, soit $f=4,6$~kHz.}
+
+		\textit{Remarque pour le colleur : le montage n'a aucune entrée, il oscille de lui-même, d'où le nom d'astable. Noter que la période ne dépend ni de $V_{sat}$ ni des valeurs absolues de $R_1$ et $R_2$, mais seulement de $RC$ et du rapport $R_1/R_2$ : c'est ce qui en fait un oscillateur utilisable.}
+
+	\end{enumerate}
+
+	\item
+	\begin{enumerate}
+
+		\item Les deux autres relations du montage sont inchangées, $u_+=\beta u_s$ et $\tau_1\dot u_-=u_s-u_-$. En reportant $u_+$ dans l'équation de l'ALI :
+		\begin{align*}
+			\left\lbrace
+			\begin{array}{l}
+				\tau_0\dot u_s=\mu_1 u_s-\mu_0 u_- \qquad\text{avec}\quad \mu_1=\mu_0\beta-1\\[4pt]
+				\tau_1\dot u_-=u_s-u_-
+			\end{array}\right.
+		\end{align*}
+		On tire $u_-$ de la première et on reporte dans la seconde :
+		\begin{align*}
+			\boxed{\frac{\dif^2u_s}{\dif t^2}+\left(\frac{1}{\tau_1}-\frac{\mu_1}{\tau_0}\right)\frac{\dif u_s}{\dif t}+\frac{\mu_0-\mu_1}{\tau_0\tau_1}\,u_s=0}
+		\end{align*}
+		Notons $a=\dfrac{1}{\tau_1}-\dfrac{\mu_1}{\tau_0}$ le coefficient d'amortissement et $b=\dfrac{\mu_0-\mu_1}{\tau_0\tau_1}$ le terme en $u_s$. Les racines de l'équation caractéristique $r^2+ar+b=0$ vérifient $r_1r_2=b$ et $r_1+r_2=-a$.
+
+		\textbf{Le terme en $u_s$ est positif} :
+		\begin{align*}
+			\mu_0-\mu_1=\mu_0-(\mu_0\beta-1)=\mu_0(1-\beta)+1>0
+		\end{align*}
+		puisque $\beta=R_1/(R_1+R_2)$ est compris entre $0$ et $1$. Le produit $r_1r_2=b$ est donc positif : \textit{les deux racines sont de même signe}, et c'est le seul signe de $a$ qui décide de la stabilité. Sans cela, une racine de chaque signe resterait possible et l'étude de $a$ ne suffirait pas.
+
+		En revanche \textbf{le coefficient d'amortissement est négatif} dès que
+		\begin{align*}
+			\frac{\mu_1}{\tau_0}>\frac{1}{\tau_1}
+		\end{align*}
+		Deux remarques permettent de traduire cette condition sur les données de l'énoncé. D'une part $\mu_0\beta=5\times10^{4}\gg1$, donc $\mu_1=\mu_0\beta-1\simeq\mu_0\beta$ et la condition devient $\beta\,\mu_0/\tau_0>1/\tau_1$. D'autre part le gain en boucle ouverte $\underline\mu(j\omega)=\mu_0/(1+j\omega\tau_0)$ a pour fréquence de coupure $f_c=1/(2\pi\tau_0)$, de sorte que le produit gain-bande, noté PGB, vaut
+		\begin{align*}
+			\text{PGB}=\mu_0f_c=\frac{\mu_0}{2\pi\tau_0} \qquad\text{soit}\qquad \frac{\mu_0}{\tau_0}=2\pi\,\text{PGB}
+		\end{align*}
+		En reportant, et avec $\tau_1=RC$ :
+		\begin{align*}
+			\boxed{RC>\frac{1}{2\pi\beta\times\text{PGB}}=\frac{\tau_0}{\mu_0\beta}}
+		\end{align*}
+		Le second membre est le temps de réponse de l'ALI \textit{rebouclé} sur son entrée $+$ avec le gain $\beta$ : la condition dit simplement que la cellule $RC$, qui retarde, doit être plus lente que l'ALI lui-même, sans quoi la rétroaction positive ne l'emporte pas.
+
+		Un amortissement négatif signifie $r_1+r_2>0$, donc ici deux racines positives, et des solutions qui \textbf{divergent} : le régime linéaire est instable, ce qui justifie a posteriori l'hypothèse de la partie 1.
+
+		\textit{Application numérique : $\tau_0=\mu_0/(2\pi\times10^{6})=16$~ms, soit une fréquence de coupure en boucle ouverte de $10$~Hz, et $\mu_1\simeq5,0\times10^{4}$. Le coefficient d'amortissement vaut $1,0\times10^{4}-3,1\times10^{6}\simeq-3,1\times10^{6}$~s$^{-1}$ et le terme en $u_s$ vaut $3,1\times10^{10}$~s$^{-2}$. Le discriminant est positif : les racines sont réelles et toutes deux positives, $r_1=3,1\times10^{6}$~s$^{-1}$ et $r_2=1,0\times10^{4}\simeq1/\tau_1$. Les solutions sont donc deux exponentielles croissantes, sans oscillation. Le seuil d'instabilité vaut ici $RC>0,32~\mu$s, très largement franchi puisque $RC=100~\mu$s.}
+
+		\item Les conditions initiales nulles constituent bien une solution de l'équation, mais c'est une solution d'équilibre \textbf{instable}. Le moindre écart, tension de décalage de l'ALI, bruit, transitoire de mise sous tension, est amplifié avec la constante de temps $1/r_1=0,32~\mu$s, soit trois cents fois plus courte que $\tau_1$. En quelques microsecondes $u_s$ atteint $\pm V_{sat}$, le modèle linéaire cesse d'être valable et on retombe sur le régime saturé de la première partie.
+
+		\textit{Remarque pour le colleur : les oscillations ne viennent pas du modèle linéaire, dont les deux racines sont réelles, mais de la saturation. C'est le va-et-vient de la sortie entre $+V_{sat}$ et $-V_{sat}$ qui crée la périodicité, et c'est la partie 1 qui en donne la période. Un système linéaire instable ne saurait produire une oscillation d'amplitude fixée.}
+
+	\end{enumerate}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Oscillateur quasi-sinusoïdal}
+
+On considère le filtre suivant, dont la sortie n'est pas chargée.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.55\linewidth]{electronique_hartley_1.pdf}
+\end{figure}
+
+On prendra $L_1 = 90$~mH, $L_2 = 10$~mH, $C = 1,0$~nF et $R = 100$~k$\Omega$.
+
+\begin{enumerate}
+
+	\item Préciser le comportement du circuit à basse et à haute fréquence, puis déterminer sa fonction de transfert et la mettre sous forme canonique.
+
+	\item On boucle ce filtre sur un amplificateur non inverseur, supposé idéal.
+
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.85\linewidth]{electronique_hartley_2.pdf}
+	\end{figure}
+
+	À quelle condition le montage oscille-t-il ? Préciser la fréquence des oscillations.
+
+	\item On remplace maintenant le filtre par un bloc de fonction de transfert $\underline{H}$ quelconque.
+
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.45\linewidth]{electronique_hartley_3.pdf}
+	\end{figure}
+
+	Peut-on obtenir des oscillations si $\underline{H}$ est un passe-bas du second ordre ? Même question pour un passe-haut du second ordre. Conclure.
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item \textbf{Comportements limites.} Notons $L=L_1+L_2$ l'inductance totale et $u_1$ le potentiel du nœud commun à $R$, $C$ et $L_1$. À basse fréquence la bobine se comporte comme un fil et court-circuite ce nœud à la masse ; à haute fréquence c'est le condensateur qui joue ce rôle. Dans les deux cas $u_1\rightarrow0$, donc $u_s\rightarrow0$. En revanche, à la résonance du bouchon $LC$ parallèle son impédance diverge, aucun courant ne traverse $R$ et $u_1=u_e$. C'est un \textbf{passe-bande du second ordre}.
+
+	\textbf{Calcul.} Vu du nœud $u_1$, le circuit est un $RLC$ parallèle, et comme l'étage de sortie n'est pas chargé, un simple pont diviseur inductif donne la seconde relation :
+	\begin{align*}
+		\frac{\underline{u_1}}{\underline{u_e}}=\frac{1}{1+R\left(jC\omega+\dfrac{1}{jL\omega}\right)}
+		\qquad\text{et}\qquad
+		\frac{\underline{u_s}}{\underline{u_1}}=\frac{jL_2\omega}{j(L_1+L_2)\omega}=\frac{L_2}{L}
+	\end{align*}
+	En remarquant que $R\left(C\omega-\dfrac{1}{L\omega}\right)=RC\omega_c\left(\dfrac{\omega}{\omega_c}-\dfrac{\omega_c}{\omega}\right)$ avec $\omega_c=1/\sqrt{LC}$, le produit se met sous la forme canonique
+	\begin{align*}
+		\boxed{\underline{H}=\frac{A_0}{1+jQ\left(\dfrac{\omega}{\omega_c}-\dfrac{\omega_c}{\omega}\right)}}
+		\qquad
+		\omega_c=\frac{1}{\sqrt{(L_1+L_2)C}},\quad
+		A_0=\frac{L_2}{L_1+L_2},\quad
+		Q=R\sqrt{\frac{C}{L_1+L_2}}
+	\end{align*}
+	\textit{Application numérique : $\omega_c=1,0\times10^{5}$~rad$\cdot$s$^{-1}$, soit $f_c=16$~kHz, avec $A_0=0,10$ et $Q=10$.}
+
+	\textit{Remarque pour le colleur : bobine à point milieu plus condensateur en parallèle, c'est un \textbf{oscillateur Hartley}. Le point milieu ne sert qu'à prélever une fraction $A_0$ de la tension du bouchon, et c'est cette fraction qui fixera le gain que l'amplificateur devra fournir.}
+
+	\item L'ALI est idéal et fonctionne en régime linéaire : son entrée n'absorbe aucun courant, donc le filtre n'est pas chargé, et sa sortie est une source de tension parfaite, donc elle attaque $R$ sans être perturbée. Les deux fonctions de transfert se multiplient, et en ouvrant la boucle on définit le gain de boucle
+	\begin{align*}
+		\underline{F}(\omega)=K\,\underline{H}(\omega)
+		\qquad\text{avec}\quad K=\frac{R_1+R_2}{R_1}
+	\end{align*}
+	Le montage oscille si le signal se reboucle identique à lui-même, c'est-à-dire $\underline{F}(\omega_0)=1$ : c'est la condition de Barkhausen, soit $|\underline{F}|=1$ et $\arg\underline{F}=0$ modulo $2\pi$. Comme $K$ est réel positif, la condition de phase impose $\arg\underline{H}=0$, donc $\omega_0=\omega_c$, et la condition de module donne alors $KA_0=1$ :
+	\begin{align*}
+		\boxed{\frac{R_1+R_2}{R_1}\cdot\frac{L_2}{L_1+L_2}=1
+		\qquad\text{et}\qquad
+		f_0=\frac{1}{2\pi\sqrt{(L_1+L_2)C}}}
+	\end{align*}
+	\textit{Application numérique : il faut $K=10$, soit $R_2=9R_1$, pour $f_0=16$~kHz.}
+
+	\textit{Remarque pour le colleur : écrite en égalité, cette condition décrit un équilibre \textbf{instable}, et c'est le point à ne pas laisser passer. Avec $KA_0=1$ exactement, rien ne démarre, et la moindre dérive des composants fait soit mourir soit diverger l'oscillation. On règle donc en pratique $KA_0$ légèrement supérieur à $1$ : le bruit est amplifié, l'amplitude croît, et c'est la saturation de l'ALI qui l'arrête. Le mécanisme est le même que pour le multivibrateur astable, à ceci près que le filtre est ici assez sélectif ($Q=10$) pour ne laisser passer que le fondamental : la sortie reste quasi sinusoïdale, d'où le nom.}
+
+	\textit{Noter aussi que $R$ n'intervient pas dans la condition. À la résonance le bouchon est d'impédance infinie, aucun courant ne le traverse, et $R$ ne fixe que $Q$, donc la sélectivité. C'est un artefact du modèle : dans un oscillateur réel, c'est la résistance série des bobines qui amortit le circuit et que le gain doit compenser.}
+
+	\item Le raisonnement tient entièrement dans la condition de phase. $K$ étant réel positif, il faut $\arg\underline{H}=0$ à une pulsation \textit{finie et non nulle}. Il suffit donc de regarder l'excursion de phase de chaque filtre du second ordre :
+
+	\begin{center}
+	\includegraphics[width=\linewidth]{electronique_hartley_4.pdf}
+	\end{center}
+
+	\textbf{Passe-bas :} la phase va de $0$ à $-\pi$, elle ne s'annule qu'en $\omega=0$.
+
+	\textbf{Passe-haut :} elle va de $+\pi$ à $0$, elle ne s'annule qu'asymptotiquement.
+
+	\textbf{Passe-bande :} elle va de $+\pi/2$ à $-\pi/2$ en s'annulant en $\omega_0$.
+
+	\textbf{Seul le passe-bande convient}, et c'est bien ce qui rend le montage de la question 2 possible.
+
+	Attention toutefois à ce que devient le montage dans les autres cas : le passe-bas ne se contente pas de ne rien faire. Si $KH_0>1$, la boucle possède un pôle réel positif, la sortie diverge puis se bloque en saturation. On obtient un bistable, pas un oscillateur.
+
+	\textit{Remarque pour le colleur : ce qui bloque ici, c'est que deux pôles ne fournissent qu'une excursion de phase de $\pi$, atteinte seulement aux bornes du spectre. Avec trois cellules du premier ordre on atteint $-\pi$ à fréquence finie, ce qui permet d'osciller en remplaçant l'amplificateur non inverseur par un inverseur : c'est l'oscillateur à déphasage.}
+
+\end{enumerate}
 
 \end{correction}

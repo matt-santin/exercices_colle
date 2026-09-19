@@ -3,13 +3,13 @@
 \newpage
 
 \section{Chauffage par induction}
- 
- Un disque métallique de conductivité $\sigma$, d'axe $Oz$ vertical, de rayon $b$ et d'épaisseur $e$ est plongé dans un champ magnétique $\vec{B}$, ayant les caractéristiques suivantes :
+
+Un disque métallique de conductivité $\sigma$, d'axe $Oz$ vertical, de rayon $b$ et d'épaisseur $e$ est plongé dans un champ magnétique $\vec{B}$ ayant les caractéristiques suivantes :
 \begin{itemize}
-\item[-] il est localisé dans un cylindre d'axe vertical $Oz$ et de rayon $a$ ;
-\item[-] il est uniforme dans le cylindre précédent et nul à l'extérieur de ce cylindre ;
-\item[-] il est dirigé suivant $\vec{e_z}$ ;
-\item[-] il varie au cours du temps selon $\vec{B}=B_m\cos(\omega t)\vec{e_z}$.
+\item[-] il est localisé dans un cylindre d'axe vertical $Oz$ et de rayon $a<b$ ;
+\item[-] il est uniforme dans ce cylindre et nul à l'extérieur ;
+\item[-] il est dirigé suivant $\vec{e}_z$ ;
+\item[-] il varie au cours du temps selon $\vec{B}=B_m\cos(\omega t)\,\vec{e}_z$.
 \end{itemize}
 
 \begin{figure}[h!]
@@ -17,20 +17,24 @@
 		\includegraphics[scale=0.7]{induction1.pdf}
 \end{figure}
 
-On admettra par la suite que le champ magnétique induit est négligeable devant le champ magnétique extérieur appliqué. 
+On admettra dans un premier temps que le champ magnétique induit est négligeable devant le champ appliqué ; la dernière question reviendra sur cette hypothèse.
 
 \begin{enumerate}
 
-	\item Rappeler l'expression de l'équation de Maxwell-Faraday et justifier l'existence de courants de Foucault dans le cylindre métallique de la forme $\vec{j}=j(r,t)\vec{e_\theta}$.
-	
-	\item A l'aide de l'équation de Maxwell-Faraday, exprimer $j(r,t)$ en fonction des données du problème.
-	
-	\item Quelle est l'expression de la puissance dissipée par effet Joule $P_{Joule}$ ? Donner sa valeur moyenne $\langle P_{Joule}\rangle$.
-	
-	\item Le champ magnétique utilisé a une pulsation de $\omega=1\times10^{5}$rad.s$^{-1}$ et son intensité de l'ordre de $10^{-4}$T. On considère une plaque à induction de rayon $b=10$cm et une casserole dont le fond a le même rayon $a=b=10$cm, une épaisseur $e=3$mm et une conductivité $\sigma=6,0\times10^{7}$S.m$^{-1}$. Déterminer l'ordre de grandeur de la puissance dissipée dans le fond de la casserole.
-	
-	\item On suppose que le champ magnétique est créé par un solénoïde de 5 cm de longueur ayant un enroulement de $N=100$ spires. En déduire l'intensité $I$ le traversant pour produire le champ magnétique de la question précédente.
-	
+	\item Rappeler l'expression de l'équation de Maxwell-Faraday et justifier l'existence de courants de Foucault dans le disque, de la forme $\vec{\jmath}=j(r,t)\,\vec{e}_\theta$.
+
+	\item À l'aide de l'équation de Maxwell-Faraday, exprimer $E(r,t)$ puis $j(r,t)$ en fonction des données du problème, en distinguant les domaines $r<a$ et $r>a$.
+
+	\item Quelle est l'expression de la puissance dissipée par effet Joule $P_{\mathrm{Joule}}$ dans le disque ? Donner sa valeur moyenne $\langle P_{\mathrm{Joule}}\rangle$.
+
+	\item Le champ a pour pulsation $\omega=1,0\times10^{5}$~rad$\cdot$s$^{-1}$ et pour amplitude $B_m=1,0\times10^{-4}$~T. L'inducteur a un rayon $a=7,0$~cm, et le disque, en cuivre ($\sigma=6,0\times10^{7}$~S$\cdot$m$^{-1}$), un rayon $b=10$~cm et une épaisseur $e=3,0$~mm.
+	\begin{enumerate}
+		\item Déterminer l'ordre de grandeur de la puissance moyenne dissipée dans le disque.
+		\item On modélise l'inducteur par un solénoïde de longueur $\ell=50$~cm comportant $N=100$ spires. En déduire l'intensité $I$ qui le traverse.
+	\end{enumerate}
+
+	\item Calculer l'épaisseur de peau $\delta$ dans le cuivre à cette pulsation. L'hypothèse admise au début de l'énoncé est-elle vérifiée ? Commenter.
+
 \end{enumerate}
 
 \newpage
@@ -39,39 +43,64 @@ On admettra par la suite que le champ magnétique induit est négligeable devant
 
 \begin{enumerate}
 
-	\item L'équation Faraday s'écrit : $\vv{\mathrm{rot}}\vec{E}=-\partial \vec{B}/\partial t$. Le champ magnétique $\vec{B}$ étant variable, le terme $-\partial \vec{B}/\partial t$ est non nul, et on peut appliquer le théorème d'Ampère (avec $\vec{B}\leftarrow\vec{E}$ et $\mu_0\vec{j}\leftarrow-\partial \vec{B}/\partial t$. Au vu des symétries du problème, on en conclut naturellement que le champ électrique est sous la forme $\vec{E}=E(r,t)\vec{e_\theta}$. Puis par la loi d'Ohm, on en déduit que les courants induits sont de la même forme : $\vec{j}=j(r,t)\vec{e_\theta}$.
-	
-	\item On calcule tout d'abord le champ électrique à l'aide de la circulation de $\vec{E}$, sur le contour $\Gamma$ choisi comme un cercle de centre $O$ coplanaire au cylindre de rayon $r$, délimitant la surface $\Sigma$ :
+	\item L'équation de Maxwell-Faraday s'écrit $\vv{\mathrm{rot}}\,\vec{E}=-\dfrac{\partial\vec{B}}{\partial t}$. Le champ appliqué étant variable, le second membre est non nul et il existe un champ électrique induit.
+
+	Sa direction s'obtient par analogie : $-\partial\vec{B}/\partial t$, uniforme et dirigé selon $\vec{e}_z$ à l'intérieur du cylindre de rayon $a$, joue exactement le rôle de $\mu_0\vec{\jmath}$ dans le problème magnétostatique du cylindre parcouru par un courant uniforme selon $\vec{e}_z$, dont le champ est orthoradial. On a donc $\vec{E}=E(r,t)\,\vec{e}_\theta$, puis, par la loi d'Ohm locale,
 	\begin{align*}
-		\oint_\Gamma \vec{dl}\cdot\vec{E}=-\oiint_\Sigma\vec{dS}\cdot\frac{\partial \vec{B}}{\partial t}
+		\boxed{\vec{\jmath}=\sigma\vec{E}=j(r,t)\,\vec{e}_\theta}
 	\end{align*}
-	On est obligé de distinguer les cas $r>a$ et $r<a$ :
-	Pour $r<a$ :
+	\textit{Il s'agit bien de la forme intégrale de Maxwell-Faraday et non du théorème d'Ampère : l'analogie porte sur la structure des équations, pas sur leur contenu.}
+
+	\item On calcule la circulation de $\vec{E}$ sur un cercle $\Gamma$ d'axe $Oz$ et de rayon $r$, contenu dans le plan du disque et délimitant le disque $\Sigma$ :
 	\begin{align*}
-		&2\pi r E(r)=\pi r^2B_m \omega \\
-		&\Rightarrow E(r)=\frac{rB_m \omega}{2}
+		\oint_\Gamma\vec{E}\cdot\dif\vec{l}=-\iint_\Sigma\frac{\partial\vec{B}}{\partial t}\cdot\dif\vec{S}
 	\end{align*}
-	Pour $r>a$ :
+	Avec $\vec{B}=B_m\cos(\omega t)\vec{e}_z$, on a $-\partial\vec{B}/\partial t=B_m\omega\sin(\omega t)\vec{e}_z$, et il faut distinguer deux domaines selon que le contour enlace tout le flux ou non :
 	\begin{align*}
-		&2\pi r E(r)=\pi a^2B_m \omega \\
-		&\Rightarrow E(r)=\frac{a^2B_m \omega}{2r}
-	\end{align*}	
-	La puissance volumique dissipée par effet s'écrit $p_{vol}=\vec{j}\cdot\vec{E}=\gamma E^2(r)$. La puissance totale dissipée sur toute la plaque s'écrit alors :
-	\begin{align*}
-		P_{vol}&=\iiint_V d\tau p_{vol} \\
-		&=\int_0^{2\pi}d\theta\int_0^edz\int_0^ardr\gamma\frac{r^2B_m^2 \omega^2}{4}+\int_0^{2\pi}d\theta\int_0^edz\int_a^brdr\gamma\frac{a^4B_m^2 \omega^2}{4r^2} \\
-		&=2\pi e\gamma B_m^2 \omega^2\frac{a^4}{16}+2\pi e \gamma a^4B_m^2\omega^2\frac{1}{4}\ln\left(\frac{b}{a} \right) \\
-		&=\frac{1}{2}\pi e\gamma a^4B_m^2 \omega^2\left[\frac{1}{4}+\ln\left(\frac{b}{a} \right) \right] 
+		\boxed{E(r,t)=\frac{rB_m\omega}{2}\sin(\omega t)\;\;(r<a),
+		\qquad
+		E(r,t)=\frac{a^2B_m\omega}{2r}\sin(\omega t)\;\;(r>a)}
 	\end{align*}
-	
-	\item En utilisant la formule précédente, on trouve une puissance de l'ordre de $P=3769$W, ce qui est cohérent avec la puissance maximale des plaques à induction du commerce
-	
-	\item Le champ créé par un solénoïde est donné par :
+	et la loi d'Ohm donne $j(r,t)=\sigma E(r,t)$.
+
+	\textit{La dépendance temporelle en $\sin(\omega t)$ est essentielle : c'est elle qui fournira le facteur $1/2$ de la valeur moyenne à la question suivante.}
+
+	\item La puissance volumique dissipée par effet Joule vaut $p=\vec{\jmath}\cdot\vec{E}=\sigma E^2$. En intégrant sur le disque, de rayon $b$ et d'épaisseur $e$, et en séparant les deux domaines :
 	\begin{align*}
-		B=\frac{\mu_0 N I}{L}
+		P_{\mathrm{Joule}}(t)&=\int_0^{2\pi}\!\!\dif\theta\int_0^e\!\!\dif z\left[\int_0^a\sigma\frac{r^2B_m^2\omega^2}{4}\sin^2(\omega t)\,r\,\dif r+\int_a^b\sigma\frac{a^4B_m^2\omega^2}{4r^2}\sin^2(\omega t)\,r\,\dif r\right]\\
+		&=2\pi e\,\sigma B_m^2\omega^2\sin^2(\omega t)\left[\frac{a^4}{16}+\frac{a^4}{4}\ln\frac{b}{a}\right]\\
+		&=\frac{\pi}{2}\,e\,\sigma\,a^4B_m^2\omega^2\left[\frac14+\ln\frac{b}{a}\right]\sin^2(\omega t)
 	\end{align*}
-	Pour un champ magnétique de l'ordre de $10^{-4}$T, il faut une intensité $I\simeq0,04$A.
-	
+	Comme $\langle\sin^2(\omega t)\rangle=1/2$,
+	\begin{align*}
+		\boxed{\langle P_{\mathrm{Joule}}\rangle=\frac{\pi}{4}\,e\,\sigma\,a^4B_m^2\omega^2\left[\frac14+\ln\frac{b}{a}\right]}
+	\end{align*}
+
+	\item
+	\begin{enumerate}
+		\item Numériquement, $\left[\frac14+\ln\frac{b}{a}\right]=0,61$ et
+		\begin{align*}
+			\boxed{\langle P_{\mathrm{Joule}}\rangle=2,1\times10^{2}~\mathrm{W}}
+		\end{align*}
+		soit quelques centaines de watts : c'est bien l'ordre de grandeur d'un dispositif de chauffage par induction.
+
+		\item Pour un solénoïde long, $B_m=\mu_0NI/\ell$, d'où
+		\begin{align*}
+			\boxed{I=\frac{B_m\ell}{\mu_0N}=0,40~\mathrm{A}}
+		\end{align*}
+		\textit{Ce qui compte réellement n'est pas $I$ mais le nombre d'ampères-tours par mètre, $nI=B_m/\mu_0=80$~A$\cdot$m$^{-1}$, qui ne dépend pas de la façon dont on enroule. Le solénoïde n'est ici qu'un modèle commode : un inducteur réel est une spirale plate de quelques spires placée sous la surface, et non un solénoïde. Il faut d'ailleurs que $\ell$ reste grand devant le rayon de l'inducteur pour que la formule tienne, ce qui est tout juste le cas ici.}
+	\end{enumerate}
+
+	\item L'épaisseur de peau vaut
+	\begin{align*}
+		\boxed{\delta=\sqrt{\frac{2}{\mu_0\sigma\omega}}=0,52~\mathrm{mm}}
+	\end{align*}
+	à comparer à l'épaisseur $e=3,0$~mm du disque. On a $\delta\ll e$ : \textbf{l'hypothèse n'est pas vérifiée}. Le champ ne pénètre pas uniformément le disque, il est écranté par les courants induits eux-mêmes et confiné dans une couche superficielle six fois plus mince que l'épaisseur supposée traversée. Le résultat de la question 4 n'est donc qu'un ordre de grandeur, obtenu avec un modèle que le calcul invalide a posteriori.
+
+	\textit{Remarque pour le colleur : c'est la question la plus instructive de l'exercice, et elle se retourne en argument positif. Si l'on veut rester dans le cadre admis, il faut $\delta\gg e$, donc une pulsation basse, une faible conductivité ou un disque mince. Or le chauffage par induction fonctionne précisément à l'inverse : on monte en fréquence pour réduire $\delta$, concentrer les courants et augmenter la puissance dissipée. L'hypothèse de l'énoncé est donc commode pour le calcul, mais contraire au principe même du dispositif.}
+
+	\textit{On peut aussi faire remarquer que les valeurs de l'énoncé ne décrivent pas une plaque de cuisine : $B_m=10^{-4}$~T y est cent fois trop faible, une plaque réelle produisant quelques $10^{-2}$~T, et le fond d'une casserole compatible induction est en acier ferromagnétique et non en cuivre. Avec le champ réel, le modèle uniforme prédirait des mégawatts, ce qui est une autre manière de voir qu'il ne tient pas.}
+
 \end{enumerate}
 
 \end{correction}

@@ -4,22 +4,24 @@
 
 \section{Matériau ferromagnétique}
 
-Un fil parcouru d'un courant $I$ est enroulé sur toute la longueur $L$, en faisant $N$ spires, d'un cylindre de rayon $R\ll L$, constitué d'un matériau ferromagnétique. On souhaite connaitre l'allure des champs $\vec{H}$, $\vec{M}$ et $\vec{B}$ le long de l'axe $z$. On suppose $I>0$ dans un premier temps.
-	
+Un fil parcouru par un courant $I$ est enroulé en $N$ spires régulièrement réparties sur toute la longueur $L$ d'un cylindre de rayon $R\ll L$ constitué d'un matériau ferromagnétique. On souhaite connaître l'allure des champs $\vec{H}$, $\vec{M}$ et $\vec{B}$ le long de l'axe $z$. On suppose $I>0$ dans un premier temps.
+
+On prendra $L=20$~cm, $R=1,0$~cm, $N=200$ spires et $I=1,0$~A.
+
 \begin{figure}[h!]
 	\centering
 		\includegraphics[scale=0.9]{ferromagnetisme1_1.pdf}
-	\end{figure}	
-	
+	\end{figure}
+
 \begin{enumerate}
 
-	\item Déterminer le champ $\vec{H}$ dans le solénoïde créé par l'enroulement sur l'axe $z$. 
-	
-	\item Comment réagit le matériau ferromagnétique à l'excitation $\vec{H}$ ? En déduire l'allure du champ d'aimantation $\vec{M}$ le long de l'axe $z$. 
-	
-	\item En déduire l'allure du champ magnétique $\vec{B}$ le long de l'axe $z$ dans le matériau, puis loin du solénoïde. En déduire l'allure $\vec{H}$ sur la totalité de l'axe $z$.
-	
-	\item Quel type de matériau ferromagnétique doit-on avoir pour avoir un champ magnétique $\vec{B}$ dirigé selon $+\vec{e}_z$ malgré un courant légèrement négatif $I<0$ ? Préciser quantitativement ce que signifie "légèrement". Tracer l'allure des champs $\vec{H}$, $\vec{M}$ et $\vec{B}$ sur l'axe $z$ dans ce cas-là.
+	\item Déterminer le champ $\vec{H}$ créé par l'enroulement sur l'axe $z$, à l'intérieur du solénoïde.
+
+	\item Comment réagit le matériau ferromagnétique à l'excitation $\vec{H}$ ? En déduire l'allure du champ d'aimantation $\vec{M}$ le long de l'axe $z$.
+
+	\item En déduire l'allure du champ magnétique $\vec{B}$ le long de l'axe $z$ dans le matériau, puis loin du solénoïde. En déduire enfin l'allure de $\vec{H}$ sur la totalité de l'axe $z$.
+
+	\item Quel type de matériau ferromagnétique faut-il pour que $\vec{B}$ reste dirigé selon $+\vec{e}_z$ malgré un courant légèrement négatif $I<0$ ? Préciser quantitativement ce que signifie « légèrement ». Décrire l'allure des champs $\vec{H}$, $\vec{M}$ et $\vec{B}$ sur l'axe $z$ dans ce cas.
 
 \end{enumerate}
 
@@ -29,32 +31,69 @@ Un fil parcouru d'un courant $I$ est enroulé sur toute la longueur $L$, en fais
 
 \begin{enumerate}
 
-	\item Pour tout point $M$ le long de l'axe $z$ dans le solénoïde, le plan $xMy$ est un plan de symétrie (le cylindre pouvant être considéré comme infini), le champ $\vec{H}$ est donc dirigé selon l'axe $z$. On utilise le théorème d'Ampère, en utilisant pour contour un rectangle dont un des côté de longueur $l$ en confondu avec l'axe $z$, et de sorte à ce que le côté parallèle soit en dehors du solénoïde (la largeur du rectangle est donc $>R$). Le champ étant nul à l'extérieur du solénoïde, on obtient :
+	\item Les courants étant orthoradiaux, tout plan $z=\mathrm{cte}$ les contient : c'est un plan de symétrie de la distribution, et $\vec{H}$, pseudo-vecteur, lui est perpendiculaire. Le champ est donc dirigé selon $\vec{e}_z$. Comme $R\ll L$, le solénoïde peut être considéré comme infini et $\vec{H}$ est nul à l'extérieur.
+
+	On applique le théorème d'Ampère à $\vec{H}$ sur un rectangle dont l'un des côtés, de longueur $\ell$, est confondu avec l'axe $z$ et dont le côté parallèle est à l'extérieur du solénoïde :
 	\begin{align*}
-		H=\frac{NI}{L}
+		\boxed{H=\frac{NI}{L}=1,0\times10^{3}~\mathrm{A\cdot m^{-1}}}
 	\end{align*}
-	
-	\item Le matériau s'aimante lorsqu'il est soumis à l'excitation $\vec{H}$ : les moments magnétiques permanents microscopiques du matériau s'orientent dans la direction du champ d'excitation et l'amplifient. Il en résulte que l'aimantation résultante est, pour un matériau ferromagnétique, massive et dépasse de plusieurs ordres de grandeur la valeur de l'excitation (par exemple pour un matériau  ferro. linéaire et doux, la perméabilité relative atteint facilement $10^3$).
-	
-	{\centering
-		\includegraphics[scale=0.5]{ferromagnetisme1_2.pdf}\par }
-	
-	\item Le champ magnétique s'écrit comme l'addition de l'aimantation et de l'excitation magnétique (au facteur $\mu_0$ près) : $\vec{B}=\mu_0(\vec{H}+\vec{M})$. Dans le solénoïde, il suffit de sommer les contributions trouvées précédemment, l'aimantation étant prépondérante, on peut simplement dire que $\vec{B}=\mu_0\vec{M}$.
-	
-	Une fois sorti du solénoïde, on sait que ce dernier peut être vu comme un moment magnétique $M=NIS=NI\pi R^2$ à très grande distance, $z\gg L$. Sur l'axe $z$, le champ est alors :
+	\textit{Le théorème d'Ampère appliqué à $\vec{H}$ ne fait intervenir que les courants \textbf{libres}, ceux du bobinage : le matériau n'apparaît pas. C'est précisément l'intérêt de l'excitation magnétique, et la raison pour laquelle on commence par elle.}
+
+	\item Le matériau s'aimante : les moments magnétiques microscopiques s'orientent dans la direction de l'excitation et l'amplifient considérablement. Mais \textbf{la réponse d'un ferromagnétique n'est pas linéaire} : elle suit une courbe de première aimantation, sature, et surtout dépend de l'histoire du matériau, ce que décrit le cycle d'hystérésis.
+
+	\begin{center}
+	\includegraphics[width=0.75\linewidth]{ferromagnetisme1_4.pdf}
+	\end{center}
+
+	Sous une excitation modérée et pour un matériau doux, on peut retenir une perméabilité relative $\mu_r\simeq10^{3}$, soit
 	\begin{align*}
-		\vec{B}=\frac{\mu_0}{4\pi}\frac{NI\pi R^2}{z^3}\vec{e_z}
+		M\simeq\chi H\simeq10^{6}~\mathrm{A\cdot m^{-1}}
 	\end{align*}
-	Il décroit donc rapidement, en $1/z^3$. Entre le solénoïde et $z\gg L$, on sait que le champ magnétique doit être nécessairement continu (à cause de $\mathrm{div}\vec{B}=0$), ce qui permet d'avoir l'allure générale de la courbe ci-dessous :
-	
+	mille fois l'excitation. L'aimantation est uniforme dans le matériau et nulle à l'extérieur : son allure est un créneau.
+
 	{\centering
 		\includegraphics[scale=0.5]{ferromagnetisme1_3.pdf}\par }
-		
-	On en déduit par ailleurs l'allure de l'excitation $\vec{H}$ : dans le vide, il est égal à $\vec{H}=\vec{B}/\mu_0$, donc il épouse la courbe du champ magnétique une fois sorti du solénoïde. Il est discontinu : du fait de la relation $\vec{B}=\mu_0(\vec{H}+\vec{M})$, la discontinuité de $\vec{M}$ impose celle de $\vec{H}$ pour assurer la continuité du champ magnétique. 
-	
-	\item Quel type de matériau ferromagnétique doit-on avoir pour avoir un champ magnétique $\vec{B}$ dirigé selon $+\vec{e}_z$ malgré un courant légèrement négatif $I<0$ ? Préciser quantitativement ce que signifie "légèrement". Tracer l'allure des champs $\vec{H}$, $\vec{M}$ et $\vec{B}$ sur l'axe $z$ dans ce cas-là.
-	
+
+	\item Le champ magnétique s'écrit $\vec{B}=\mu_0(\vec{H}+\vec{M})$. Dans le matériau, $M\gg H$ et
+	\begin{align*}
+		\boxed{B\simeq\mu_0M=1,3~\mathrm{T}}
+	\end{align*}
+	\textit{Sans noyau, le même bobinage donnerait $B=\mu_0H=1,3$~mT : le matériau multiplie le champ par mille. C'est tout l'objet du dispositif.}
+
+	Loin du solénoïde, l'ensemble est vu comme un dipôle magnétique. \textbf{Attention à ne pas écrire $m=NIS$}, qui est le moment du bobinage seul : les courants liés du matériau ajoutent un courant surfacique d'intensité linéique $M$, de sorte que le courant linéique total vaut $H+M$ et que
+	\begin{align*}
+		m=(H+M)\,LS=\mu_r NI\pi R^2=63~\mathrm{A\cdot m^{2}}
+	\end{align*}
+	Sur l'axe d'un dipôle, le champ vaut $B=\dfrac{\mu_0}{4\pi}\dfrac{2m}{z^3}$, soit
+	\begin{align*}
+		\boxed{B=\frac{\mu_0\mu_r NIR^2}{2z^3}}
+	\end{align*}
+	décroissant en $1/z^3$. \textit{Application numérique : $B=13~\mu$T à $1$~m, soit le quart du champ magnétique terrestre.}
+
+	Sur l'axe, $B_z$ est la composante \textit{normale} aux faces d'extrémité du cylindre : elle est continue, ce qui permet de raccorder le plateau intérieur à la décroissance extérieure.
+
+	\textit{L'argument est bien celui de la continuité de la composante normale, conséquence de $\diver\vec{B}=0$, et non d'une continuité de $\vec{B}$ tout entier : la composante tangentielle de $\vec{B}$ est au contraire discontinue sur la surface latérale du solénoïde, là où circulent les courants.}
+
+	\begin{center}
+	\includegraphics[width=0.92\linewidth]{ferromagnetisme1_2.pdf}
+	\end{center}
+
+	À l'extérieur le matériau est absent, donc $\vec{H}=\vec{B}/\mu_0$ : l'excitation épouse la courbe du champ magnétique dès qu'on sort du solénoïde. Elle est en revanche \textbf{discontinue} aux deux extrémités : la relation $\vec{B}=\mu_0(\vec{H}+\vec{M})$ impose que la discontinuité de $\vec{M}$ soit compensée par celle de $\vec{H}$, pour que $B_z$ reste continu.
+
+	\item Il faut un matériau \textbf{dur}, c'est-à-dire à cycle d'hystérésis large.
+
+	Le matériau a d'abord été aimanté avec $I>0$ : on se trouve donc sur la branche supérieure du cycle. En diminuant $I$ puis en le rendant négatif, $H=NI/L$ devient négatif, mais \textbf{tant que $|H|<H_c$ on reste sur cette branche} et l'aimantation garde une valeur voisine de l'aimantation rémanente $M_r>0$. La condition demandée est donc
+	\begin{align*}
+		\boxed{|I|<\frac{H_cL}{N}}
+	\end{align*}
+	\textit{La condition sur le signe de $B$ elle-même, $B_z=\mu_0(H+M)>0$ soit $M>|H|$, est bien moins contraignante : pour un matériau dur $M_r$ dépasse $H_c$ d'un ou deux ordres de grandeur.}
+
+	\textit{Application numérique. Pour un AlNiCo, $H_c\simeq5\times10^{4}$~A$\cdot$m$^{-1}$ et la condition s'écrit $|I|<50$~A : le courant négatif peut être important sans rien effacer. Pour un fer doux, $H_c\simeq10$~A$\cdot$m$^{-1}$ donne $|I|<10$~mA. C'est ce contraste qui fait toute la question.}
+
+	Les allures se déduisent de la figure précédente : le plateau de $\vec{H}$ bascule sous l'axe à l'intérieur du solénoïde, $\vec{M}$ reste un créneau positif pratiquement inchangé à $M_r$, et $\vec{B}=\mu_0(\vec{H}+\vec{M})$ reste positif, à peine diminué, puisque $M_r\gg|H|$.
+
+	\textit{Remarque pour le colleur : c'est le principe même de l'aimant permanent, et la raison pour laquelle un courant modeste ne désaimante pas un aimant dur. C'est aussi pourquoi on utilise du fer doux dans les transformateurs, où le cycle étroit minimise les pertes par hystérésis, et des matériaux durs pour les aimants, où c'est la largeur du cycle que l'on recherche.}
+
 \end{enumerate}
 
-	
 \end{correction}

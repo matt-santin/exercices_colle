@@ -2,15 +2,28 @@
 
 \newpage
 
-\section{Champ magnétique dans un cylindre parcouru par un courant orthoradial}
+\section{Solénoïde épais à densité de courant variable}
 
-On considère un cylindre conducteur de rayon $a$ et de longueur $L\gg a$ selon l'axe $O_z$, dans lequel circule une densité volumique de courant $\vec{j}(r)=j_0\frac{r}{a}\vec{e}_\theta$.
+Un bobinage cylindrique d'axe $Oz$, de rayon $a$ et de longueur $L\gg a$, est parcouru par des courants orthoradiaux. La densité de spires croît avec la distance à l'axe, de sorte que la densité volumique de courant s'écrit
+\begin{align*}
+	\vec{\jmath}(r)=j_0\frac{r}{a}\,\vec{e}_\theta
+\end{align*}
+On se place loin des extrémités du bobinage, et on prendra $a=10$~cm et $j_0=5,0$~A$\cdot$mm$^{-2}$.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.80\linewidth]{magnetostatique1_1.pdf}
+\end{figure}
 
 \begin{enumerate}
 
-	\item A l'aide des symétries et invariances, expliciter la dépendance spatiale et la direction du champ magnétique.
-	\item Déterminer l'expression du champ magnétique $\vec{B}(r)$ en fonction de la valeur du champ magnétique en $r=0$.
-	\item Quel est l'expression du champ magnétique $\vec{B}(r)$ si on impose un champ extérieur $\vec{B}_{ext}$ de sorte à ce que  $\vec{B}(r=a)=\vec{0}$ ? Quelle est alors la valeur de $\vec{B}_{ext}$ ?
+	\item À l'aide des invariances et des symétries de la distribution, déterminer la direction du champ magnétique et les variables dont il dépend.
+
+	\item En appliquant le théorème d'Ampère au contour $\Gamma$ de la figure, exprimer $B(r)$ en fonction de $B(0)$ pour $r<a$. Que devient ce résultat pour $r>a$ ?
+
+	\item Que peut-on dire du champ à l'extérieur du bobinage ? En déduire $B(0)$, puis $\vec{B}(r)$ en tout point. Tracer l'allure de $B(r)$.
+
+	\item Retrouver ce résultat en décomposant le bobinage en solénoïdes élémentaires emboîtés. Commenter le profil obtenu.
 
 \end{enumerate}
 
@@ -20,44 +33,56 @@ On considère un cylindre conducteur de rayon $a$ et de longueur $L\gg a$ selon 
 
 \begin{enumerate}
 
-	\item Invariance : le champ ne dépend que de $r$. Symétrie : le plan $(\vec{e}_r ;\vec{e}_\theta)$ est plan de symétrie de la distribution de courant donc $\vec{B}$ est suivant $\vec{e}_z$.
-	
-	\item On calcule la circulation de $\vec{B}$ sur le contour $\Gamma$ :
-	
-	{\centering
-		\includegraphics[scale=0.25]{magnetostatique1_1.pdf}\par }
-		
-	\begin{align*}
-		\oint_\Gamma d\vec{l}\cdot\vec{B}&=\int_B^Cdz\times B(r)+\int_D^Adz\times B(0) \\
-		&=-hB(r)+hB(0)
-	\end{align*}	 
-	D'après le théorème d'Ampère, pour $r<a$ :
-	\begin{align}
-		-hB(r)+hB(0)&=\mu_0j_0h\frac{r^2}{2a}
-	\end{align}
-	Donc :
-	\begin{align*}
-		B(r) = B(0)-\mu_0j_0\frac{r^2}{2a}
-	\end{align*}
-	
-	Pour $r>a$ :
-	\begin{align*}
-		B(r) = B(0)-\mu_0j_0\frac{a}{2}
-	\end{align*}	
+	\item \textbf{Invariances.} La distribution est invariante par rotation autour de $Oz$ et, loin des extrémités, par translation selon $z$ : le champ ne dépend donc que de $r$.
 
-
-	{\centering
-		\includegraphics[scale=0.25]{magnetostatique1_2.pdf}\par }
-	
-	\item On ajoute un champ magnétique extérieur $\vec{B}_{ext}$, nécessairement selon $\vec{e}_z$ :
+	\textbf{Symétries.} Les courants étant orthoradiaux, ils sont contenus dans tout plan $z=\mathrm{cte}$, qui est donc un plan de symétrie de la distribution. Le champ magnétique étant un \textit{pseudo-vecteur}, il est perpendiculaire à un plan de symétrie en tout point de ce plan :
 	\begin{align*}
-		B(r) = B(0)-\mu_0j_0\frac{r^2}{2a} + B_{ext}
+		\boxed{\vec{B}=B(r)\,\vec{e}_z}
 	\end{align*}
-	Si $B(r=a)=0$ alors $B_{ext}=-B(0)+\mu_0j_0\frac{a}{2}$ et alors :
-	\begin{align*}
-		B(r) = \frac{\mu_0j_0}{2a}\left( a^2-r^2\right) 
-	\end{align*}
+	\textit{Vérification par l'autre voie : tout plan contenant $Oz$ change $\vec{e}_\theta$ en $-\vec{e}_\theta$, c'est donc un plan d'antisymétrie, dans lequel un pseudo-vecteur est contenu. $\vec{e}_z$ appartient bien à ces plans.}
 
+	\item Le champ étant porté par $\vec{e}_z$, les deux côtés radiaux de $\Gamma$ ne contribuent pas à la circulation. En parcourant $\Gamma$ dans le sens indiqué sur la figure,
+	\begin{align*}
+		\oint_\Gamma \vec{B}\cdot\dif\vec{l}=h\,B(0)-h\,B(r)
+	\end{align*}
+	Ce sens correspond, par la règle de la main droite, à une normale orientée selon $+\vec{e}_\theta$ : le courant enlacé vaut
+	\begin{align*}
+		I_{\mathrm{enl}}=\int_0^h\!\!\int_0^r j_0\frac{r'}{a}\,\dif r'\,\dif z=\frac{h\,j_0r^2}{2a}
+	\end{align*}
+	et le théorème d'Ampère donne
+	\begin{align*}
+		\boxed{B(r)=B(0)-\frac{\mu_0j_0r^2}{2a}}\qquad(r<a)
+	\end{align*}
+	Pour $r>a$, le contour n'enlace plus que la totalité du courant, $I_{\mathrm{enl}}=hj_0a/2$, d'où
+	\begin{align*}
+		B(r)=B(0)-\frac{\mu_0j_0a}{2}\qquad(r>a)
+	\end{align*}
+	qui ne dépend plus de $r$ : \textbf{le champ est uniforme à l'extérieur du bobinage}.
+
+	\item Le bobinage est long, mais fini : à grande distance, le champ tend vers zéro. Or il vient d'être établi qu'il est uniforme pour $r>a$, et une constante qui tend vers zéro est nulle. Donc $B(r>a)=0$, ce qui fixe enfin la constante :
+	\begin{align*}
+		\boxed{B(0)=\frac{\mu_0j_0a}{2}}
+		\qquad\text{et}\qquad
+		\boxed{\vec{B}(r)=\frac{\mu_0j_0}{2a}\left(a^2-r^2\right)\vec{e}_z\;\;(r<a),
+		\qquad \vec{B}=\vec{0}\;\;(r>a)}
+	\end{align*}
+	\textit{Application numérique : $B(0)=\mu_0j_0a/2=0,31$~T, l'ordre de grandeur d'un électroaimant de laboratoire.}
+
+	\begin{center}
+	\includegraphics[width=0.90\linewidth]{magnetostatique1_2.pdf}
+	\end{center}
+
+	\textit{Remarque pour le colleur : c'est l'argument du solénoïde infini, et il vaut la peine de le faire expliciter. Pour un cylindre \textit{rigoureusement} infini, le problème n'a pas de solution unique : on peut toujours superposer un champ uniforme $B_0\vec{e}_z$, qui vérifie les équations de Maxwell dans le vide. C'est la finitude du bobinage, donc la décroissance du champ à l'infini, qui lève l'indétermination. Un élève qui répond « $\vec{B}$ est nul dehors, c'est un solénoïde » a le bon réflexe mais pas encore l'argument.}
+
+	\item Une couche comprise entre $r'$ et $r'+\dif r'$ porte le courant surfacique $\dif K=j(r')\dif r'$ : c'est un solénoïde élémentaire, qui crée $\mu_0\dif K\,\vec{e}_z$ à l'intérieur et rien à l'extérieur. Au rayon $r$, seules les couches telles que $r'>r$ contribuent :
+	\begin{align*}
+		B(r)=\int_r^a\mu_0j_0\frac{r'}{a}\,\dif r'=\frac{\mu_0j_0}{2a}\left(a^2-r^2\right)
+	\end{align*}
+	ce qui redonne le résultat précédent sans aucune constante d'intégration à fixer.
+
+	Le champ est donc \textbf{maximal sur l'axe et nul au bord}, exactement l'inverse du fil massif parcouru par un courant axial, où $B$ est nul sur l'axe et maximal en surface. La décomposition en solénoïdes le rend évident : plus on s'éloigne de l'axe, moins il reste de couches extérieures pour contribuer.
+
+	\textit{Remarque pour le colleur : sur la réalisation du dispositif. Un courant orthoradial permanent est impossible dans un conducteur massif, puisqu'il faudrait une circulation non nulle de $\vec{E}$ le long d'une ligne de courant fermée, ce qu'interdit le régime stationnaire. La distribution proposée décrit donc un \textbf{bobinage} dont la densité de spires croît linéairement avec $r$, et non un bloc conducteur. Le courant total par unité de longueur vaut $\int_0^a j\,\dif r=j_0a/2=2,5$~kA$\cdot$cm$^{-1}$ : c'est l'équivalent d'un solénoïde mince parcouru par ce courant linéique.}
 
 \end{enumerate}
 

@@ -1,0 +1,60 @@
+\chapter{Ferromagnétisme}
+
+\newpage
+
+\section{Matériau ferromagnétique}
+
+Un fil parcouru d'un courant $I$ est enroulé sur toute la longueur $L$, en faisant $N$ spires, d'un cylindre de rayon $R\ll L$, constitué d'un matériau ferromagnétique. On souhaite connaitre l'allure des champs $\vec{H}$, $\vec{M}$ et $\vec{B}$ le long de l'axe $z$. On suppose $I>0$ dans un premier temps.
+	
+\begin{figure}[h!]
+	\centering
+		\includegraphics[scale=0.9]{ferromagnetisme1_1.pdf}
+	\end{figure}	
+	
+\begin{enumerate}
+
+	\item Déterminer le champ $\vec{H}$ dans le solénoïde créé par l'enroulement sur l'axe $z$. 
+	
+	\item Comment réagit le matériau ferromagnétique à l'excitation $\vec{H}$ ? En déduire l'allure du champ d'aimantation $\vec{M}$ le long de l'axe $z$. 
+	
+	\item En déduire l'allure du champ magnétique $\vec{B}$ le long de l'axe $z$ dans le matériau, puis loin du solénoïde. En déduire l'allure $\vec{H}$ sur la totalité de l'axe $z$.
+	
+	\item Quel type de matériau ferromagnétique doit-on avoir pour avoir un champ magnétique $\vec{B}$ dirigé selon $+\vec{e}_z$ malgré un courant légèrement négatif $I<0$ ? Préciser quantitativement ce que signifie "légèrement". Tracer l'allure des champs $\vec{H}$, $\vec{M}$ et $\vec{B}$ sur l'axe $z$ dans ce cas-là.
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Pour tout point $M$ le long de l'axe $z$ dans le solénoïde, le plan $xMy$ est un plan de symétrie (le cylindre pouvant être considéré comme infini), le champ $\vec{H}$ est donc dirigé selon l'axe $z$. On utilise le théorème d'Ampère, en utilisant pour contour un rectangle dont un des côté de longueur $l$ en confondu avec l'axe $z$, et de sorte à ce que le côté parallèle soit en dehors du solénoïde (la largeur du rectangle est donc $>R$). Le champ étant nul à l'extérieur du solénoïde, on obtient :
+	\begin{align*}
+		H=\frac{NI}{L}
+	\end{align*}
+	
+	\item Le matériau s'aimante lorsqu'il est soumis à l'excitation $\vec{H}$ : les moments magnétiques permanents microscopiques du matériau s'orientent dans la direction du champ d'excitation et l'amplifient. Il en résulte que l'aimantation résultante est, pour un matériau ferromagnétique, massive et dépasse de plusieurs ordres de grandeur la valeur de l'excitation (par exemple pour un matériau  ferro. linéaire et doux, la perméabilité relative atteint facilement $10^3$).
+	
+	{\centering
+		\includegraphics[scale=0.5]{ferromagnetisme1_2.pdf}\par }
+	
+	\item Le champ magnétique s'écrit comme l'addition de l'aimantation et de l'excitation magnétique (au facteur $\mu_0$ près) : $\vec{B}=\mu_0(\vec{H}+\vec{M})$. Dans le solénoïde, il suffit de sommer les contributions trouvées précédemment, l'aimantation étant prépondérante, on peut simplement dire que $\vec{B}=\mu_0\vec{M}$.
+	
+	Une fois sorti du solénoïde, on sait que ce dernier peut être vu comme un moment magnétique $M=NIS=NI\pi R^2$ à très grande distance, $z\gg L$. Sur l'axe $z$, le champ est alors :
+	\begin{align*}
+		\vec{B}=\frac{\mu_0}{4\pi}\frac{NI\pi R^2}{z^3}\vec{e_z}
+	\end{align*}
+	Il décroit donc rapidement, en $1/z^3$. Entre le solénoïde et $z\gg L$, on sait que le champ magnétique doit être nécessairement continu (à cause de $\mathrm{div}\vec{B}=0$), ce qui permet d'avoir l'allure générale de la courbe ci-dessous :
+	
+	{\centering
+		\includegraphics[scale=0.5]{ferromagnetisme1_3.pdf}\par }
+		
+	On en déduit par ailleurs l'allure de l'excitation $\vec{H}$ : dans le vide, il est égal à $\vec{H}=\vec{B}/\mu_0$, donc il épouse la courbe du champ magnétique une fois sorti du solénoïde. Il est discontinu : du fait de la relation $\vec{B}=\mu_0(\vec{H}+\vec{M})$, la discontinuité de $\vec{M}$ impose celle de $\vec{H}$ pour assurer la continuité du champ magnétique. 
+	
+	\item Quel type de matériau ferromagnétique doit-on avoir pour avoir un champ magnétique $\vec{B}$ dirigé selon $+\vec{e}_z$ malgré un courant légèrement négatif $I<0$ ? Préciser quantitativement ce que signifie "légèrement". Tracer l'allure des champs $\vec{H}$, $\vec{M}$ et $\vec{B}$ sur l'axe $z$ dans ce cas-là.
+	
+\end{enumerate}
+
+	
+\end{correction}
