@@ -87,3 +87,137 @@ On se place loin des extrémités du bobinage, et on prendra $a=10$~cm et $j_0=5
 \end{enumerate}
 
 \end{correction}
+
+\newpage
+
+\section{Lentille magnétique (ENS Ulm PC 2026)}
+
+Dans un canon à électrons, comme celui d'un microscope électronique, le faisceau d'électrons est dévié et focalisé par une lentille magnétique, constituée d'une bobine plate d'axe $Oz$ parcourue par un courant permanent.
+
+\begin{enumerate}
+
+	\item Expliquer qualitativement le fonctionnement d'une lentille magnétique.
+
+	\item Déterminer sa distance focale.
+
+\end{enumerate}
+
+\textit{Indications :} on modélisera la lentille par une bobine plate de rayon $a$, constituée de $N$ spires et parcourue par un courant $I$, qui crée sur son axe le champ :
+\begin{align*}
+	\vec{B}(r=0,z)=\frac{B_0}{\left(1+z^2/a^2\right)^{3/2}}\,\vec{e}_z \quad\text{avec}\quad B_0=\frac{\mu_0NI}{2a}
+\end{align*}
+où $z$ est mesuré depuis le centre $O$ de la bobine. On pourra commencer par déterminer le champ magnétique au voisinage de l'axe, puis analyser la composante orthoradiale, puis la composante radiale, de la vitesse des électrons.
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Hors de l'axe, les lignes de champ de la bobine s'évasent : le champ possède une composante axiale $B_z$ et une composante radiale $B_r$, non nulle là où le champ varie avec $z$, c'est-à-dire à l'entrée et à la sortie de la bobine. La composante $B_r$, combinée à la vitesse axiale de l'électron, crée une force de Lorentz orthoradiale : l'électron acquiert une vitesse orthoradiale et se met à tourner autour de l'axe. Cette vitesse orthoradiale, combinée à $B_z$, crée à son tour une force de Lorentz radiale, dirigée vers l'axe, qui rabat l'électron.
+
+	\item \textbf{Modélisation.} On adopte les coordonnées cylindriques $(r,\theta,z)$. La lentille est une bobine plate de rayon $a$, constituée de $N$ spires, d'axe $Oz$ et centrée en $O$, parcourue par un courant permanent $I$. D'après l'énoncé, le champ sur l'axe vaut :
+	\begin{align*}
+		\vec{B}(r=0,z)=B_0(z)\,\vec{e}_z=\frac{B_0}{\left(1+z^2/a^2\right)^{3/2}}\,\vec{e}_z \quad\text{avec}\quad B_0=\frac{\mu_0NI}{2a}
+	\end{align*}
+	Pour définir le foyer image $F'$, on considère un électron (masse $m$, charge $-e$) qui arrive depuis $z\to-\infty$ avec une vitesse $v_0$ parallèle à l'axe, à la distance $r_0\ll a$ de celui-ci. On se place dans l'approximation de Gauss : la trajectoire reste au voisinage de l'axe ($r\ll a$) et peu inclinée sur celui-ci. L'électron est supposé non relativiste et ne subit que la force magnétique.
+
+	\medskip
+	\textbf{Champ au voisinage de l'axe.} Le champ est à flux conservatif. On écrit que le flux de $\vec{B}$ sortant d'un petit cylindre d'axe $Oz$, de rayon $r$ et compris entre $z$ et $z+\dif z$, est nul. Pour $r\ll a$, on peut confondre $B_z$ avec sa valeur sur l'axe sur les deux disques :
+	\begin{align*}
+		\pi r^2\left(B_0(z+\dif z)-B_0(z)\right)+2\pi r\,\dif z\,B_r(r,z)=0 \quad\Rightarrow\quad B_r(r,z)=-\frac{r}{2}\frac{\dif B_0}{\dif z}
+	\end{align*}
+	Le plan contenant $M$ et l'axe $Oz$ est un plan d'antisymétrie de la distribution de courants, donc $\vec{B}$ n'a pas de composante orthoradiale :
+	\begin{align*}
+		\boxed{\vec{B}(r,\theta,z)\simeq B_0(z)\,\vec{e}_z-\frac{r}{2}\frac{\dif B_0}{\dif z}\,\vec{e}_r}
+	\end{align*}
+	On peut aussi partir de $\diver\vec{B}=\frac{1}{r}\frac{\partial(rB_r)}{\partial r}+\frac{\partial B_z}{\partial z}=0$ et intégrer en $r$.
+
+
+	\medskip
+	\textbf{Équations du mouvement.} La vitesse de l'électron est $\vec{v}=\dot r\,\vec{e}_r+r\dot\theta\,\vec{e}_\theta+\dot z\,\vec{e}_z$ et son accélération $\vec{a}=(\ddot r-r\dot\theta^2)\,\vec{e}_r+(2\dot r\dot\theta+r\ddot\theta)\,\vec{e}_\theta+\ddot z\,\vec{e}_z$. La force magnétique a pour expression :
+	\begin{align*}
+		\vec{F}=-e\,\vec{v}\wedge\vec{B}=\begin{pmatrix} -er\dot\theta B_0(z) \\[4pt] e\dot rB_0(z)+e\dot z\dfrac{r}{2}\dfrac{\dif B_0}{\dif z} \\[8pt] -e\dfrac{r^2}{2}\dot\theta\dfrac{\dif B_0}{\dif z} \end{pmatrix}
+	\end{align*}
+	Le principe fondamental de la dynamique donne :
+	\begin{align}
+		\ddot r-r\dot\theta^2&=-\frac{e}{m}r\dot\theta B_0(z) \label{eq:lentille_r}\\
+		2\dot r\dot\theta+r\ddot\theta&=\frac{e}{m}\left(\dot rB_0(z)+\dot z\frac{r}{2}\frac{\dif B_0}{\dif z}\right) \label{eq:lentille_theta}\\
+		\ddot z&=-\frac{e}{m}\frac{r^2}{2}\dot\theta\frac{\dif B_0}{\dif z} \label{eq:lentille_z}
+	\end{align}
+	Dans l'équation \eqref{eq:lentille_theta}, on remarque que $\dot z\frac{\dif B_0}{\dif z}=\frac{\dif B_0(z(t))}{\dif t}$ : c'est la variation du champ vue par l'électron qui se déplace selon $z$ (le champ étant stationnaire, il n'y a pas de dérivée locale). L'équation \eqref{eq:lentille_theta} se réécrit alors :
+	\begin{align*}
+		\frac{1}{r}\frac{\dif}{\dif t}\left(r^2\dot\theta\right)=\frac{e}{2m}\frac{1}{r}\frac{\dif}{\dif t}\left(r^2B_0(z)\right)
+	\end{align*}
+	La quantité $r^2\left(\dot\theta-\frac{e}{2m}B_0(z)\right)$ est donc constante. Elle est nulle à l'entrée ($z\to-\infty$), où $\dot\theta=0$ et $B_0=0$, d'où :
+	\begin{align*}
+		\boxed{\dot\theta=\frac{e}{2m}B_0(z)}
+	\end{align*}
+	L'électron tourne autour de l'axe $Oz$ tant qu'il est dans le champ.
+
+
+	\medskip
+	\textbf{Équation de la trajectoire.} Le second membre de l'équation \eqref{eq:lentille_z} est d'ordre 2 en $r/a$, donc $\ddot z\simeq0$ et $\dot z\simeq v_0$. On peut aussi remarquer que la force magnétique ne travaille pas : la norme de la vitesse reste égale à $v_0$, et les composantes $\dot r$ et $r\dot\theta$ restent petites devant $v_0$ au voisinage de l'axe. L'équation \eqref{eq:lentille_r} devient alors une équation sur $r$ seul :
+	\begin{align*}
+		\ddot r=r\dot\theta^2-\frac{e}{m}r\dot\theta B_0(z)=r\left(\frac{e^2}{4m^2}B_0(z)^2-\frac{e^2}{2m^2}B_0(z)^2\right)=-\frac{e^2}{4m^2}B_0(z)^2\,r
+	\end{align*}
+	Avec $\dot z=v_0$, on a $\ddot r=v_0^2\frac{\dif^2 r}{\dif z^2}$, ce qui conduit à :
+	\begin{align*}
+		\boxed{\frac{\dif^2 r}{\dif z^2}+\frac{e^2}{4m^2v_0^2}B_0(z)^2\,r=0}
+	\end{align*}
+	Pour $r>0$, $\frac{\dif^2 r}{\dif z^2}<0$ : la concavité de la trajectoire est tournée vers l'axe, la lentille est convergente et rabat les électrons vers l'axe.
+
+
+	\medskip
+	\textbf{Distance focale.} C'est le carré du champ qui intervient dans l'équation, et il n'est notable que sur une distance de l'ordre de $a$ de part et d'autre de la bobine : il ne vaut plus que $B_0^2/8$ en $z=\pm a$ (figure ci-dessous). Si $r$ varie peu dans cette zone, on peut remplacer $r$ par $r_0$ dans l'équation différentielle :
+	\begin{align*}
+		\frac{\dif^2 r}{\dif z^2}\simeq-\frac{e^2}{4m^2v_0^2}B_0(z)^2\,r_0
+	\end{align*}
+	\begin{center}
+		\includegraphics[width=0.75\linewidth]{magnetostatique2_1.pdf}
+	\end{center}
+	On intègre une première fois entre $-\infty$ et $z$, sachant que l'électron arrive parallèlement à l'axe ($r'(-\infty)=0$) :
+	\begin{align*}
+		\frac{\dif r}{\dif z}(z)=-\frac{e^2}{4m^2v_0^2}\,r_0\int_{-\infty}^{z}B_0(z')^2\,\dif z'
+	\end{align*}
+	Dès que l'électron est sorti de la zone de champ ($z\gg a$), $B_0^2$ est négligeable au-delà de $z$ et l'intégrale se comporte comme si on l'étendait jusqu'à l'infini. La pente est alors constante :
+	\begin{align*}
+		\frac{\dif r}{\dif z}\simeq-\frac{e^2}{4m^2v_0^2}\,r_0\int_{-\infty}^{+\infty}B_0(z')^2\,\dif z' \qquad (z\gg a)
+	\end{align*}
+	La zone de champ étant très peu étendue (de l'ordre de $a$), la trajectoire se réduit à deux droites : $r=r_0$ avant la bobine, puis une droite de pente constante issue du point de hauteur $r_0$ dans le plan $z=0$. En intégrant une seconde fois :
+	\begin{align*}
+		r(z)=r_0\left(1-\frac{e^2}{4m^2v_0^2}\,z\int_{-\infty}^{+\infty}B_0(z')^2\,\dif z'\right)
+	\end{align*}
+	Tout se passe comme si l'électron était dévié d'un coup dans le plan $z=0$ de la bobine. Il recoupe l'axe au point $F'$ tel que $r(OF')=0$ :
+	\begin{align*}
+		\boxed{f'=OF'=\frac{4m^2v_0^2}{e^2\displaystyle\int_{-\infty}^{+\infty}B_0(z)^2\,\dif z}}
+	\end{align*}
+	Le changement de variable $z=a\tan u$ puis la linéarisation de $\cos^4u$ donnent $\int_{-\infty}^{+\infty}B_0^2\,\dif z=B_0^2a\int_{-\pi/2}^{\pi/2}\cos^4u\,\dif u=\frac{3\pi a}{8}B_0^2$, d'où :
+	\begin{align*}
+		\boxed{f'=\frac{32m^2v_0^2}{3\pi ae^2B_0^2}}
+	\end{align*}
+	On vérifie l'homogénéité en faisant apparaître la pulsation cyclotron $\omega_c=eB_0/m$ : $f'=\frac{32}{3\pi}\frac{v_0^2}{\omega_c^2a}$ est bien une longueur. La distance focale est positive : la lentille est convergente.
+
+	L'hypothèse $r\simeq r_0$ revient à dire que la déviation est faible à la traversée du champ : sur une distance $\sim a$, la pente acquise, de l'ordre de $r_0/f'$, fait varier $r$ de $r_0a/f'$. Elle est donc valable si $f'\gg a$, ce qu'il faudra vérifier.
+
+
+	\medskip
+	\textbf{Ordres de grandeur.} Prenons des électrons accélérés sous une tension $U=10$~kV, une bobine de rayon $a=1{,}0$~cm et un champ central $B_0=20$~mT. L'énergie cinétique acquise sous la tension $U$ donne $v_0=\sqrt{2eU/m}=5{,}9\times10^{7}$~m$\cdot$s$^{-1}$, soit $v_0/c=0{,}20$ : l'hypothèse non relativiste est acceptable (le facteur de Lorentz vaut $1{,}02$). Alors :
+	\begin{align*}
+		f'=9{,}7~\text{cm}\simeq10\,a
+	\end{align*}
+	On a bien $f'\gg a$, ce qui valide a posteriori l'hypothèse $r\simeq r_0$. Le courant nécessaire, $NI=2aB_0/\mu_0\simeq3\times10^{2}$~A, est raisonnable.
+
+	L'angle dont a tourné la trajectoire s'obtient en intégrant $\frac{\dif\theta}{\dif z}=\frac{\dot\theta}{v_0}=\frac{eB_0(z)}{2mv_0}$, avec le changement de variable $z=a\tan u$ :
+	\begin{align*}
+		\Delta\theta=\frac{e}{2mv_0}\int_{-\infty}^{+\infty}B_0(z)\,\dif z=\frac{e}{2mv_0}\times2aB_0=\frac{eaB_0}{mv_0}=0{,}59~\text{rad}\simeq34^\circ
+	\end{align*}
+	L'image formée par la lentille est donc tournée par rapport à l'objet.
+
+	La distance focale dépend de la vitesse des électrons ($f'\propto v_0^2\propto U$) : une dispersion de la tension d'accélération entraîne une dispersion des foyers. C'est l'aberration chromatique, dont le nom vient de ce que $v_0$ fixe la longueur d'onde de de Broglie $\lambda=h/(mv_0)$. Si le faisceau est dense, le champ électrique créé par les autres électrons (charge d'espace) modifie aussi les trajectoires.
+
+	\textit{Remarque pour le colleur : la résolution numérique de l'équation en $r(z)$, sans l'hypothèse $r\simeq r_0$, donne $OF'=9{,}95$~cm, soit un écart de $3$~\% seulement. L'hypothèse ne doit pas être confondue avec un modèle de champ en créneau : prendre $B_0(z)=B_0$ sur $|z|<a$ et nul ailleurs donne $\int B_0^2\dif z=2aB_0^2$ au lieu de $\frac{3\pi a}{8}B_0^2\simeq1{,}18\,aB_0^2$, et sous-estime $f'$ de $41$~\%. C'est bien l'intégrale de $B_0^2$, et non la largeur du champ, qui fixe la focale. Au-delà de l'approximation de Gauss, les rayons éloignés de l'axe sont plus déviés que les rayons proches (aberration sphérique), défaut que le théorème de Scherzer rend inévitable pour une lentille à symétrie de révolution.}
+
+\end{enumerate}
+
+\end{correction}

@@ -668,4 +668,87 @@ deux extrémités.
 	« de », et l'ordre des mots de la phrase d'introduction, difficile à lire.
 \end{itemize}
 
+
+\section{Thermodynamique des systèmes ouverts (reprise de \texttt{colle\_spe.pdf})}
+
+\traite{} \textbf{le 27 septembre 2026, par création du chapitre.} Les exercices 10.6, 10.8 et
+10.9 du recueil \texttt{Colle\_compilation/colle\_spe.pdf} ont été relus, puis réécrits dans
+\texttt{themes/thermo\_systemes\_ouverts.tex}, inséré dans \texttt{main.tex} après la mécanique des
+fluides. Les remarques ci-dessous portent sur les versions d'origine.
+
+\exo{10.6 Tuyère}
+
+\begin{itemize}
+	\item \erreur{} \textbf{Question 6 insoluble en l'état.} Ni $T_e$, ni $M$, ni $\gamma$ ne sont
+	donnés, alors que $v_s$ en dépend. Données ajoutées, ordres de grandeur d'un moteur
+	hydrogène-oxygène : $T_e=3{,}5\times10^{3}$~K, $M=14$~g$\cdot$mol$^{-1}$, $\gamma=1{,}2$.
+	On obtient $v_s=3{,}7$~km$\cdot$s$^{-1}$ et $\mathrm{Ma}_s\simeq3{,}5$.
+	\item \erreur{} \textbf{Question 5, résultat faux.} Le corrigé aboutit à
+	$\frac{\dif v}{\dif x}=\frac{1}{v^2/c^2-1}\frac{S'}{S}$, non homogène : il manque un facteur $v$
+	(ligne 3 du calcul, $\frac{v^2}{c^2}\frac{\dif v}{\dif x}$ au lieu de $\frac{v}{c^2}\frac{\dif v}{\dif x}$
+	et $\frac{\dif v}{\dif x}$ au lieu de $\frac{1}{v}\frac{\dif v}{\dif x}$). Le bon résultat est la
+	relation d'Hugoniot $\frac{1}{v}\frac{\dif v}{\dif x}=\frac{1}{\mathrm{Ma}^2-1}\frac{1}{S}\frac{\dif S}{\dif x}$.
+	La conclusion sur les signes, elle, était juste.
+	\item \erreur{} \textbf{Question 4.} $D_m^{\gamma-1}=\mu_0\frac{T}{T_0}(Sv)^{\gamma-1}$ : il manque
+	l'exposant, c'est $\mu_0^{\gamma-1}$. La ligne « En dérivant » est incomplète (le facteur
+	$\frac{\dif(Sv)}{\dif x}$ a disparu). « Conservation du débit volumique » : c'est le débit
+	massique. Le bilan de masse demandé par l'énoncé n'était pas fait.
+	\item \erreur{} \textbf{Question 1.} « Variation d'entropie » au lieu d'enthalpie, $m=n/M$ au lieu
+	de $m=nM$, et $\frac{R\gamma}{M\gamma-1}$ au lieu de $\frac{R\gamma}{M(\gamma-1)}$. Surtout, la
+	démonstration attendue passe par la relation de Mayer, pas par une formule de $\Delta H$ admise.
+	\item \erreur{} \textbf{Question 6, formule.} Exposant mal placé :
+	$\frac{p_s}{p_e}^{\gamma-1/\gamma}$ au lieu de $\left(\frac{p_s}{p_e}\right)^{(\gamma-1)/\gamma}$.
+	\item \suggestion{} Hypothèses rendues explicites dans l'énoncé : grandeurs uniformes sur une
+	section, gaz parfait à $\gamma$ constant, régime stationnaire, pesanteur négligée. En question 3,
+	le corrigé justifie désormais l'application de la loi de Laplace à une particule de fluide.
+	\item \suggestion{} Remarques ajoutées pour le colleur : tuyère de Laval et col sonique, vitesse
+	limite $\sqrt{2c_PT_e}\simeq5$~km$\cdot$s$^{-1}$, intérêt de l'hydrogène.
+	\item \suggestion{} Coquilles : « dans laquelle un gaz » (dispositif, masculin), « pièce
+	mécanique » remplacé par « pièce mobile », « capacité calorifique » par « capacité thermique ».
+\end{itemize}
+
+\noindent Hors périmètre, pour mémoire : l'exercice 10.7 (variante de la tuyère) pose
+$\eta_0=2c_PT_0/v_0^2\ll1$ alors que l'hypothèse $\frac{1}{2}v_0^2\ll c_PT_0$ donne
+$\eta_0\gg1$ ; et deux titres vides (« Turbine à gaz », « Échangeur ») traînent à sa suite.
+\traite{} le 27 septembre 2026 directement dans \texttt{Colle\_compilation} : $\eta_0\gg1$, titres
+vides retirés, et le signe du dénominateur est désormais justifié partout, et pas seulement en entrée,
+par $v^2-c^2<0$ (troisième hypothèse).
+
+\exo{10.8 Formation du brouillard}
+
+\begin{itemize}
+	\item \erreur{} \textbf{Aucun corrigé.} Corrigé complet rédigé.
+	\item \erreur{} \textbf{Aucune donnée numérique}, alors que la question 1b demande une estimation.
+	Données ajoutées : $T_0=288$~K, $P_0=1{,}0$~bar, $M=29$~g$\cdot$mol$^{-1}$, $\gamma=1{,}4$,
+	$a=25{,}35$, $b=5{,}16\times10^{3}$~K (ajustés sur $P_s(15~^\circ\text{C})$ et
+	$P_s(100~^\circ\text{C})$) et $\varphi=1{,}2\times10^{-2}$, soit $71$~\% d'humidité relative au sol.
+	Résultats : $H=29$~km (gradient de $9{,}8$~K$\cdot$km$^{-1}$) et $z_1\simeq7\times10^{2}$~m.
+	\item \suggestion{} Question 1b : « $c_0=c(z)=0$ » contredit le mouvement ascendant de
+	l'énoncé. Remplacé par « on néglige les termes d'énergie cinétique ».
+	\item \suggestion{} Question 2b : l'hypothèse $z\ll H$ porte sur $z_1$, et « changement d'état
+	liquide-vapeur » désigne en fait la condensation. Reformulé.
+	\item \suggestion{} Le résultat $z_1=H\ln\left(P_s(T_0)/\varphi P_0\right)/(b/T_0-\gamma/(\gamma-1))$
+	fait apparaître l'humidité relative au sol : c'est le point à faire dégager par l'élève.
+	\item \suggestion{} Coquilles : « focntion », « de sorte à ce que », pastilles de difficulté à trois
+	cercles au lieu de quatre (retirées, le recueil n'en utilise pas).
+\end{itemize}
+
+\exo{10.9 Étude d'un turboréacteur}
+
+\begin{itemize}
+	\item \erreur{} \textbf{Pas de corrigé propre, et celui de l'exercice jumeau 10.10 est faux.}
+	$T_4=T_3-(T_2-T_1)=1450-443=1007$~K et non $907$~K. Par suite $P_4=7{,}3$~bar (et non
+	$6{,}5$~bar), $T_5=T_3a^{-(\gamma-1)/\gamma}=572$~K (et non $532$~K) et
+	$c_5=9{,}3\times10^{2}$~m$\cdot$s$^{-1}$ (et non $866$~m$\cdot$s$^{-1}$). Le corrigé de 10.10
+	écrit aussi $T_5=T_4\left(P_4/P_5\right)^{(\gamma-1)/\gamma}$, rapport de pressions inversé.
+	\item \erreur{} \textbf{Question 5 insoluble en l'état} : la poussée exige un débit. Ajouté :
+	avion au point fixe, $D_m=1{,}0\times10^{2}$~kg$\cdot$s$^{-1}$, d'où $F=D_mc_5=93$~kN.
+	\item \suggestion{} Hypothèses manquantes ajoutées : même gaz parfait avant et après combustion,
+	$C_p$ et $\gamma$ constants, débit de kérosène négligeable (justifié en remarque : moins de 2~\%).
+	\item \suggestion{} Remarque ajoutée pour le colleur : $\frac{1}{2}c_5^2/C_p(T_3-T_2)=0{,}61$
+	est le rendement de Brayton $1-a^{-(\gamma-1)/\gamma}$.
+	\item \suggestion{} Coquilles : « un turbine aspire » (c'est le compresseur), « de $P_3$ et
+	$P_4$ » au lieu de « de $P_3$ à $P_4$ » (deux fois).
+\end{itemize}
+
 \end{document}

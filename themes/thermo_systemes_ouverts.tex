@@ -1,0 +1,332 @@
+\chapter{Thermodynamique des systèmes ouverts}
+
+\newpage
+
+\section{Tuyère}
+
+Une tuyère est un dispositif utilisé dans l'aérospatiale, dans lequel un gaz chaud issu d'une combustion est accéléré en se refroidissant : elle convertit l'énergie thermique du gaz en énergie cinétique, servant à la propulsion d'un engin. Une tuyère (représentée ci-dessous, avec un profil divergent $(1)$ et un profil convergent $(2)$) est un conduit de symétrie de révolution d'axe $Ox$, de section variable ($S(x)$ à l'abscisse $x$), dont les parois sont calorifugées, sans aucune pièce mobile à l'intérieur.
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[width=0.9\linewidth]{thermo_tuyere.pdf}
+\end{figure}
+
+La combustion d'un carburant éjecte, en $x=0$, un débit massique $D_m$ de gaz de combustion de masse molaire $M$, à la température $T_0$ et à la vitesse $v_0$. On note $T(x)$ et $v(x)$ la température et la vitesse du gaz à l'abscisse $x$, supposées uniformes sur chaque section. Le gaz est assimilé à un gaz parfait de coefficient $\gamma$ constant, l'écoulement est stationnaire et l'on néglige la pesanteur.
+
+\begin{enumerate}
+
+	\item Montrer que la capacité thermique massique à pression constante du gaz s'écrit :
+	\begin{align*}
+		c_P=\frac{\gamma R}{M(\gamma-1)}
+	\end{align*}
+
+	\item À l'aide du premier principe de la thermodynamique, montrer la relation suivante :
+	\begin{align*}
+		\frac{1}{2}\frac{\dif v^2}{\dif x}+\frac{\gamma R}{M(\gamma-1)}\frac{\dif T}{\dif x}=0
+	\end{align*}
+
+	\item En supposant l'écoulement réversible, montrer que $\mu(x)$, la masse volumique du gaz à l'abscisse $x$, vérifie la relation suivante :
+	\begin{align*}
+		T(x)\mu^{1-\gamma}(x)=T_0\mu_0^{1-\gamma}
+	\end{align*}
+	où $\mu_0$ est la masse volumique du gaz en $x=0$.
+
+	\item À l'aide d'un bilan de masse entre les sections $S(x)$ et $S(x+\dif x)$, montrer que :
+	\begin{align*}
+		\frac{1}{T}\frac{\dif T}{\dif x}+(\gamma-1)\frac{1}{Sv}\frac{\dif (Sv)}{\dif x}=0
+	\end{align*}
+
+	\item On rappelle que la vitesse du son dans un gaz parfait s'écrit $c=\sqrt{\gamma RT/M}$. En déduire que le gaz accélère dans un profil divergent (1) (respectivement convergent (2)) uniquement si sa vitesse est supersonique (respectivement subsonique).
+
+	\item Dans la chambre de combustion, la vitesse du gaz est négligeable, sa pression vaut $p_e=115$~bar et sa température $T_e=3{,}5\times10^{3}$~K. Calculer la vitesse $v_s$ de sortie du gaz, éjecté à la pression atmosphérique $p_s=1{,}0$~bar.
+
+\end{enumerate}
+
+\textit{Données :} pour les gaz de combustion d'un moteur hydrogène-oxygène, $M=14$~g$\cdot$mol$^{-1}$ et $\gamma=1{,}2$ ; $R=8{,}31$~J$\cdot$K$^{-1}\cdot$mol$^{-1}$.
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Pour un gaz parfait, la relation de Mayer s'écrit, par unité de masse, $c_P-c_V=R/M$. Avec $\gamma=c_P/c_V$, on a $c_V=c_P/\gamma$, d'où $c_P\left(1-\frac{1}{\gamma}\right)=\frac{R}{M}$ et :
+	\begin{align*}
+		\boxed{c_P=\frac{\gamma R}{M(\gamma-1)}}
+	\end{align*}
+
+	\item On applique le premier principe industriel à la tranche de tuyère comprise entre $x$ et $x+\dif x$. Par unité de masse de fluide qui la traverse :
+	\begin{align*}
+		\Delta\left(h+\frac{1}{2}v^2+gz\right)=w_u+q
+	\end{align*}
+	Il n'y a aucune pièce mobile ($w_u=0$), les parois sont calorifugées ($q=0$) et la pesanteur est négligée. Pour un gaz parfait, $\dif h=c_P\dif T$, donc :
+	\begin{align*}
+		\frac{\dif}{\dif x}\left(\frac{1}{2}v^2+c_PT\right)=0 \quad\Rightarrow\quad \boxed{\frac{1}{2}\frac{\dif v^2}{\dif x}+\frac{\gamma R}{M(\gamma-1)}\frac{\dif T}{\dif x}=0}
+	\end{align*}
+	Le gaz ne peut accélérer qu'en se refroidissant.
+
+	\item On suit une particule de fluide de masse $m$ : c'est un système fermé, qui subit une transformation adiabatique (parois calorifugées, et pas de conduction thermique au sein du fluide, ce qu'inclut l'hypothèse de réversibilité) et réversible, donc isentropique. La loi de Laplace $TV^{\gamma-1}=\text{cte}$ s'applique, avec $V=m/\mu$ :
+	\begin{align*}
+		T\left(\frac{m}{\mu}\right)^{\gamma-1}=\text{cte} \quad\Rightarrow\quad T\mu^{1-\gamma}=\text{cte}
+	\end{align*}
+	L'écoulement étant stationnaire, toutes les particules passent en $x=0$ dans le même état $(T_0,\mu_0)$, d'où $T(x)\mu^{1-\gamma}(x)=T_0\mu_0^{1-\gamma}$.
+
+	\item En régime stationnaire, la masse contenue dans la tranche $[x,x+\dif x]$ est constante : la masse qui entre par $S(x)$ pendant $\dif t$ est égale à celle qui sort par $S(x+\dif x)$ :
+	\begin{align*}
+		\mu(x)v(x)S(x)\dif t=\mu(x+\dif x)v(x+\dif x)S(x+\dif x)\dif t
+	\end{align*}
+	Le débit massique $D_m=\mu vS$ est donc indépendant de $x$. D'après la question précédente, $\mu=\mu_0(T/T_0)^{1/(\gamma-1)}$, d'où :
+	\begin{align*}
+		D_m=\mu_0\left(\frac{T}{T_0}\right)^{\frac{1}{\gamma-1}}Sv=\text{cte}
+	\end{align*}
+	En prenant le logarithme puis en dérivant par rapport à $x$, et en multipliant par $\gamma-1$ :
+	\begin{align*}
+		\boxed{\frac{1}{T}\frac{\dif T}{\dif x}+(\gamma-1)\frac{1}{Sv}\frac{\dif (Sv)}{\dif x}=0}
+	\end{align*}
+
+	\item D'après la question 2, $c_P\dfrac{\dif T}{\dif x}=-v\dfrac{\dif v}{\dif x}$. Or $c_PT=\dfrac{\gamma RT}{M(\gamma-1)}=\dfrac{c^2}{\gamma-1}$, donc :
+	\begin{align*}
+		\frac{1}{T}\frac{\dif T}{\dif x}=-\frac{v}{c_PT}\frac{\dif v}{\dif x}=-(\gamma-1)\frac{v}{c^2}\frac{\dif v}{\dif x}
+	\end{align*}
+	On injecte dans la relation de la question 4, en développant $\frac{1}{Sv}\frac{\dif(Sv)}{\dif x}=\frac{1}{S}\frac{\dif S}{\dif x}+\frac{1}{v}\frac{\dif v}{\dif x}$ et en divisant par $\gamma-1$ :
+	\begin{align*}
+		-\frac{v}{c^2}\frac{\dif v}{\dif x}+\frac{1}{S}\frac{\dif S}{\dif x}+\frac{1}{v}\frac{\dif v}{\dif x}=0
+	\end{align*}
+	Soit, en introduisant le nombre de Mach $\mathrm{Ma}=v/c$ :
+	\begin{align*}
+		\boxed{\frac{1}{v}\frac{\dif v}{\dif x}=\frac{1}{\mathrm{Ma}^2-1}\,\frac{1}{S}\frac{\dif S}{\dif x}}
+	\end{align*}
+	Le gaz accélère ($\dif v/\dif x>0$) si $\dif S/\dif x$ et $\mathrm{Ma}^2-1$ sont de même signe : un profil divergent ($\dif S/\dif x>0$) accélère un écoulement supersonique ($\mathrm{Ma}>1$), un profil convergent ($\dif S/\dif x<0$) accélère un écoulement subsonique ($\mathrm{Ma}<1$).
+
+	\textit{Remarque pour le colleur : c'est la relation d'Hugoniot. En subsonique, le comportement est intuitif (la vitesse augmente quand la section diminue, comme pour un fluide incompressible). En supersonique, c'est l'inverse : la masse volumique chute plus vite que la vitesse n'augmente, et il faut élargir la section pour conserver le débit. Le gaz sortant de la chambre à vitesse quasi nulle, une tuyère de fusée est donc convergente puis divergente (tuyère de Laval), et l'écoulement atteint $\mathrm{Ma}=1$ exactement au col, là où $\dif S/\dif x=0$. On peut demander à l'élève de dessiner la tuyère complète.}
+
+	\item On intègre la relation de la question 2 entre la chambre ($v_e\simeq0$) et la sortie :
+	\begin{align*}
+		c_PT_e=c_PT_s+\frac{1}{2}v_s^2
+	\end{align*}
+	La détente étant isentropique, la loi de Laplace $P^{1-\gamma}T^\gamma=\text{cte}$ donne $T_s=T_e\left(p_s/p_e\right)^{\frac{\gamma-1}{\gamma}}$, d'où :
+	\begin{align*}
+		\boxed{v_s=\sqrt{\frac{2\gamma RT_e}{M(\gamma-1)}\left[1-\left(\frac{p_s}{p_e}\right)^{\frac{\gamma-1}{\gamma}}\right]}}
+	\end{align*}
+	Numériquement, $c_P=3{,}56\times10^{3}$~J$\cdot$kg$^{-1}\cdot$K$^{-1}$, $\left(p_s/p_e\right)^{\frac{\gamma-1}{\gamma}}=0{,}453$, donc $T_s=1{,}6\times10^{3}$~K et :
+	\begin{align*}
+		v_s=3{,}7~\text{km}\cdot\text{s}^{-1}
+	\end{align*}
+
+	\textit{Remarque pour le colleur : la vitesse du son en sortie vaut $c_s=\sqrt{\gamma RT_s/M}\simeq1{,}1$~km$\cdot$s$^{-1}$, donc $\mathrm{Ma}_s\simeq3{,}5$ : l'écoulement est bien supersonique en sortie, ce qui confirme la partie divergente. La vitesse maximale, obtenue pour une détente dans le vide ($p_s\to0$), vaut $\sqrt{2c_PT_e}\simeq5{,}0$~km$\cdot$s$^{-1}$. L'expression montre pourquoi on cherche une température de chambre élevée et une masse molaire faible, d'où l'intérêt de l'hydrogène comme ergol.}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Formation du brouillard}
+
+On considère un gaz parfait de coefficient $\gamma$ et de masse molaire $M$ contenu dans un cylindre de section $S$ orienté verticalement. L'altitude le long de ce cylindre est notée $z$, et on note $g$ l'accélération de la pesanteur supposée uniforme. Le gaz est soumis à un mouvement ascendant dans le cylindre, à la vitesse notée $c$. Les parois du cylindre ne permettent pas de transfert thermique et l'écoulement est supposé stationnaire.
+
+On note $T_0$, $P_0$ et $c_0$ la température, la pression et la vitesse du gaz à l'altitude $z=0$ et $T(z)$, $P(z)$ et $c(z)$ ces trois grandeurs à l'altitude $z$. De la même manière, on introduit $h_{m,0}$ et $h_m(z)$ l'enthalpie massique du gaz aux altitudes $0$ et $z$.
+
+\begin{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item En appliquant le premier principe industriel au gaz dans le cylindre entre les altitudes $0$ et $z$, trouver une relation entre $h_{m,0}$, $h_m(z)$, $c_0$, $c(z)$ et $z$.
+
+	\item L'ascension étant lente, on néglige les termes d'énergie cinétique. Montrer que la température obéit alors à la loi suivante :
+	\begin{align*}
+		T(z)=T_0\left( 1-\frac{z}{H}\right)
+	\end{align*}
+	Expliciter $H$ en fonction de $T_0$, $R$, $\gamma$, $M$ et $g$. Faire l'application numérique.
+
+\end{enumerate}
+
+\item Le gaz étudié est de l'air humide, subissant une ascension verticale, lente et isentropique dans ce cylindre. La vapeur d'eau contenue en faible quantité dans l'air se comporte comme un gaz parfait. La pression de vapeur saturante de l'eau, notée $P_s$ et exprimée en Pa, est une fonction de $T$ donnée par la loi empirique :
+\begin{align*}
+	\ln P_s(T) = a -\frac{b}{T}
+\end{align*}
+
+\begin{enumerate}
+
+	\item Soit $\varphi$ la fraction molaire de vapeur d'eau contenue dans une masse d'air ascendante. Après avoir explicité la pression $P(z)$ dans la colonne, déterminer la pression partielle $P_e(z)$ de cette vapeur.
+
+	\item À quelle altitude, notée $z_1$, la vapeur d'eau commence-t-elle à se condenser ? On supposera que $z_1\ll H$.
+
+	\item Justifier que les reliefs sont propices à l'apparition du brouillard.
+
+\end{enumerate}
+
+\end{enumerate}
+
+\textit{Données :} $T_0=288$~K, $P_0=1{,}0$~bar, $M=29$~g$\cdot$mol$^{-1}$, $\gamma=1{,}4$, $g=9{,}8$~m$\cdot$s$^{-2}$, $R=8{,}31$~J$\cdot$K$^{-1}\cdot$mol$^{-1}$, $a=25{,}35$, $b=5{,}16\times10^{3}$~K et $\varphi=1{,}2\times10^{-2}$.
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item On applique le premier principe industriel au gaz qui traverse la portion de cylindre comprise entre les altitudes $0$ et $z$, en régime stationnaire. Les parois sont athermanes ($q=0$) et il n'y a aucune pièce mobile ($w_u=0$), donc, par unité de masse :
+	\begin{align*}
+		\boxed{h_m(z)+\frac{1}{2}c^2(z)+gz=h_{m,0}+\frac{1}{2}c_0^2}
+	\end{align*}
+
+	\item En négligeant l'énergie cinétique, $h_m(z)-h_{m,0}=-gz$. Pour un gaz parfait, $h_m(z)-h_{m,0}=c_P\left(T(z)-T_0\right)$ avec $c_P=\frac{\gamma R}{M(\gamma-1)}$ (relation de Mayer). Ainsi :
+	\begin{align*}
+		T(z)=T_0-\frac{M(\gamma-1)g}{\gamma R}\,z=T_0\left(1-\frac{z}{H}\right) \quad\text{avec}\quad \boxed{H=\frac{\gamma RT_0}{(\gamma-1)Mg}}
+	\end{align*}
+	Numériquement, $H=29$~km : la température décroît de $T_0/H=9{,}8$~K par kilomètre.
+
+	\textit{Remarque pour le colleur : c'est le gradient adiabatique sec des météorologues. Le gradient moyen observé dans la troposphère est plus faible, de l'ordre de $6{,}5$~K$\cdot$km$^{-1}$, notamment parce que la condensation de la vapeur libère de l'énergie. On peut aussi faire remarquer que négliger l'énergie cinétique revient à écrire $\dif h=-g\dif z$, et qu'avec $\dif h=T\dif s+\dif P/\rho$ et $\dif s=0$ on retrouve exactement la loi de la statique des fluides.}
+
+\end{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item L'ascension est isentropique et le gaz est parfait : la loi de Laplace $P^{1-\gamma}T^{\gamma}=\text{cte}$ donne :
+	\begin{align*}
+		P(z)=P_0\left(\frac{T(z)}{T_0}\right)^{\frac{\gamma}{\gamma-1}}=P_0\left(1-\frac{z}{H}\right)^{\frac{\gamma}{\gamma-1}}
+	\end{align*}
+	On peut vérifier ce résultat par la statique des fluides : $\frac{\dif P}{\dif z}=-\rho g=-\frac{PMg}{RT}$, soit $\frac{\dif P}{P}=-\frac{Mg}{RT_0}\frac{\dif z}{1-z/H}$, qui s'intègre en $\ln\frac{P}{P_0}=\frac{MgH}{RT_0}\ln\left(1-\frac{z}{H}\right)$, avec $\frac{MgH}{RT_0}=\frac{\gamma}{\gamma-1}$.
+
+	Tant qu'il n'y a pas de condensation, la composition de la masse d'air ne change pas et $\varphi$ reste constante. D'après la loi de Dalton :
+	\begin{align*}
+		\boxed{P_e(z)=\varphi P(z)=\varphi P_0\left(1-\frac{z}{H}\right)^{\frac{\gamma}{\gamma-1}}}
+	\end{align*}
+
+	\item La condensation commence lorsque la pression partielle de la vapeur atteint la pression de vapeur saturante, $P_e(z_1)=P_s\left(T(z_1)\right)$ :
+	\begin{align*}
+		\ln(\varphi P_0)+\frac{\gamma}{\gamma-1}\ln\left(1-\frac{z_1}{H}\right)=a-\frac{b}{T_0\left(1-z_1/H\right)}
+	\end{align*}
+	Au premier ordre en $z_1/H$, $\ln(1-z_1/H)\simeq-z_1/H$ et $\frac{1}{1-z_1/H}\simeq1+z_1/H$ :
+	\begin{align*}
+		\ln(\varphi P_0)-\frac{\gamma}{\gamma-1}\frac{z_1}{H}=a-\frac{b}{T_0}-\frac{b}{T_0}\frac{z_1}{H}
+	\end{align*}
+	En remarquant que $a-b/T_0=\ln P_s(T_0)$ :
+	\begin{align*}
+		\boxed{z_1=H\,\frac{\ln\left(\dfrac{P_s(T_0)}{\varphi P_0}\right)}{\dfrac{b}{T_0}-\dfrac{\gamma}{\gamma-1}}}
+	\end{align*}
+	Le rapport $\varphi P_0/P_s(T_0)$ est l'humidité relative de l'air au sol : il faut qu'il soit inférieur à $1$ pour que $z_1>0$, ce qui est le cas si l'air n'est pas déjà saturé au sol. Le dénominateur traduit la compétition entre deux effets : la baisse de pression fait diminuer $P_e$ (terme $\gamma/(\gamma-1)=3{,}5$), mais le refroidissement fait diminuer $P_s$ bien plus vite (terme $b/T_0=17{,}9$).
+
+	Numériquement, $P_s(T_0)=1{,}69\times10^{3}$~Pa, soit une humidité relative au sol de $71$~\%, et :
+	\begin{align*}
+		z_1\simeq7\times10^{2}~\text{m}
+	\end{align*}
+	On a bien $z_1\ll H$.
+
+	\textit{Remarque pour le colleur : la résolution numérique de l'équation exacte donne $z_1=709$~m, contre $701$~m pour la forme linéarisée. Le coefficient $b$ est relié à l'enthalpie de vaporisation par la relation de Clausius-Clapeyron intégrée, $b=\ell_vM_{\mathrm{eau}}/R$, ce qui donne ici $\ell_v\simeq2{,}4\times10^{3}$~kJ$\cdot$kg$^{-1}$, valeur tout à fait réaliste.}
+
+	\item Le vent qui rencontre un relief est contraint de s'élever le long de la pente. Cette ascension forcée est rapide devant les échanges thermiques avec l'environnement, donc quasi adiabatique : l'air se détend et se refroidit d'environ $10$~K par kilomètre, jusqu'à atteindre la saturation à l'altitude $z_1$, quelques centaines de mètres au-dessus du point de départ. Au-delà, la vapeur se condense en fines gouttelettes : les sommets sont pris dans un nuage, qui est un brouillard pour l'observateur qui s'y trouve.
+
+	\textit{Remarque pour le colleur : sur le versant opposé, l'air redescend en se comprimant et se réchauffe, et le nuage se dissipe. Comme il a perdu une partie de sa vapeur par précipitation, il arrive plus chaud et plus sec en plaine : c'est l'effet de foehn.}
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Étude d'un turboréacteur}
+
+Un turboréacteur est un moteur thermique équipant les avions dits \textit{à réaction}, schématisé ci-dessous. Le fonctionnement général est le suivant : un compresseur aspire et comprime l'air en amont du réacteur (étape $1\rightarrow2$), qui est ensuite chauffé par la combustion du kérosène dans la chambre de combustion (étape $2\rightarrow3$). Les gaz de combustion sont alors détendus ($3\rightarrow4$) à travers une turbine dont l'arbre est commun avec celui du compresseur, puis ces gaz sont finalement évacués par la tuyère ($4\rightarrow5$), en accélérant fortement, fournissant la poussée requise.
+
+Le but de l'exercice est de calculer la vitesse de sortie $c_5$ des gaz de combustion, qui détermine la poussée propulsant l'aéronef.
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[width=0.8\linewidth]{thermo_turboreacteur.pdf}
+\end{figure}
+
+On formule les hypothèses suivantes à propos des différentes transformations :
+\begin{itemize}
+
+	\item[$1\rightarrow2$ :] compression adiabatique réversible dans le compresseur, au taux de compression $a=P_2/P_1=26$ ;
+	\item[$2\rightarrow3$ :] chauffage isobare dans la chambre de combustion, jusqu'à $T_3=1450$~K ;
+	\item[$3\rightarrow4$ :] détente adiabatique réversible du gaz de $P_3$ à $P_4$ à travers la turbine ;
+	\item[$4\rightarrow5$ :] détente adiabatique réversible du gaz de $P_4$ à $P_5$ dans la tuyère.
+
+\end{itemize}
+
+On supposera que le régime est stationnaire et que l'énergie potentielle de pesanteur du fluide est négligeable dans toutes les étapes. L'énergie cinétique sera aussi négligée partout, sauf à la sortie de la tuyère (en 5) où le gaz est très fortement accéléré. On négligera tout frottement mécanique, ainsi que le débit de kérosène devant le débit d'air. L'air et les gaz de combustion sont assimilés à un même gaz parfait, de capacité thermique massique $C_p$ et de coefficient $\gamma$ constants. Les pressions en entrée et en sortie sont $P_1=P_5=1$~bar et la température en entrée est $T_1=288$~K.
+
+\begin{enumerate}
+
+	\item En utilisant un bilan de masse et d'énergie, montrer que le travail massique utile reçu par le gaz lors d'une transformation adiabatique de l'état $i$ à l'état $j$ (c'est-à-dire toutes sauf $2\rightarrow3$) est donné par :
+	\begin{align*}
+		w_{i\rightarrow j}=C_p(T_j-T_i) + \frac{1}{2}\left(c_j^2-c_i^2 \right)
+	\end{align*}
+	où $c_i$ est la vitesse du gaz dans l'état $i$.
+	\item Donner une relation entre $P_i$, $P_j$, $T_i$, $T_j$ et $\gamma$ pour ces mêmes transformations.
+	\item En exploitant le couplage mécanique entre la turbine et le compresseur, établir les expressions littérales et les valeurs numériques des températures $T_2$, $T_4$ et de la pression $P_4$ en sortie de turbine.
+	\item En déduire la vitesse $c_5$ à la sortie du réacteur.
+	\item \textit{(PSI, PC)} L'avion est au point fixe (immobile sur la piste) et le réacteur aspire un débit d'air $D_m=1{,}0\times10^{2}$~kg$\cdot$s$^{-1}$. En déduire la poussée du réacteur en kN.
+
+\end{enumerate}
+
+\textit{Données :} $C_p=1{,}0\times10^3$~J$\cdot$kg$^{-1}\cdot$K$^{-1}$, $\gamma=1{,}4$.
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item On considère l'organe (compresseur, turbine ou tuyère) comme un volume de contrôle fixe, traversé par un débit massique $D_m$. On définit le système fermé $\Sigma^\ast$ constitué, à l'instant $t$, du fluide contenu dans le volume de contrôle et de la masse $\dif m=D_m\dif t$ qui va y entrer pendant $\dif t$ ; à l'instant $t+\dif t$, il est constitué du fluide contenu dans le volume de contrôle et de la masse $\dif m$ qui en est sortie (la conservation de la masse en régime stationnaire impose que les masses entrante et sortante soient égales). En régime stationnaire, le contenu du volume de contrôle ne varie pas, donc :
+	\begin{align*}
+		\dif U+\dif E_c=\dif m\left(u_j+\frac{1}{2}c_j^2\right)-\dif m\left(u_i+\frac{1}{2}c_i^2\right)
+	\end{align*}
+	Le système reçoit le travail utile des parties mobiles $\delta W_u=w_{i\rightarrow j}\dif m$ et le travail des forces de pression en entrée et en sortie, $P_iv_i\dif m-P_jv_j\dif m$ ($v$ désigne le volume massique). La transformation étant adiabatique, le premier principe appliqué à $\Sigma^\ast$ donne, avec $h=u+Pv$ :
+	\begin{align*}
+		w_{i\rightarrow j}=h_j-h_i+\frac{1}{2}\left(c_j^2-c_i^2\right)
+	\end{align*}
+	Pour un gaz parfait, $h_j-h_i=C_p(T_j-T_i)$, d'où la relation demandée.
+
+	\item Chaque transformation adiabatique réversible d'un gaz parfait est isentropique, et la loi de Laplace $P^{1-\gamma}T^\gamma=\text{cte}$ s'applique :
+	\begin{align*}
+		\boxed{\frac{T_j}{T_i}=\left(\frac{P_j}{P_i}\right)^{\frac{\gamma-1}{\gamma}}}
+	\end{align*}
+
+	\item Pour la compression :
+	\begin{align*}
+		\boxed{T_2=T_1a^{\frac{\gamma-1}{\gamma}}=731~\text{K}}
+	\end{align*}
+	La turbine entraîne le compresseur par un arbre commun, sans frottement : tout le travail cédé par le gaz dans la turbine est reçu par le gaz dans le compresseur. Le débit étant le même dans les deux organes, $w_{1\rightarrow2}+w_{3\rightarrow4}=0$, soit $C_p(T_2-T_1)+C_p(T_4-T_3)=0$ :
+	\begin{align*}
+		\boxed{T_4=T_3-T_1\left(a^{\frac{\gamma-1}{\gamma}}-1\right)=1{,}01\times10^{3}~\text{K}}
+	\end{align*}
+	La combustion étant isobare, $P_3=P_2=aP_1=26$~bar, et la loi de Laplace dans la turbine donne :
+	\begin{align*}
+		\boxed{P_4=aP_1\left(\frac{T_4}{T_3}\right)^{\frac{\gamma}{\gamma-1}}=7{,}3~\text{bar}}
+	\end{align*}
+
+	\item Dans la tuyère, il n'y a pas de travail utile et $c_4$ est négligeable, donc d'après la question 1, $\frac{1}{2}c_5^2=C_p(T_4-T_5)$. La température de sortie s'obtient par la loi de Laplace entre $3$ et $5$ (les étapes $3\rightarrow4$ et $4\rightarrow5$ sont toutes deux isentropiques), avec $P_5/P_3=1/a$ :
+	\begin{align*}
+		T_5=T_4\left(\frac{P_5}{P_4}\right)^{\frac{\gamma-1}{\gamma}}=T_3a^{-\frac{\gamma-1}{\gamma}}=572~\text{K}
+	\end{align*}
+	Finalement :
+	\begin{align*}
+		\boxed{c_5=\sqrt{2C_p\left[T_3\left(1-a^{-\frac{\gamma-1}{\gamma}}\right)-T_1\left(a^{\frac{\gamma-1}{\gamma}}-1\right)\right]}=9{,}3\times10^{2}~\text{m}\cdot\text{s}^{-1}}
+	\end{align*}
+
+	\textit{Remarque pour le colleur : le gaz décrit un cycle de Brayton (deux isentropiques, deux isobares si l'on referme le cycle à l'extérieur du moteur). L'énergie cinétique finale $\frac{1}{2}c_5^2=436$~kJ$\cdot$kg$^{-1}$ est le travail du cycle ; rapportée à la chaleur reçue dans la chambre, $C_p(T_3-T_2)=719$~kJ$\cdot$kg$^{-1}$, elle donne un rendement de $0{,}61$, égal à $1-a^{-\frac{\gamma-1}{\gamma}}$ : on retrouve le rendement de Brayton, qui ne dépend que du taux de compression.}
+
+	\item On effectue un bilan de quantité de mouvement sur le fluide qui traverse le réacteur, en régime stationnaire. La pression valant $P_1=P_5$ en entrée comme en sortie, les forces de pression extérieures se compensent et la force exercée par le réacteur sur le fluide vaut $D_m(c_5-c_1)$, dirigée vers l'arrière. D'après le principe des actions réciproques, le fluide exerce sur le réacteur une poussée de même norme, dirigée vers l'avant. Au point fixe, l'air est aspiré à vitesse négligeable ($c_1\simeq0$) :
+	\begin{align*}
+		\boxed{F=D_mc_5=93~\text{kN}}
+	\end{align*}
+
+	\textit{Remarque pour le colleur : en vol, l'air entre à la vitesse de l'avion (de l'ordre de $250$~m$\cdot$s$^{-1}$ en croisière), et la poussée $D_m(c_5-c_1)$ diminue d'autant. On peut aussi justifier l'hypothèse sur le kérosène : le rapport des débits vaut $C_p(T_3-T_2)$ divisé par le pouvoir calorifique du kérosène (environ $43$~MJ$\cdot$kg$^{-1}$), soit moins de $2$~\%.}
+
+\end{enumerate}
+
+\end{correction}
