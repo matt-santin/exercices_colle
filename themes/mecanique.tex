@@ -1,0 +1,112 @@
+\chapter{Mécanique}
+
+\newpage
+
+\section{Sortie spatiale}
+
+Un vaisseau est en orbite circulaire de rayon $R$ autour de la Terre, à la vitesse angulaire $\vec{\Omega}=\Omega\vec{e}_z$. Un astronaute effectue une sortie au point $O$ et est relié au vaisseau avec un câble d'amarrage. Pour les applications numériques, on prendra une période de révolution de 2h autour de la Terre, de masse $M$. On rappelle que l'intensité du champ de pesanteur à la surface de la Terre, dont le rayon est $R_T=6400$km, est $g_0=9,81$m.s$^{-2}$.
+
+\begin{figure}[h]
+\centering
+  \includegraphics[scale=1.6]{mecanique_sortie_spatiale.pdf}
+\end{figure}
+
+\begin{enumerate}
+
+	\item Quelle est la relation reliant la vitesse angulaire $\Omega$, le rayon $R$, la constante de gravitation $G$ et la masse de la Terre $M$ ? En déduire l'altitude du vaisseau.
+	
+	\item Établir les équations du mouvement de l'astronaute dans le repère $Oxyz$, solidaire du vaisseau. On pourra considérer le repère $R'$ de centre $C$ tournant à la vitesse angulaire $\Omega\vec{e}_z$ autour de l'axe $\vec{e}_z$.
+	
+	\item Par quel terme la force d'inertie d'entraînement est-elle quasiment compensée ? Développer alors le terme différentiel identifié à l'ordre linéaire en $x/R$, $y/R$ et $z/R$. Simplifier les équations du mouvement.
+	
+	\item Le mouvement de l'astronaute est-il stable suivant la direction $z$ ? 
+	
+	\item Les valeurs de $x_0$, $y_0$, $\dot{x}_0$ et $\dot{y}_0$ étant données, déterminer les expressions de $x(t)$ et de $y(t)$.
+	
+	\item L'astronaute se trouve à $t=0$ en $x_0>0$ et $y_0=0$, mais sans vitesse initiale. Doit-il s'amarrer à la station ?
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+	
+	\item Les équations du mouvement, pour une orbite circulaire, donnent :
+	\begin{align*}
+		R\Omega^2=\frac{GM}{R^2}
+	\end{align*}
+	On ne connaît pas la masse de la Terre, mais on donne $g_0=GM/R_T^2$. Alors l'altitude $h$ s'écrit :
+	\begin{align*}
+		h=\left( \frac{g_0R_T^2}{\Omega^2}\right)^{1/3}-R_T 
+	\end{align*}
+	On trouve $h=1680$km.
+	
+	\item On se place dans le référentiel non galiléen $R'$ de centre $C$ tournant à la vitesse angulaire $\Omega\vec{e}_z$ autour de l'axe $\vec{e}_z$. Les coordonnées de l'astronaute dans ce repère sont $(x+R,y,z)$. L'accélération d'entraînement s'écrit alors :
+	\begin{align*}
+		\vec{a}_e=-\Omega^2\left((x+R)\vec{e}_x+y\vec{e}_y \right) 
+	\end{align*}
+	L'accélération de Coriolis quant à elle :
+	\begin{align*}
+		\vec{a}_c&=2\vec{\Omega}\wedge\vec{v}_{R'}\\
+		&=2\Omega(-\dot{y}\vec{e}_x+\dot{x}\vec{e}_y)
+	\end{align*}
+	La force gravitationnelle s'écrit :
+	\begin{align*}
+		\vec{f_G}&=-G\frac{mM}{CM^3}\overrightarrow{CM}\\
+		&=-\frac{mR^3\Omega^2((x+R)\vec{e}_x+y\vec{e}_y+z\vec{e}_z)}{\left((x+R)^2+y^2+z^2\right)^{3/2}}
+	\end{align*}
+	
+	Le PFD donne alors :
+	\begin{align*}
+		\ddot{x}&=\Omega^2(x+R)+2\Omega\dot{y}-R^3\Omega^2\frac{x+R}{{\left((x+R)^2+y^2+z^2\right)^{3/2}}} \\
+		\ddot{y}&=\Omega^2y-2\Omega\dot{x}-R^3\Omega^2\frac{y}{{\left((x+R)^2+y^2+z^2\right)^{3/2}}} \\
+		\ddot{z}&=-R^3\Omega^2\frac{z}{{\left((x+R)^2+y^2+z^2\right)^{3/2}}}
+	\end{align*}
+	
+\item On factorise les fractions rationnelles par $R$ et on fait un d.l. (car $x,y,z\ll R$) :
+\begin{align*}
+	\frac{x+R}{{\left((x+R)^2+y^2+z^2\right)^{3/2}}}=&\frac{1}{R^2}\frac{1+x/R}{\left(\left(1+x/R \right)^2+\left(y/R \right)^2+\left(z/R\right)^2\right)^{3/2}}\\
+	\simeq&\frac{1}{R^2}\left(1+\frac{x}{R} \right)\left(1-\frac{3}{2}\frac{2x}{R} \right) \\
+	=&\frac{1}{R^2}\left(1-\frac{2x}{R} \right)
+\end{align*}
+\begin{align*}
+	\frac{y}{{\left((x+R)^2+y^2+z^2\right)^{3/2}}}=&\frac{1}{R^3}\frac{y}{\left(\left(1+x/R \right)^2+\left(y/R \right)^2+\left(z/R\right)^2\right)^{3/2}}\\
+	\simeq&\frac{y}{R^3}\left(1-\frac{3}{2}\frac{2x}{R} \right) \\
+	=&\frac{y}{R^3}
+\end{align*}
+Même chose que $y$ pour l'équation sur $z$. On trouve finalement :
+\begin{align*}
+	\ddot{x}&=3\Omega^2x+2\Omega \dot{y} \\
+	\ddot{y}&=-2\Omega \dot{x} \\
+	\ddot{z}&=-\Omega^2z
+\end{align*}
+Les termes d'ordre 0 de la force d'inertie d'entraînement se compensent avec la force gravitationnelle : il ne reste que les termes liés à l'écart de l'astronaute par rapport à $O$. D'autre part, seule la projection sur $x$ contient un terme gravitationnel non compensé de l'ordre de $x$. Pour $z$, la force gravitationnelle agit comme une force de rappel qui tend à ramener l'astronaute dans le plan $Oxy$.
+
+\item L'intégration sur $z$ donne des solutions sinusoïdales : le mouvement est stable selon cette direction. Pour $x$ et $y$, on intègre une fois sur $y$ et on injecte dans l'équation sur $x$ :
+\begin{align*}
+	\ddot{x}&=3\Omega^2x+2\Omega \dot{y} \\
+	\dot{y}&=-2\Omega (x-x_0) + \dot{y}_0\\
+	z(t)&=A_z\cos(\Omega t)+B_z\sin(\Omega t)
+\end{align*}
+
+\item On intègre ensuite sur $x$ et $y$, alors :
+\begin{align*}
+	\ddot{x}+\Omega^2x=2\Omega(\dot{y}_0+2\Omega x_0)
+\end{align*}
+La solution générale sur $x$ est alors $A_x\cos(\Omega t)+B_x\sin(\Omega t)+4x_0+2\frac{\dot{y}_0}{\Omega}$. Avec les conditions initiales :
+\begin{align*}
+	x(t)=x_0+\left(3x_0+\frac{2\dot{y}_0}{\Omega}\right)(1-\cos(\Omega t))+\frac{\dot{x}_0}{\Omega}\sin(\Omega t)
+\end{align*}
+Le mouvement est stable selon $x$. Sur $y$, on intègre et on trouve avec les conditions initiales :
+\begin{align*}
+	y(t)=y_0-3(2x_0\Omega+\dot{y}_0)t+2\left(3x_0+\frac{2\dot{y}_0}{\Omega}\right)\sin(\Omega t)-\frac{2\dot{x}_0}{\Omega}(1-\cos(\Omega t))
+\end{align*}
+Le mouvement est ici instable (terme proportionnel à $t$).
+
+	\item Le terme proportionnel à $t$ vaut $-6\Omega x_0t$ et est non nul si $x_0>0$ : l'astronaute s'éloigne de la station et dérive. Il faut s'amarrer.
+	
+\end{enumerate}
+
+\end{correction}
