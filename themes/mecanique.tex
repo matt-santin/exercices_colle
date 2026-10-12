@@ -110,3 +110,88 @@ Le mouvement est ici instable (terme proportionnel à $t$).
 \end{enumerate}
 
 \end{correction}
+
+\newpage
+
+\section{Tir à grande distance}
+
+Dans le jeu vidéo \textit{Call of Duty 4 : Modern Warfare}, le joueur incarne un tireur d'élite qui doit atteindre une cible située à la distance horizontale $d=897$~m, avec un fusil de précision tirant des balles à la vitesse $v_0=850$~m$\cdot$s$^{-1}$. Il tire depuis le dernier étage d'un immeuble de hauteur $H=30$~m, et la cible, au niveau du sol, se trouve plein nord. La scène se déroule à Prypiat, en Ukraine, à la latitude $\lambda=51^\circ$. Avant le tir, son coéquipier lui précise qu'il faut tenir compte de la force de Coriolis. On souhaite vérifier cette affirmation.
+
+On travaille dans le référentiel terrestre $\mathcal{R}$, muni du repère $(O,\vec{e}_x,\vec{e}_y,\vec{e}_z)$ d'origine $O$ au pied de l'immeuble, avec $\vec{e}_x$ dirigé vers l'est, $\vec{e}_y$ vers le nord et $\vec{e}_z$ selon la verticale ascendante. On note $\vec{\Omega}_T$ le vecteur rotation de la Terre par rapport au référentiel géocentrique, supposé galiléen. Le tireur vise la cible en ligne droite, et l'on néglige les frottements de l'air.
+
+\begin{enumerate}
+
+	\item Montrer que les équations du mouvement de la balle dans $\mathcal{R}$, une fois le coup parti, s'écrivent :
+	\begin{align*}
+		\ddot{x}&=2\Omega_T\left(\dot{y}\sin\lambda-\dot{z}\cos\lambda\right)\\
+		\ddot{y}&=-2\Omega_T\dot{x}\sin\lambda \\
+		\ddot{z}&=-g+2\Omega_T\dot{x}\cos\lambda
+	\end{align*}
+
+	\item En intégrant les deux dernières équations, montrer que $x(t)$ vérifie une équation de la forme $\ddot{x}+4\Omega_T^2x=a+bt$. Donner la forme générale de ses solutions, sans chercher à déterminer les constantes d'intégration.
+
+	\item Estimer le temps de vol $t_i$ de la balle. En déduire que l'on peut résoudre les équations du mouvement au premier ordre en $\Omega_T$, et les résoudre.
+
+	\item Déterminer l'écart $\vec{\varepsilon}$ entre le point d'impact de la balle et celui qu'elle atteindrait si sa trajectoire était parfaitement rectiligne. Que penser de l'affirmation du coéquipier ?
+
+\end{enumerate}
+
+\textit{Données :} $g=9{,}8$~m$\cdot$s$^{-2}$ ; durée du jour sidéral $T_{sid}=86\,164$~s.
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Le référentiel terrestre est en rotation uniforme autour de l'axe des pôles par rapport au référentiel géocentrique. Dans la base locale, $\vec{\Omega}_T=\Omega_T\left(\cos\lambda\,\vec{e}_y+\sin\lambda\,\vec{e}_z\right)$. La balle est soumise à son poids $m\vec{g}$, qui inclut la force d'inertie d'entraînement, et à la force d'inertie de Coriolis :
+	\begin{align*}
+		\vec{F}_c=-2m\vec{\Omega}_T\wedge\vec{v}=2m\Omega_T\begin{pmatrix} \dot{y}\sin\lambda-\dot{z}\cos\lambda\\ -\dot{x}\sin\lambda \\ \dot{x}\cos\lambda \end{pmatrix}
+	\end{align*}
+	Le principe fondamental de la dynamique dans $\mathcal{R}$ donne les trois équations de l'énoncé.
+
+	\item On prend $x(0)=0$ et on intègre les deux dernières équations :
+	\begin{align*}
+		\dot{y}=\dot{y}_0-2\Omega_Tx\sin\lambda \qquad\text{et}\qquad \dot{z}=\dot{z}_0-gt+2\Omega_Tx\cos\lambda
+	\end{align*}
+	En reportant dans la première, avec $\sin^2\lambda+\cos^2\lambda=1$ :
+	\begin{align*}
+		\boxed{\ddot{x}+4\Omega_T^2x=2\Omega_T\left(\dot{y}_0\sin\lambda-\dot{z}_0\cos\lambda\right)+2\Omega_Tg\cos\lambda\,t}
+	\end{align*}
+	Les solutions sont de la forme :
+	\begin{align*}
+		x(t)=A\cos(2\Omega_Tt)+B\sin(2\Omega_Tt)+\frac{\dot{y}_0\sin\lambda-\dot{z}_0\cos\lambda}{2\Omega_T}+\frac{g\cos\lambda}{2\Omega_T}t
+	\end{align*}
+	La partie oscillante a pour période $\pi/\Omega_T$, soit une demi-journée sidérale, très grande devant la durée du vol. On ne peut pas pour autant l'oublier : les constantes $A$ et $B$, fixées par les conditions initiales, sont énormes (en $1/\Omega_T$ et $1/\Omega_T^2$) et compensent la solution particulière. Le développement de la solution complète pour $\Omega_Tt\ll1$ redonne le résultat de la question suivante.
+
+	\textit{Remarque pour le colleur : cette oscillation n'a rien à voir avec un tour de la Terre. Le modèle (sol plan, $\vec{g}$ uniforme) n'est valable que près de $O$ et pour $t\ll1/\Omega_T$. L'oscillation à $2\Omega_T$ est une oscillation d'inertie : sous la seule force de Coriolis, la vitesse tourne autour de $\vec{\Omega}_T$ à la pulsation $2\Omega_T$.}
+
+	\textit{On peut demander à l'élève si, la solution contenant un terme périodique, la balle revient à son point de départ au bout d'une demi-journée. Ce n'est pas le cas, même dans le cadre du modèle. D'abord, $x(t)$ contient le terme $\frac{g\cos\lambda}{2\Omega_T}t$, qui croît sans limite. Ensuite, l'équation $\frac{\dif\vec{v}}{\dif t}=\vec{g}-2\vec{\Omega}_T\wedge\vec{v}$ est celle d'une charge dans des champs $\vec{E}$ et $\vec{B}$ croisés, avec $q\vec{E}/m\to\vec{g}$ et $q\vec{B}/m\to2\vec{\Omega}_T$. Le long de $\vec{\Omega}_T$, la force de Coriolis n'agit pas et la composante $-g\sin\lambda$ de la pesanteur donne une chute uniformément accélérée. Perpendiculairement à $\vec{\Omega}_T$, la balle décrit un cercle à la pulsation $2\Omega_T$, entraîné par la dérive $\frac{\vec{g}\wedge\vec{\Omega}_T}{2\Omega_T^2}=\frac{g\cos\lambda}{2\Omega_T}\vec{e}_x$, analogue à la dérive $\vec{E}\wedge\vec{B}/B^2$. La trajectoire est une cycloïde dérivant vers l'est à environ 42~km$\cdot$s$^{-1}$, vitesse qui dépasse celle de libération et montre que le modèle n'a plus de sens à ces échelles. Un vrai retour à l'expéditeur serait une orbite, de période fixée par la gravitation et non par la rotation de la Terre.}
+
+	\item Si la balle allait en ligne droite à la vitesse $v_0$, elle parcourrait environ $d$, donc $t_i\simeq d/v_0\simeq1$~s. Avec $\Omega_T=2\pi/T_{sid}=7{,}3\times10^{-5}$~rad$\cdot$s$^{-1}$, on a $\Omega_Tt_i\sim10^{-4}\ll1$ : on peut développer la solution au premier ordre en $\Omega_T$.
+
+	À l'ordre zéro, la balle suit une chute libre classique, avec $x=0$ car le tir est dirigé vers le nord. La déviation selon $x$ est donc d'ordre 1 en $\Omega_T$, et les termes $\Omega_Tx$ dans les équations sur $y$ et $z$ sont d'ordre 2 : on les néglige. De même, on néglige $4\Omega_T^2x$ dans l'équation sur $x$, qui devient $\ddot{x}=2\Omega_T(\dot{y}_0\sin\lambda-\dot{z}_0\cos\lambda)+2\Omega_Tg\cos\lambda\,t$.
+
+	Le tireur vise la cible, située en $(0,d,0)$, depuis le point $(0,0,H)$ : la vitesse initiale est inclinée vers le bas d'un angle $\alpha$ tel que $\tan\alpha=H/d$, soit $\alpha=1{,}9^\circ$. Ainsi $\dot{y}_0=v_0\cos\alpha$ et $\dot{z}_0=-v_0\sin\alpha$, d'où $\dot{y}_0\sin\lambda-\dot{z}_0\cos\lambda=v_0\sin(\lambda+\alpha)$. Avec $\dot{x}_0=0$ :
+	\begin{align*}
+		x(t)&=\Omega_Tv_0\sin(\lambda+\alpha)\,t^2+\frac{1}{3}\Omega_Tg\cos\lambda\,t^3\\
+		y(t)&=v_0\cos\alpha\,t \\
+		z(t)&=H-v_0\sin\alpha\,t-\frac{1}{2}gt^2
+	\end{align*}
+	Le rapport du second terme de $x(t)$ au premier est de l'ordre de $gt_i/(3v_0)\sim4\times10^{-3}$ : on peut le négliger.
+
+	\item La trajectoire rectiligne serait $x=0$, $y=v_0\cos\alpha\,t$ et $z=H-v_0\sin\alpha\,t$. Le mouvement selon $y$ n'étant pas modifié, la balle arrive à $y=d$ au même instant $t_i=d/(v_0\cos\alpha)=1{,}06$~s, et l'écart vaut :
+	\begin{align*}
+		\boxed{\vec{\varepsilon}=\Omega_Tv_0\sin(\lambda+\alpha)\,t_i^2\,\vec{e}_x-\frac{1}{2}gt_i^2\,\vec{e}_z}
+	\end{align*}
+	Numériquement :
+	\begin{align*}
+		\vec{\varepsilon}\simeq5{,}5~\text{cm}\;\vec{e}_x-5{,}5~\text{m}\;\vec{e}_z
+	\end{align*}
+	La balle est déviée de 5~cm vers l'est, c'est-à-dire vers la droite du tireur, comme toujours dans l'hémisphère nord. Cette déviation est petite devant la taille d'une cible humaine, et cent fois plus faible que la chute de 5,5~m due au poids. Le coéquipier a donc tort de s'inquiéter de la force de Coriolis : c'est la pesanteur qu'il faut compenser, en visant nettement au-dessus de la cible.
+
+	\textit{Remarque pour le colleur : comme $\alpha\ll\lambda$, la déviation se réduit à $\varepsilon_x\simeq\Omega_T\sin\lambda\,d^2/v_0$. Seule la composante verticale de $\vec{\Omega}_T$ dévie un mouvement horizontal : la déviation est maximale aux pôles et nulle à l'équateur. En réalité, les frottements de l'air ralentissent fortement la balle : le temps de vol est plus long, ce qui augmente à la fois la chute et la déviation, mais la conclusion reste la même. Les tireurs d'élite tiennent compte de la force de Coriolis seulement au-delà de 1~km environ.}
+
+\end{enumerate}
+
+\end{correction}

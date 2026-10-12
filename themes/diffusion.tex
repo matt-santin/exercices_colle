@@ -1,0 +1,506 @@
+\chapter{Diffusion thermique}
+
+\newpage
+
+\section{Petits et gros mammifères}
+
+Les mammifères sont des animaux à sang chaud : leur métabolisme dégage une puissance thermique, supposée uniformément répartie dans le corps avec une densité volumique $p_{th}$. Grâce à cette production et à la circulation sanguine, la température $T_1$ à l'intérieur du corps reste à peu près uniforme et constante. Pour se protéger du froid, les mammifères disposent d'une couche isolante (fourrure ou graisse) autour du corps. On cherche comment l'épaisseur de cette couche dépend de la taille de l'animal.
+
+On modélise un mammifère par une sphère de rayon $R$, à la température uniforme $T_1$, entourée d'une couche isolante d'épaisseur $e$, de masse volumique $\rho$, de capacité thermique massique $c$ et de conductivité thermique $\lambda$. L'air extérieur est à la température $T_0<T_1$. Dans la couche isolante, on note $T(r,t)$ le champ de température et $\vec{j}=j_r(r,t)\,\vec{e}_r$ le vecteur densité de flux thermique, $r$ étant la distance au centre de l'animal.
+
+\begin{enumerate}
+
+	\item Écrire les deux conditions aux limites vérifiées par la température dans la couche isolante.
+
+	\item En faisant un bilan d'énergie sur la coquille comprise entre les sphères concentriques de rayons $r$ et $r+\dif r$ situées dans la couche isolante, montrer la relation suivante :
+	\begin{align*}
+		\frac{1}{r^2}\frac{\partial }{\partial r}\left( r^2j_r\right) =-\rho c\frac{\partial T}{\partial t}
+	\end{align*}
+
+	\item Après avoir rappelé la loi de Fourier, montrer que la température vérifie dans la couche isolante l'équation suivante :
+	\begin{align*}
+		\frac{\partial T}{\partial t}=\frac{\lambda}{\rho c\, r^2}\frac{\partial }{\partial r}\left( r^2\frac{\partial T}{\partial r}\right)
+	\end{align*}
+	Comment s'appelle cette équation ?
+
+	\item On se place en régime permanent. Résoudre cette équation avec les conditions aux limites.
+
+	\item On introduit $\Phi=4\pi r^2j_r(r)$. Que représente cette quantité ? Dépend-elle de $r$ ? Montrer que $\Phi=\frac{4}{3}\pi R^3p_{th}$. En déduire :
+	\begin{align*}
+		\frac{R^2p_{th}}{3}=\frac{\lambda (R+e)}{e}(T_1-T_0)
+	\end{align*}
+
+	\item En déduire le rapport $e/R$ de l'épaisseur de l'isolant sur la taille de l'animal. Pourquoi les gros mammifères résistent-ils mieux au froid ? Que se passe-t-il pour un animal de petite taille ?
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item La surface interne de l'isolant est au contact du corps, et l'on suppose que sa surface externe est à la température de l'air :
+	\begin{align*}
+		T(R,t)=T_1 \qquad\text{et}\qquad T(R+e,t)=T_0
+	\end{align*}
+
+	\item Le système est la coquille comprise entre $r$ et $r+\dif r$, de volume $4\pi r^2\dif r$. Il n'y a pas de production d'énergie dans l'isolant. Pour un solide, $\dif U\simeq\dif H$, et le premier principe entre $t$ et $t+\dif t$ s'écrit :
+	\begin{align*}
+		\rho c\,4\pi r^2\dif r\left[T(r,t+\dif t)-T(r,t)\right]=4\pi r^2j_r(r,t)\dif t-4\pi (r+\dif r)^2j_r(r+\dif r,t)\dif t
+	\end{align*}
+	Le premier terme du membre de droite est la puissance entrant par la sphère de rayon $r$, le second celle sortant par la sphère de rayon $r+\dif r$. Au premier ordre :
+	\begin{align*}
+		\rho c\,r^2\frac{\partial T}{\partial t}=-\frac{\partial}{\partial r}\left(r^2j_r\right) \quad\Rightarrow\quad \boxed{\frac{1}{r^2}\frac{\partial }{\partial r}\left( r^2j_r\right) =-\rho c\frac{\partial T}{\partial t}}
+	\end{align*}
+
+	\item La loi de Fourier s'écrit $\vec{j}=-\lambda\,\vec{\grad}\,T$, soit ici $j_r=-\lambda\dfrac{\partial T}{\partial r}$. En reportant dans la relation précédente :
+	\begin{align*}
+		\boxed{\frac{\partial T}{\partial t}=\frac{\lambda}{\rho c\, r^2}\frac{\partial }{\partial r}\left( r^2\frac{\partial T}{\partial r}\right)}
+	\end{align*}
+	C'est l'équation de la chaleur (ou équation de diffusion thermique) en symétrie sphérique, de diffusivité $D=\lambda/(\rho c)$.
+
+	\item En régime permanent, $\dfrac{\dif}{\dif r}\left(r^2\dfrac{\dif T}{\dif r}\right)=0$, donc $r^2\dfrac{\dif T}{\dif r}=-A$ et $T(r)=\dfrac{A}{r}+B$. Les conditions aux limites donnent :
+	\begin{align*}
+		A=\frac{R(R+e)}{e}(T_1-T_0) \qquad\text{et}\qquad B=T_0-\frac{R}{e}(T_1-T_0)
+	\end{align*}
+	soit :
+	\begin{align*}
+		\boxed{T(r)=T_0+(T_1-T_0)\frac{R}{e}\left(\frac{R+e}{r}-1\right)}
+	\end{align*}
+	On vérifie que $T(R)=T_1$ et $T(R+e)=T_0$.
+
+	\item $\Phi$ est la puissance thermique qui traverse la sphère de rayon $r$, comptée vers l'extérieur. En régime permanent, la relation de la question 2 donne $\dfrac{\dif}{\dif r}\left(r^2j_r\right)=0$ : $\Phi$ ne dépend pas de $r$. C'est la conservation de l'énergie, puisque l'isolant ne produit ni ne stocke d'énergie. Avec $j_r=-\lambda\dfrac{\dif T}{\dif r}=\dfrac{\lambda A}{r^2}$ :
+	\begin{align*}
+		\Phi=4\pi\lambda A=4\pi\lambda\frac{R(R+e)}{e}(T_1-T_0)
+	\end{align*}
+	En régime permanent, toute la puissance produite par le corps, $\frac{4}{3}\pi R^3p_{th}$, sort par la sphère de rayon $R$, donc $\Phi=\frac{4}{3}\pi R^3p_{th}$. En égalant les deux expressions :
+	\begin{align*}
+		\boxed{\frac{R^2p_{th}}{3}=\frac{\lambda (R+e)}{e}(T_1-T_0)}
+	\end{align*}
+
+	\item On écrit $\dfrac{R+e}{e}=1+\dfrac{R}{e}$, d'où :
+	\begin{align*}
+		\boxed{\frac{e}{R}=\frac{1}{\dfrac{R^2}{R_{min}^2}-1}} \qquad\text{avec}\qquad R_{min}=\sqrt{\frac{3\lambda(T_1-T_0)}{p_{th}}}
+	\end{align*}
+	Ce rapport diminue quand la taille de l'animal augmente. Pour $R\gg R_{min}$, on a même $e\simeq R_{min}^2/R$ : l'épaisseur nécessaire diminue elle-même. La puissance produite est proportionnelle au volume ($R^3$) alors que les pertes se font à travers la surface ($R^2$) : un gros animal produit beaucoup pour une surface d'échange relativement faible.
+
+	Pour $R\leqslant R_{min}$, aucune épaisseur ne convient : même avec $e\to\infty$, la puissance perdue tend vers $4\pi\lambda R(T_1-T_0)$, qui reste supérieure à la puissance produite. Un petit animal doit donc avoir une production volumique $p_{th}$ plus élevée.
+
+	\textit{Remarque pour le colleur : pour un humain, $p_{th}\simeq 100~\text{W}/70~\text{L}\simeq1{,}4\times10^{3}$~W$\cdot$m$^{-3}$. Avec $\lambda\simeq0{,}04$~W$\cdot$m$^{-1}\cdot$K$^{-1}$ (fourrure, air immobile) et $T_1-T_0=30$~K, on trouve $R_{min}\simeq5$~cm. C'est la taille d'une souris ou d'une musaraigne : ces animaux ont effectivement un métabolisme par unité de masse bien plus élevé que les gros mammifères (loi de Kleiber, puissance métabolique proportionnelle à $M^{3/4}$), et la musaraigne doit manger à peu près son poids chaque jour.}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Ailettes de refroidissement}
+
+Certains moteurs (motos, tondeuses, moteurs d'avions légers) sont refroidis par air : des ailettes métalliques fixées sur le moteur évacuent la chaleur vers l'air ambiant. Ce système est beaucoup plus simple qu'un refroidissement par liquide, mais la puissance évacuée est plus faible, ce qui limite la puissance du moteur.
+
+On modélise une ailette par un cylindre plein d'axe $Ox$, de longueur $L$ et de rayon $R$, constitué d'un matériau de conductivité thermique $\lambda$ et entouré d'air à la température $T_e$. En $x=0$, l'ailette est en contact avec le moteur, à la température $T_0$. On suppose que la température dans l'ailette ne dépend que de $x$.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.7\textwidth]{diffusion_ailette.pdf}
+\end{figure}
+
+Un élément de la surface de l'ailette, d'aire $\dif\sigma$ et de température $T$, cède à l'air la puissance thermique $\dif P=h(T-T_e)\dif\sigma$ (loi de Newton), où $h$ est le coefficient de transfert conducto-convectif.
+
+\begin{enumerate}
+
+	\item En faisant un bilan d'énergie, établir en régime permanent l'équation différentielle vérifiée par la température $T(x)$. On fera apparaître une longueur caractéristique $\delta$.
+
+	\item Donner l'expression de $T(x)$ si l'on suppose $L$ suffisamment grande. Devant quelle longueur ?
+
+	\item Déterminer la puissance thermique évacuée par l'ailette. La comparer à celle qu'évacuerait, sans ailette, la surface $\pi R^2$ du moteur sur laquelle elle est fixée.
+
+	\item Que devient cette étude si $L$ n'est pas suffisamment grande ? Écrire la nouvelle condition aux limites en $x=L$ et en déduire $T(x)$.
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item On fait un bilan sur la tranche d'ailette comprise entre $x$ et $x+\dif x$. En régime permanent, la puissance qui y entre par conduction est égale à celle qui en sort, par conduction en $x+\dif x$ et par la surface latérale $2\pi R\dif x$ :
+	\begin{align*}
+		\pi R^2j(x)=\pi R^2j(x+\dif x)+h\left(T(x)-T_e\right)2\pi R\dif x \quad\Rightarrow\quad -\pi R^2\frac{\dif j}{\dif x}=2\pi Rh\left(T-T_e\right)
+	\end{align*}
+	Avec la loi de Fourier $j=-\lambda\dfrac{\dif T}{\dif x}$ :
+	\begin{align*}
+		\boxed{\frac{\dif^2 T}{\dif x^2}-\frac{T-T_e}{\delta^2}=0} \qquad\text{avec}\qquad \delta=\sqrt{\frac{\lambda R}{2h}}
+	\end{align*}
+
+	\item Les solutions s'écrivent $T(x)=T_e+A\,e^{x/\delta}+B\,e^{-x/\delta}$. Si $L\gg\delta$, l'ailette se comporte comme une ailette semi-infinie : la température ne peut pas croître exponentiellement avec $x$, donc $A=0$. La condition $T(0)=T_0$ impose $B=T_0-T_e$ :
+	\begin{align*}
+		\boxed{T(x)=T_e+(T_0-T_e)\,e^{-x/\delta}}
+	\end{align*}
+
+	\item La puissance évacuée par la surface latérale entre $x$ et $x+\dif x$ est $\dif P=h\left(T(x)-T_e\right)2\pi R\dif x$. Au total :
+	\begin{align*}
+		P=\int_0^{\infty}2\pi Rh(T_0-T_e)e^{-x/\delta}\dif x=2\pi Rh\delta(T_0-T_e) \quad\Rightarrow\quad \boxed{P=\pi R\sqrt{2h\lambda R}\,(T_0-T_e)}
+	\end{align*}
+	Plus rapidement, toute la puissance qui entre dans l'ailette en $x=0$ finit par en sortir : $P=-\lambda\pi R^2\dfrac{\dif T}{\dif x}(0)=\dfrac{\lambda\pi R^2}{\delta}(T_0-T_e)$, ce qui donne le même résultat.
+
+	Sans ailette, la surface $\pi R^2$ à la température $T_0$ évacuerait $P_0=h\pi R^2(T_0-T_e)$. Le gain vaut :
+	\begin{align*}
+		\frac{P}{P_0}=\frac{\lambda}{h\delta}=\sqrt{\frac{2\lambda}{hR}}
+	\end{align*}
+	L'ailette est d'autant plus efficace que son matériau est bon conducteur et qu'elle est fine.
+
+	\textit{Remarque pour le colleur : pour une ailette en aluminium ($\lambda\simeq200$~W$\cdot$m$^{-1}\cdot$K$^{-1}$) de rayon $R=2$~mm, dans de l'air avec $h\simeq25$~W$\cdot$m$^{-2}\cdot$K$^{-1}$, on trouve $\delta\simeq9$~cm et $P/P_0\simeq90$. La longueur $\delta$ est du même ordre que celle des ailettes réelles : l'hypothèse $L\gg\delta$ n'est pas vérifiée en pratique, d'où la dernière question.}
+
+	\item La solution générale reste valable, mais on ne peut plus imposer $A=0$. En $x=L$, la puissance qui arrive par conduction à travers la section $\pi R^2$ est cédée à l'air par la face d'extrémité, selon la loi de Newton :
+	\begin{align*}
+		-\lambda\pi R^2\frac{\dif T}{\dif x}(L)=h\pi R^2\left(T(L)-T_e\right)
+	\end{align*}
+	Les calculs sont plus simples en écrivant la solution sous la forme $T(x)=T_e+a\,\mathrm{ch}\left(\frac{L-x}{\delta}\right)+b\,\mathrm{sh}\left(\frac{L-x}{\delta}\right)$. On a alors $T(L)-T_e=a$ et $\frac{\dif T}{\dif x}(L)=-\frac{b}{\delta}$, donc la condition en $x=L$ donne $b=\gamma a$ avec $\gamma=\dfrac{h\delta}{\lambda}$. La condition $T(0)=T_0$ fixe $a$ :
+	\begin{align*}
+		\boxed{T(x)=T_e+(T_0-T_e)\,\frac{\mathrm{ch}\left(\frac{L-x}{\delta}\right)+\gamma\,\mathrm{sh}\left(\frac{L-x}{\delta}\right)}{\mathrm{ch}\left(\frac{L}{\delta}\right)+\gamma\,\mathrm{sh}\left(\frac{L}{\delta}\right)}}
+	\end{align*}
+	La puissance évacuée vaut alors :
+	\begin{align*}
+		P=-\lambda\pi R^2\frac{\dif T}{\dif x}(0)=\frac{\lambda\pi R^2}{\delta}(T_0-T_e)\,\frac{\mathrm{sh}\left(\frac{L}{\delta}\right)+\gamma\,\mathrm{ch}\left(\frac{L}{\delta}\right)}{\mathrm{ch}\left(\frac{L}{\delta}\right)+\gamma\,\mathrm{sh}\left(\frac{L}{\delta}\right)}
+	\end{align*}
+	Pour $L\gg\delta$, la fraction tend vers 1 et on retrouve le résultat de la question 3.
+
+	\textit{Remarque pour le colleur : avec les valeurs de la remarque précédente, $\gamma=\sqrt{hR/(2\lambda)}\simeq10^{-2}$. La face d'extrémité évacue très peu, et on peut la supposer adiabatique ($\gamma=0$) : $P=P_\infty\,\mathrm{th}(L/\delta)$. Pour $L=2\delta$, l'ailette évacue déjà 96~\% de la puissance d'une ailette infinie : il est inutile de la faire plus longue.}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Lac gelé}
+
+On s'intéresse à la formation de glace à la surface d'un lac, et plus particulièrement à l'évolution au cours du temps de l'épaisseur de glace $\xi(t)$. L'axe $Oz$ est vertical, orienté vers le bas, et la surface du lac se situe en $z=0$. À $t=0$, le lac est encore libre de glace : $\xi(0)=0$. L'atmosphère est à la température constante $T_A=263$~K et l'eau située sous la glace est à la température de fusion $T_F=273$~K.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.4\textwidth]{diffusion_lac.pdf}
+\end{figure}
+
+Lors de la formation de la glace à l'interface $z=\xi(t)$, l'énergie libérée par la solidification de l'eau est évacuée à travers la glace jusqu'à l'atmosphère. On néglige la capacité thermique de la glace, ce qui revient à se placer en régime quasi stationnaire dans la glace.
+
+Les échanges thermiques entre la surface de la glace et l'atmosphère sont modélisés par la loi de Newton :
+\begin{align*}
+	\vec{j}_a=-h\left(T_0(t)-T_A\right)\vec{e}_z
+\end{align*}
+où $\vec{j}_a$ est la densité de flux thermique cédée par la glace à l'atmosphère, $T_0(t)$ la température de la glace en $z=0$ et $h=42$~W$\cdot$m$^{-2}\cdot$K$^{-1}$. La surface du lac n'est donc pas instantanément à la température de l'atmosphère.
+
+\textit{Données :} masse volumique de la glace $\rho_g=917$~kg$\cdot$m$^{-3}$, conductivité thermique de la glace $\lambda=2{,}1$~W$\cdot$m$^{-1}\cdot$K$^{-1}$, chaleur latente massique de fusion de l'eau $l_f=335$~kJ$\cdot$kg$^{-1}$.
+
+\begin{enumerate}
+
+	\item Donner le profil de température $T(z,t)$ dans la glace en fonction de $T_0(t)$, $T_F$, $\xi(t)$ et $z$.
+
+	\item En déduire la température de surface $T_0(t)$ en fonction de l'épaisseur de glace $\xi(t)$ et de $h$, $T_A$, $T_F$ et $\lambda$.
+
+	\item En faisant un bilan d'énergie sur le front de solidification en $z=\xi(t)$, établir une relation entre $\xi(t)$ et $\dot{\xi}(t)$. En déduire l'équation différentielle suivante :
+	\begin{align*}
+		\left( 1+\frac{\xi(t)}{l_0}\right) \dot{\xi}(t)=v_0
+	\end{align*}
+	Préciser l'expression de $l_0$ et de $v_0$.
+
+	\item Calculer $l_0$ et $v_0$. En déduire un temps caractéristique $\tau_0$, dont on donnera aussi la valeur.
+
+	\item Déterminer l'évolution de $\xi(t)$ puis celle de $T_0(t)$, et donner l'allure de leurs courbes. Combien de temps faut-il pour que 5~cm de glace se forment ?
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Dans la glace, l'équation de la chaleur s'écrit $\rho_gc_g\dfrac{\partial T}{\partial t}=\lambda\dfrac{\partial^2 T}{\partial z^2}$. Si l'on néglige $c_g$, il reste $\dfrac{\partial^2 T}{\partial z^2}=0$ : à chaque instant, le profil est affine, comme en régime permanent. Avec $T(0,t)=T_0(t)$ et $T(\xi,t)=T_F$ :
+	\begin{align*}
+		\boxed{T(z,t)=T_0(t)+\left(T_F-T_0(t)\right)\frac{z}{\xi(t)}}
+	\end{align*}
+
+	\item La densité de flux thermique dans la glace est uniforme :
+	\begin{align*}
+		\vec{j}_g=-\lambda\frac{\partial T}{\partial z}\vec{e}_z=-\frac{\lambda}{\xi}\left(T_F-T_0\right)\vec{e}_z
+	\end{align*}
+	Elle est dirigée vers le haut, puisque $T_F>T_0$. La surface n'ayant pas de capacité thermique, le flux qui arrive en $z=0$ par conduction est intégralement cédé à l'atmosphère, $\vec{j}_g(0,t)=\vec{j}_a$ :
+	\begin{align*}
+		\frac{\lambda}{\xi}\left(T_F-T_0\right)=h\left(T_0-T_A\right) \quad\Rightarrow\quad \boxed{T_0(t)=\frac{T_F+\frac{h\xi(t)}{\lambda}T_A}{1+\frac{h\xi(t)}{\lambda}}}
+	\end{align*}
+	On retrouve $T_0=T_F$ pour $\xi=0$ et $T_0\to T_A$ quand $\xi\to\infty$.
+
+	\item Entre $t$ et $t+\dif t$, une couche d'eau d'épaisseur $\dif\xi=\dot{\xi}\dif t$ et de surface $S$ se solidifie. Elle libère l'énergie $l_f\rho_gS\dot{\xi}\dif t$. L'eau liquide étant uniformément à $T_F$, aucun flux ne vient d'en dessous : cette énergie est entièrement évacuée vers le haut par conduction dans la glace, soit $\frac{\lambda}{\xi}(T_F-T_0)S\dif t$. Donc :
+	\begin{align*}
+		\rho_gl_f\dot{\xi}=\frac{\lambda}{\xi}\left(T_F-T_0\right)
+	\end{align*}
+	D'après la question précédente, $T_F-T_0=\dfrac{\frac{h\xi}{\lambda}(T_F-T_A)}{1+\frac{h\xi}{\lambda}}$, d'où :
+	\begin{align*}
+		\rho_gl_f\dot{\xi}=\frac{h(T_F-T_A)}{1+\frac{h\xi}{\lambda}} \quad\Rightarrow\quad \boxed{\left( 1+\frac{\xi(t)}{l_0}\right) \dot{\xi}(t)=v_0}
+	\end{align*}
+	avec :
+	\begin{align*}
+		\boxed{l_0=\frac{\lambda}{h}} \qquad\text{et}\qquad \boxed{v_0=\frac{h(T_F-T_A)}{\rho_gl_f}}
+	\end{align*}
+	$v_0=\dot{\xi}(0)$ est la vitesse initiale du front de glace.
+
+	\textit{Remarque pour le colleur : on peut faire le raisonnement en résistances thermiques. Par unité de surface, l'échange avec l'air a une résistance $1/h$ et la glace une résistance $\xi/\lambda$, en série : la densité de flux vaut $(T_F-T_A)/(1/h+\xi/\lambda)$. La longueur $l_0$ est l'épaisseur de glace qui a la même résistance que l'échange de surface.}
+
+	\item Numériquement :
+	\begin{align*}
+		l_0=5{,}0~\text{cm} \qquad v_0=1{,}37\times10^{-6}~\text{m}\cdot\text{s}^{-1}\simeq4{,}9~\text{mm}\cdot\text{h}^{-1}
+	\end{align*}
+	Le temps caractéristique est $\tau_0=l_0/v_0=3{,}7\times10^{4}$~s, soit environ 10~h.
+
+	\item L'équation s'écrit $\dfrac{\dif}{\dif t}\left(\xi+\dfrac{\xi^2}{2l_0}\right)=v_0$. Avec $\xi(0)=0$, on obtient $\xi+\dfrac{\xi^2}{2l_0}=v_0t$, soit $\left(1+\dfrac{\xi}{l_0}\right)^2=1+\dfrac{2t}{\tau_0}$. En gardant la racine positive :
+	\begin{align*}
+		\boxed{\xi(t) = l_0\left( \sqrt{1+\frac{2t}{\tau_0}}-1\right)} \qquad\text{et}\qquad \boxed{T_0(t)=T_A+\frac{T_F-T_A}{\sqrt{1+\frac{2t}{\tau_0}}}}
+	\end{align*}
+	Pour $t\ll\tau_0$, $\xi\simeq v_0t$ : la croissance est linéaire, limitée par l'échange en surface, et $T_0\simeq T_F$. Pour $t\gg\tau_0$, $\xi\simeq\sqrt{2l_0v_0t}=\sqrt{\dfrac{2\lambda(T_F-T_A)}{\rho_gl_f}t}$ : la croissance est en $\sqrt{t}$, limitée par la conduction dans la glace, et ne dépend plus de $h$. La température de surface décroît de $T_F$ vers $T_A$ en $1/\sqrt{t}$.
+
+	On a $\xi=5~\text{cm}=l_0$ pour $\sqrt{1+2t/\tau_0}=2$, soit $t=\frac{3}{2}\tau_0\simeq5{,}5\times10^{4}$~s, environ 15~h. À la vitesse constante $v_0$, il aurait fallu $\tau_0\simeq10$~h : la glace déjà formée ralentit sa propre croissance.
+
+	\textit{Remarque pour le colleur : l'hypothèse $c_g\simeq0$ se justifie en comparant la chaleur sensible stockée dans la glace à la chaleur latente. Avec $c_g=2{,}1$~kJ$\cdot$kg$^{-1}\cdot$K$^{-1}$, le nombre de Stefan vaut $c_g(T_F-T_A)/l_f\simeq0{,}06\ll1$. De manière équivalente, le temps de diffusion à travers 5~cm de glace, $\xi^2\rho_gc_g/\lambda\simeq2\times10^{3}$~s, est très inférieur à $\tau_0$. On peut poser la question à un bon élève en lui donnant $c_g$.}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Transfert thermique et entropie}
+
+On considère une barre métallique de section $S$ et de longueur $L$, de résistivité électrique $\rho$, de conductivité thermique $\lambda$, de masse volumique $\mu$ et de capacité thermique massique $c$. Ses extrémités $x=0$ et $x=L$ sont maintenues aux températures $T_1$ et $T_2$ par des thermostats, et sa surface latérale est calorifugée. La barre est parcourue par un courant d'intensité $I$ constante, uniformément réparti sur sa section. On note $T(x,t)$ la température à l'abscisse $x$ le long de la barre.
+
+\begin{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item Montrer que la puissance volumique dissipée par effet Joule dans la barre vaut $p_{vol}=\rho I^2/S^2$.
+
+	\item Établir l'équation vérifiée par $T(x,t)$, puis montrer qu'en régime permanent :
+	\begin{align*}
+		\lambda\frac{\dif^2 T}{\dif x^2} = - p_{vol}
+	\end{align*}
+
+	\item Déterminer le profil de température $T(x)$ dans la barre en régime permanent.
+
+	\item À quelle condition sur $I$ la température passe-t-elle par un maximum à l'intérieur de la barre ?
+
+	\item Calculer l'entropie $s_c$ créée par unité de temps et de volume dans la barre à l'abscisse $x$. Commenter.
+
+\end{enumerate}
+
+\item On coupe désormais le courant ($I=0$). Une fois le nouveau régime permanent établi, on isole totalement la barre des thermostats.
+
+\begin{enumerate}
+
+	\item Donner le profil de température juste avant que les thermostats soient retirés.
+
+	\item Une fois les thermostats retirés, quelle est la température finale $T_\infty$ de la barre ? En déduire sa variation d'entropie.
+
+\end{enumerate}
+
+\end{enumerate}
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item La densité de courant est uniforme, $j_e=I/S$, et la loi d'Ohm locale donne $E=\rho j_e$. La puissance volumique cédée par le champ aux porteurs de charge vaut :
+	\begin{align*}
+		p_{vol}=\vec{j}_e\cdot\vec{E}=\rho j_e^2=\frac{\rho I^2}{S^2}
+	\end{align*}
+	On peut aussi diviser la puissance $R_eI^2$, avec $R_e=\rho L/S$, par le volume $SL$ de la barre.
+
+	\item Bilan d'énergie sur la tranche comprise entre $x$ et $x+\dif x$, de volume $S\dif x$, entre $t$ et $t+\dif t$ :
+	\begin{align*}
+		\mu cS\dif x\left[T(x,t+\dif t)-T(x,t)\right]=Sj(x,t)\dif t-Sj(x+\dif x,t)\dif t+p_{vol}S\dif x\dif t
+	\end{align*}
+	Avec la loi de Fourier $j=-\lambda\dfrac{\partial T}{\partial x}$ :
+	\begin{align*}
+		\mu c\frac{\partial T}{\partial t}=\lambda\frac{\partial^2 T}{\partial x^2}+p_{vol}
+	\end{align*}
+	En régime permanent, $\boxed{\lambda\dfrac{\dif^2 T}{\dif x^2}=-p_{vol}}$.
+
+	\item En intégrant deux fois, $T(x)=-\dfrac{p_{vol}}{2\lambda}x^2+Ax+B$. Avec $T(0)=T_1$ et $T(L)=T_2$ :
+	\begin{align*}
+		\boxed{T(x) = \frac{p_{vol}}{2\lambda}x(L-x)+\frac{T_2-T_1}{L}x+T_1}
+	\end{align*}
+	C'est la superposition du profil affine sans courant et d'une parabole due à l'effet Joule.
+
+	\item $T''<0$ : un extremum est forcément un maximum. La dérivée s'annule en :
+	\begin{align*}
+		T'(x)=\frac{p_{vol}}{2\lambda}(L-2x)+\frac{T_2-T_1}{L}=0 \quad\Rightarrow\quad x_m=\frac{L}{2}+\frac{\lambda(T_2-T_1)}{p_{vol}L}
+	\end{align*}
+	Le maximum est à l'intérieur de la barre si $0<x_m<L$, c'est-à-dire si $|T_2-T_1|<\dfrac{p_{vol}L^2}{2\lambda}$, soit :
+	\begin{align*}
+		\boxed{I^2>\frac{2\lambda S^2|T_2-T_1|}{\rho L^2}}
+	\end{align*}
+	La chaleur produite sort alors par les deux extrémités, y compris par la plus chaude. Le cas limite correspond à une tangente horizontale à l'extrémité la plus chaude, qui ne reçoit alors plus aucun flux.
+
+	\item On fait un bilan d'entropie sur la tranche $[x,x+\dif x]$ pendant $\dif t$. L'entropie échangée à travers une section d'abscisse $x$ vaut $\dfrac{\delta Q}{T}=\dfrac{j(x)S\dif t}{T(x)}$. Le travail électrique n'apporte pas d'entropie. En régime permanent, l'entropie de la tranche est constante :
+	\begin{align*}
+		0=\frac{j(x)}{T(x)}S\dif t-\frac{j(x+\dif x)}{T(x+\dif x)}S\dif t+s_cS\dif x\dif t \quad\Rightarrow\quad s_c=\frac{\dif}{\dif x}\left(\frac{j}{T}\right)=-\lambda\frac{\dif}{\dif x}\left(\frac{1}{T}\frac{\dif T}{\dif x}\right)
+	\end{align*}
+	En développant et en utilisant $\lambda T''=-p_{vol}$ :
+	\begin{align*}
+		\boxed{s_c=\frac{\rho I^2}{S^2T}+\frac{\lambda}{T^2}\left(\frac{\dif T}{\dif x}\right)^2}
+	\end{align*}
+	Les deux termes sont positifs, conformément au second principe. Le premier traduit l'irréversibilité de l'effet Joule, le second celle de la conduction thermique. Même sans courant, il y a création d'entropie dès que $T_1\neq T_2$.
+
+\end{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item Avec $p_{vol}=0$ dans le résultat de la question 1c :
+	\begin{align*}
+		T(x)=T_1+\frac{T_2-T_1}{L}x
+	\end{align*}
+
+	\item La barre isolée ne reçoit ni travail ni chaleur : son énergie interne se conserve. Pour un solide de capacité thermique constante, en notant $M=\mu SL$ sa masse :
+	\begin{align*}
+		McT_\infty=\int_0^L\mu cS\,T(x)\dif x=Mc\,\frac{T_1+T_2}{2} \quad\Rightarrow\quad \boxed{T_\infty=\frac{T_1+T_2}{2}}
+	\end{align*}
+	La tranche $[x,x+\dif x]$ passe de $T(x)$ à $T_\infty$, sa variation d'entropie vaut $\mu cS\dif x\ln\dfrac{T_\infty}{T(x)}$. Pour toute la barre, en changeant de variable avec $\dif x=\dfrac{L}{T_2-T_1}\dif T$ :
+	\begin{align*}
+		\Delta S=\mu cS\int_0^L\ln\frac{T_\infty}{T(x)}\dif x=\frac{Mc}{T_2-T_1}\int_{T_1}^{T_2}\ln\frac{T_\infty}{T}\dif T
+	\end{align*}
+	Avec une primitive de $\ln T$, $T\ln T-T$ :
+	\begin{align*}
+		\boxed{\Delta S = Mc \left( 1 + \frac{T_1}{T_2-T_1}\ln\frac{2T_1}{T_1+T_2} - \frac{T_2}{T_2-T_1}\ln\frac{2T_2}{T_1+T_2}\right)}
+	\end{align*}
+	La barre étant isolée, $\Delta S$ est l'entropie créée, positive : l'homogénéisation de la température est irréversible. Pour $T_1=300$~K et $T_2=400$~K, on trouve $\Delta S\simeq3{,}4\times10^{-3}\,Mc$.
+
+	\textit{Remarque pour le colleur : un développement limité pour $|T_2-T_1|\ll T_\infty$ donne $\Delta S\simeq Mc\,\dfrac{(T_2-T_1)^2}{24\,T_\infty^2}$, qui montre directement que $\Delta S>0$ et qui est déjà excellent dans l'exemple ci-dessus. Pour un élève à l'aise, on peut supprimer les questions 1a et 1b et lui demander directement le profil de température.}
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Température dans une planète naine}
+
+On étudie le profil de température à l'intérieur d'une planète naine sphérique de rayon $R=100$~km. Elle est entièrement constituée d'une roche proche du granit, de conductivité thermique $\lambda = 3{,}5$~W$\cdot$m$^{-1}\cdot$K$^{-1}$, de masse volumique $\mu=2{,}7\times10^{3}$~kg$\cdot$m$^{-3}$ et de capacité thermique massique $c_p=790$~J$\cdot$K$^{-1}\cdot$kg$^{-1}$. L'astre est géologiquement inactif : il est entièrement solide et aucune convection n'a lieu en son sein.
+
+La roche contient du thorium 232 ($^{232}$Th, masse molaire $M=232$~g$\cdot$mol$^{-1}$), uniformément réparti, à raison de 10 parties par million (ppm) en masse. La désintégration d'un noyau de thorium, suivie de celles de ses descendants, libère au total l'énergie $\varepsilon=5{,}6\times10^{-12}$~J. La demi-vie du thorium 232 vaut $T_{1/2}=1{,}4\times10^{10}$~ans. On néglige le rayonnement reçu du Soleil.
+
+\begin{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item Estimer la puissance volumique $P_r$ dégagée par la désintégration du thorium.
+
+	\item Le problème est à symétrie sphérique. En effectuant un bilan d'énergie sur la couche de roche comprise entre les rayons $r$ et $r+\dif r$, montrer que la température vérifie l'équation suivante :
+	\begin{align*}
+		\frac{\partial T}{\partial t}=\frac{D}{r^2}\frac{\partial }{\partial r}\left( r^2\frac{\partial T}{\partial r}\right)  + \kappa
+	\end{align*}
+	Préciser l'expression de $\kappa$ et de $D$.
+
+	\item Montrer que l'on peut se placer en régime quasi stationnaire, $T(r,t)\simeq T(r)$, c'est-à-dire que l'activité radioactive varie très lentement devant le temps caractéristique $\tau_d$ de la diffusion thermique.
+
+	\item Exprimer le champ de température $T(r)$ à l'aide de deux constantes d'intégration. Montrer que l'une d'entre elles est nécessairement nulle.
+
+\end{enumerate}
+
+\item La planète perd de l'énergie par rayonnement depuis sa surface. La puissance rayonnée par unité de surface suit la loi de Stefan-Boltzmann, $\phi=\sigma T_s^4$, où $\sigma=5{,}67\times10^{-8}$~W$\cdot$m$^{-2}\cdot$K$^{-4}$ et $T_s$ est la température de surface.
+
+\begin{enumerate}
+
+	\item En utilisant la loi de Stefan-Boltzmann, déterminer la seconde constante d'intégration et donner l'expression de $T(r)$.
+
+	\item Calculer la température au centre de la planète et à sa surface.
+
+\end{enumerate}
+
+\end{enumerate}
+
+\textit{Données :} constante d'Avogadro $N_A=6{,}02\times10^{23}$~mol$^{-1}$ ; en coordonnées sphériques, $\vec{\grad}\,f\cdot \vec{e}_r = \dfrac{\partial f}{\partial r}$.
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item La masse de thorium par unité de volume vaut $10\times10^{-6}\times\mu=27$~g$\cdot$m$^{-3}$, soit $n=\dfrac{27\times10^{-3}}{M}N_A=7{,}0\times10^{22}$ noyaux par m$^3$. Le nombre de désintégrations par unité de temps et de volume est $n\ln2/T_{1/2}$, d'où :
+	\begin{align*}
+		P_r=\frac{\varepsilon\, n\ln2}{T_{1/2}}=6{,}2\times10^{-7}~\text{W}\cdot\text{m}^{-3}
+	\end{align*}
+	Un élève qui estime l'activité par $n/T_{1/2}$, sans le facteur $\ln 2$, trouve $8{,}9\times10^{-7}$~W$\cdot$m$^{-3}$ : c'est acceptable pour une estimation, mais on peut lui demander de retrouver le facteur.
+
+	\item Le système est la couche comprise entre $r$ et $r+\dif r$, de volume $4\pi r^2\dif r$. Avec $\vec{j}=j_r\vec{e}_r$, le premier principe entre $t$ et $t+\dif t$ s'écrit :
+	\begin{align*}
+		\mu c_p4\pi r^2\dif r\left[T(r,t+\dif t)-T(r,t)\right]&=4\pi r^2j_r(r,t)\dif t-4\pi(r+\dif r)^2j_r(r+\dif r,t)\dif t \\
+		&\quad+P_r4\pi r^2\dif r\dif t
+	\end{align*}
+	soit $\mu c_p\dfrac{\partial T}{\partial t}=-\dfrac{1}{r^2}\dfrac{\partial}{\partial r}\left(r^2j_r\right)+P_r$. Avec la loi de Fourier $j_r=-\lambda\dfrac{\partial T}{\partial r}$, on obtient l'équation demandée avec :
+	\begin{align*}
+		\boxed{D=\frac{\lambda}{\mu c_p}} \qquad\text{et}\qquad \boxed{\kappa=\frac{P_r}{\mu c_p}}
+	\end{align*}
+
+	\item Le temps caractéristique de diffusion à l'échelle de la planète est :
+	\begin{align*}
+		\tau_d\simeq\frac{R^2}{D}=\frac{R^2\mu c_p}{\lambda}=6{,}1\times10^{15}~\text{s}\simeq1{,}9\times10^{8}~\text{ans}
+	\end{align*}
+	C'est long, mais très inférieur à la demi-vie $T_{1/2}=1{,}4\times10^{10}$~ans, qui fixe le temps d'évolution de $P_r$. La source varie donc très peu pendant que la température s'ajuste : à chaque instant, le profil est celui du régime permanent associé à la valeur actuelle de $P_r$.
+
+	\item On néglige alors $\partial T/\partial t$ :
+	\begin{align*}
+		\frac{1}{r^2}\frac{\dif }{\dif r}\left( r^2\frac{\dif T}{\dif r}\right) = -\frac{\kappa}{D}=-\frac{P_r}{\lambda}
+	\end{align*}
+	En intégrant une première fois, $r^2\dfrac{\dif T}{\dif r}=-\dfrac{P_r}{3\lambda}r^3+A$, puis :
+	\begin{align*}
+		T(r) = -\frac{P_r}{6\lambda}r^2-\frac{A}{r}+B
+	\end{align*}
+	La température doit rester finie au centre, donc $A=0$. Autre argument : le flux sortant d'une petite sphère de rayon $r$ vaut $4\pi r^2j_r=\frac{4}{3}\pi r^3P_r-4\pi\lambda A$, et doit tendre vers 0 avec le volume de la sphère.
+
+\end{enumerate}
+
+\item
+
+\begin{enumerate}
+
+	\item À la surface, le flux conductif est rayonné vers l'espace : $j_r(R)=-\lambda\dfrac{\dif T}{\dif r}(R)=\sigma T_s^4$. Avec $j_r(R)=\dfrac{P_rR}{3}$, ce qui exprime simplement que toute la puissance produite dans la boule, $\frac{4}{3}\pi R^3P_r$, sort par la surface $4\pi R^2$ :
+	\begin{align*}
+		T_s=\left(\frac{P_rR}{3\sigma}\right)^{1/4} \qquad\text{et}\qquad B=T_s+\frac{P_rR^2}{6\lambda}
+	\end{align*}
+	Finalement :
+	\begin{align*}
+		\boxed{T(r) =\left(\frac{P_rR}{3\sigma}\right)^{1/4}+\frac{P_r}{6\lambda}\left( R^2 - r^2\right)}
+	\end{align*}
+
+	\item Numériquement, $T_s\simeq25$~K et $\dfrac{P_rR^2}{6\lambda}\simeq2{,}9\times10^{2}$~K, d'où $T(0)\simeq3{,}2\times10^{2}$~K.
+
+	Une puissance volumique aussi faible suffit à chauffer le centre à une température supérieure à celle de la fonte de la glace, parce que la chaleur doit traverser 100~km de roche peu conductrice. La surface, elle, est très froide : le rayonnement évacue sans difficulté la faible puissance qui lui parvient.
+
+	\textit{Remarque pour le colleur : en réalité, la température de surface est fixée par le rayonnement solaire (environ 170~K pour Cérès), et la puissance radioactive était plus élevée dans le passé, avec la contribution de l'uranium, du potassium 40 et surtout de l'aluminium 26 au début du système solaire. On peut aussi demander à l'élève de vérifier que l'âge du système solaire, $4{,}6\times10^{9}$~ans, est grand devant $\tau_d$, sans quoi le régime permanent n'aurait pas eu le temps de s'établir.}
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{correction}

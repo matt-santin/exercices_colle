@@ -330,3 +330,172 @@ On supposera que le régime est stationnaire et que l'énergie potentielle de pe
 \end{enumerate}
 
 \end{correction}
+
+\newpage
+
+\section{Compression étagée (d'après Mines-Ponts PSI 2015)}
+
+Une installation de liquéfaction du diazote (procédé Linde) commence par comprimer le diazote gazeux de $p_E=1{,}0$~bar à $p_A=100$~bar. Le diazote entre dans le dispositif à la température $T_E=300$~K et traverse $N$ étages identiques. Chaque étage est constitué d'un compresseur adiabatique $(C)$, suivi d'un réfrigérant isobare $(R)$ à circulation d'eau froide, qui ramène le diazote à la température $T_E$. Le rapport de compression $r=p_{\text{sortie}}/p_{\text{entrée}}$ est le même pour les $N$ compresseurs, si bien que $p_A=r^Np_E$.
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[width=0.95\linewidth]{thermo_compression_etagee.pdf}
+\end{figure}
+
+Pour des raisons techniques, la température du diazote ne doit dépasser en aucun point $T_{max}=400$~K.
+
+Le diazote est assimilé à un gaz parfait diatomique de coefficient $\gamma=1{,}4$ et de masse molaire $M=28{,}0$~g$\cdot$mol$^{-1}$. On néglige les variations d'énergie cinétique et potentielle, et l'on raisonne par unité de masse de diazote. La compression est supposée adiabatique et réversible dans chaque compresseur.
+
+\begin{enumerate}
+
+	\item Quelle serait la température de sortie $T_1$ si la compression de $p_E$ à $p_A$ était réalisée par un seul compresseur ? En déduire l'intérêt d'utiliser plusieurs compresseurs séparés par des réfrigérants.
+
+	\item Combien d'étages faut-il au minimum pour respecter la contrainte de température ? Donner alors la valeur de $r$ et la température en sortie de chaque compresseur.
+
+	\item Calculer le travail massique $w_{\text{rév}}$ fourni au diazote par l'ensemble des compresseurs. Le comparer au travail que nécessiterait un compresseur unique, puis à celui d'une compression isotherme à $T_E$. Commenter.
+
+	\item Le débit massique de diazote est $D_m=0{,}10$~kg$\cdot$s$^{-1}$. Chaque réfrigérant est un échangeur thermique isolé de l'extérieur, dans lequel l'eau entre à $T_0=280$~K et ne doit pas ressortir à plus de $T_0'=290$~K. Quel débit massique d'eau $D_e$ faut-il au minimum dans chaque réfrigérant ? Comparer la puissance thermique totale évacuée par les réfrigérants à la puissance mécanique fournie au diazote par les compresseurs. Commenter.
+
+\end{enumerate}
+
+\textit{Données :} $R=8{,}31$~J$\cdot$K$^{-1}\cdot$mol$^{-1}$, capacité thermique massique de l'eau liquide $c_e=4{,}18\times10^{3}$~J$\cdot$K$^{-1}\cdot$kg$^{-1}$.
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Pour un gaz parfait subissant une transformation adiabatique réversible, la loi de Laplace s'écrit $p^{1-\gamma}T^{\gamma}=\text{cte}$, d'où :
+	\begin{align*}
+		\boxed{T_1=T_E\left(\frac{p_A}{p_E}\right)^{\frac{\gamma-1}{\gamma}}}=1{,}12\times10^{3}~\text{K}
+	\end{align*}
+	C'est près de trois fois $T_{max}$. En fractionnant la compression et en refroidissant le gaz après chaque étage, on limite l'échauffement dans chaque compresseur. On verra à la question 3 que l'on économise aussi du travail.
+
+	\item Dans chaque compresseur, le gaz passe de $T_E$ à $T_Er^{\frac{\gamma-1}{\gamma}}$. La contrainte $T_Er^{\frac{\gamma-1}{\gamma}}\leqslant T_{max}$ s'écrit $r\leqslant\left(T_{max}/T_E\right)^{\frac{\gamma}{\gamma-1}}=2{,}74$. Avec $r=(p_A/p_E)^{1/N}$, en prenant le logarithme :
+	\begin{align*}
+		\boxed{N\geqslant\frac{\gamma-1}{\gamma}\,\frac{\ln(p_A/p_E)}{\ln(T_{max}/T_E)}}=4{,}57
+	\end{align*}
+	Il faut donc $N=5$ étages, avec $r=100^{1/5}=2{,}51$ et une température de $390$~K en sortie de chaque compresseur.
+
+	\item Le premier principe industriel appliqué à un compresseur adiabatique donne $w=\Delta h=c_p\Delta T$, avec, d'après la relation de Mayer :
+	\begin{align*}
+		c_p=\frac{\gamma R}{(\gamma-1)M}=1{,}04\times10^{3}~\text{J}\cdot\text{K}^{-1}\cdot\text{kg}^{-1}
+	\end{align*}
+	Les réfrigérants ne reçoivent aucun travail. Les $N$ compresseurs étant identiques :
+	\begin{align*}
+		\boxed{w_{\text{rév}}=Nc_pT_E\left(r^{\frac{\gamma-1}{\gamma}}-1\right)}=4{,}69\times10^{5}~\text{J}\cdot\text{kg}^{-1}
+	\end{align*}
+	Un compresseur unique demanderait $c_p(T_1-T_E)=8{,}50\times10^{5}$~J$\cdot$kg$^{-1}$. Pour une compression isotherme réversible, $\Delta h=0$ (seconde loi de Joule), donc $w=-q=-T_E\Delta s$, avec $\Delta s=-\frac{R}{M}\ln\frac{p_A}{p_E}$ :
+	\begin{align*}
+		w_{iso}=\frac{RT_E}{M}\ln\frac{p_A}{p_E}=4{,}10\times10^{5}~\text{J}\cdot\text{kg}^{-1}
+	\end{align*}
+	La compression étagée coûte presque deux fois moins de travail que le compresseur unique et se rapproche de la compression isotherme. Pour un système ouvert, $w=\int v\dif p$ dans une transformation réversible : comprimer un gaz froid, donc de faible volume massique, coûte moins de travail. Quand $N\to\infty$, $N\left(r^{\frac{\gamma-1}{\gamma}}-1\right)\to\frac{\gamma-1}{\gamma}\ln\frac{p_A}{p_E}$ et l'on retrouve exactement $w_{iso}$.
+
+	\item Le réfrigérant est un système ouvert à deux entrées et deux sorties, en régime stationnaire, sans partie mobile et isolé de l'extérieur. Le premier principe industriel appliqué à l'ensemble des deux fluides s'écrit :
+	\begin{align*}
+		D_mc_p\left(T_E-T_s\right)+D_ec_e\left(T_0'-T_0\right)=0
+	\end{align*}
+	où $T_s=T_Er^{\frac{\gamma-1}{\gamma}}=390$~K est la température du diazote en sortie de compresseur. La puissance thermique cédée par le diazote à l'eau dans un réfrigérant vaut donc $\mathcal{P}_{th}=D_mc_p(T_s-T_E)=9{,}4$~kW, et l'eau s'échauffe d'autant moins que son débit est grand. Le débit minimal correspond à une sortie à $T_0'$ :
+	\begin{align*}
+		\boxed{D_e=\frac{D_mc_p\left(T_s-T_E\right)}{c_e\left(T_0'-T_0\right)}}=0{,}22~\text{kg}\cdot\text{s}^{-1}
+	\end{align*}
+	soit $1{,}1$~kg$\cdot$s$^{-1}$ d'eau pour les cinq réfrigérants.
+
+	La puissance thermique totale évacuée vaut $N\mathcal{P}_{th}=ND_mc_p(T_s-T_E)=47$~kW. La puissance mécanique fournie par les compresseurs vaut $D_mw_{\text{rév}}=47$~kW : les deux sont exactement égales. En effet, le diazote sort de l'installation à la température $T_E$ à laquelle il y est entré, et l'enthalpie d'un gaz parfait ne dépend que de la température : sur l'ensemble de l'installation, $\Delta h=w_{\text{rév}}+q=0$. Tout le travail fourni par les compresseurs est finalement cédé à l'eau sous forme de chaleur.
+
+	Ce travail n'est pas dépensé en vain pour autant : le diazote sort à $100$~bar, avec une entropie massique diminuée de $\frac{R}{M}\ln\frac{p_A}{p_E}=1{,}37\times10^{3}$~J$\cdot$K$^{-1}\cdot$kg$^{-1}$. Cette entropie est évacuée par l'eau.
+
+	\textit{Remarque pour le colleur : dans le sujet d'origine, l'eau des réfrigérants entre à $280$~K. On peut demander pourquoi l'installation crée de l'entropie alors que les compresseurs sont réversibles : l'échange thermique entre le diazote (de $390$~K à $300$~K) et l'eau (de $280$~K à $290$~K) se fait sous un écart de température fini. On peut aussi faire remarquer que le débit d'eau trouvé est un minimum, et que refroidir le diazote jusqu'à $300$~K avec de l'eau à $280$~K est réalisable quel que soit le sens de circulation des deux fluides.}
+
+\end{enumerate}
+
+\end{correction}
+
+\newpage
+
+\section{Compresseur réel (d'après Mines-Ponts PSI 2015)}
+
+Un compresseur adiabatique, fonctionnant en régime stationnaire, comprime du diazote gazeux de la pression $p_e=1{,}0$~bar à la pression $p_s=rp_e$, avec un rapport de compression $r=10$. Le diazote entre dans le compresseur à la température $T_e=300$~K, qui est aussi celle de l'atmosphère.
+
+Le diazote est assimilé à un gaz parfait diatomique de coefficient $\gamma=1{,}4$ et de masse molaire $M=28{,}0$~g$\cdot$mol$^{-1}$. On néglige les variations d'énergie cinétique et potentielle, et l'on raisonne par unité de masse de diazote.
+
+\begin{enumerate}
+
+	\item On suppose d'abord la compression réversible. Exprimer la température de sortie $T_s$ en fonction de $T_e$, $r$ et $\gamma$, puis la calculer. En déduire le travail massique $w_{\text{rév}}$ fourni au diazote par le compresseur.
+
+	\item Un compresseur réel est irréversible. On définit son rendement isentropique par $\eta=w_{\text{rév}}/w_{\text{réel}}$, où $w_{\text{réel}}$ est le travail massique réellement fourni par le compresseur et $w_{\text{rév}}$ celui d'une compression adiabatique réversible entre les mêmes pressions. En pratique, $\eta=0{,}85$. Déterminer la température de sortie $T_s'$ du compresseur réel en fonction de $T_e$, $r$, $\gamma$ et $\eta$, puis la calculer.
+
+	\item
+	\begin{enumerate}
+		\item Exprimer l'entropie massique $s_c$ créée dans le compresseur réel en fonction de $c_p$, $\eta$, $r$ et $\gamma$. Calculer $s_c$. Que représente-t-elle ?
+		\item En sortie du compresseur réel, le gaz est plus chaud qu'en sortie du compresseur réversible. On imagine récupérer cet excédent d'enthalpie avec un moteur réversible dont la source froide est l'atmosphère, à la température $T_e$. Quel travail récupérerait-on ?
+		\item Le surplus de travail $w_{\text{réel}}-w_{\text{rév}}$ est-il entièrement perdu ? Comparer à $T_es_c$ et conclure.
+	\end{enumerate}
+
+\end{enumerate}
+
+\textit{Données :} $R=8{,}31$~J$\cdot$K$^{-1}\cdot$mol$^{-1}$.
+
+\newpage
+
+\begin{correction}
+
+\begin{enumerate}
+
+	\item Pour un gaz parfait subissant une transformation adiabatique réversible, la loi de Laplace s'écrit $p^{1-\gamma}T^{\gamma}=\text{cte}$, d'où :
+	\begin{align*}
+		\boxed{T_s=T_er^{\frac{\gamma-1}{\gamma}}}=579~\text{K}
+	\end{align*}
+	Le premier principe industriel appliqué au compresseur adiabatique donne $w=\Delta h=c_p\Delta T$, avec, d'après la relation de Mayer :
+	\begin{align*}
+		c_p=\frac{\gamma R}{(\gamma-1)M}=1{,}04\times10^{3}~\text{J}\cdot\text{K}^{-1}\cdot\text{kg}^{-1}
+	\end{align*}
+	On obtient :
+	\begin{align*}
+		\boxed{w_{\text{rév}}=c_pT_e\left(r^{\frac{\gamma-1}{\gamma}}-1\right)}=2{,}90\times10^{5}~\text{J}\cdot\text{kg}^{-1}
+	\end{align*}
+
+	\item Le compresseur réel est toujours adiabatique, donc $w_{\text{réel}}=c_p(T_s'-T_e)$, et $w_{\text{rév}}=c_p(T_s-T_e)$. On a donc $\eta=\dfrac{T_s-T_e}{T_s'-T_e}$ avec $T_s=T_er^{\frac{\gamma-1}{\gamma}}$, d'où :
+	\begin{align*}
+		\boxed{T_s'=T_e\left[1+\frac{r^{\frac{\gamma-1}{\gamma}}-1}{\eta}\right]}=628~\text{K}
+	\end{align*}
+	Le gaz sort plus chaud de $49$~K, et le compresseur réel consomme $w_{\text{réel}}=w_{\text{rév}}/\eta=3{,}41\times10^{5}$~J$\cdot$kg$^{-1}$.
+
+	\textit{Remarque pour le colleur : on peut demander de justifier que $\eta<1$. Le compresseur est adiabatique, il n'échange pas d'entropie : le second principe donne $s_s'-s_e=s_c>0$, alors que $s_s=s_e$ pour la compression réversible. Les deux états de sortie sont à la même pression $rp_e$. À pression fixée, $\dif s=c_p\dif T/T$ : l'entropie croît avec la température, donc $T_s'>T_s$ et $w_{\text{réel}}>w_{\text{rév}}$. Physiquement, les frottements internes dissipent une partie du travail fourni et échauffent le gaz.}
+
+	\item
+	\begin{enumerate}
+		\item Le compresseur étant adiabatique, $s_c=s_s'-s_e$. L'entropie est une fonction d'état : on peut calculer cette variation sur n'importe quel chemin reliant l'état d'entrée $(p_e,T_e)$ à l'état de sortie $(rp_e,T_s')$. On choisit une compression isentropique de $(p_e,T_e)$ à $(rp_e,T_s)$, puis un échauffement isobare de $T_s$ à $T_s'$ :
+		\begin{align*}
+			s_c=0+\int_{T_s}^{T_s'}\frac{c_p\dif T}{T}=c_p\ln\frac{T_s'}{T_s}
+		\end{align*}
+		En posant $x=r^{\frac{\gamma-1}{\gamma}}$, on a $\dfrac{T_s'}{T_s}=\dfrac{1}{x}\left(1+\dfrac{x-1}{\eta}\right)$, d'où :
+		\begin{align*}
+			\boxed{s_c=c_p\ln\left[1+\frac{(1-\eta)\left(r^{\frac{\gamma-1}{\gamma}}-1\right)}{\eta\,r^{\frac{\gamma-1}{\gamma}}}\right]}=84{,}8~\text{J}\cdot\text{K}^{-1}\cdot\text{kg}^{-1}
+		\end{align*}
+		Elle mesure l'irréversibilité de la compression réelle, due aux frottements internes (viscosité, turbulence), et s'annule pour $\eta=1$.
+
+		Attention : l'échauffement isobare est un chemin fictif. Aucune chaleur ne traverse la paroi du compresseur, et l'entropie qui apparaît sur ce chemin est entièrement créée, pas échangée.
+
+		\item On refroidit le gaz de façon isobare de $T_s'$ à $T_s$ en le mettant en contact avec la source chaude d'un moteur réversible. Lorsque la température du gaz diminue de $\dif T$, il cède $\delta q=c_p\dif T$ au moteur, qui fournit le travail $\left(1-\frac{T_e}{T}\right)\delta q$ (rendement de Carnot). Au total :
+		\begin{align*}
+			w_{\text{récup}}=\int_{T_s}^{T_s'}\left(1-\frac{T_e}{T}\right)c_p\dif T=c_p\left(T_s'-T_s\right)-T_ec_p\ln\frac{T_s'}{T_s}
+		\end{align*}
+		Or $c_p(T_s'-T_s)=c_p(T_s'-T_e)-c_p(T_s-T_e)=w_{\text{réel}}-w_{\text{rév}}$, donc :
+		\begin{align*}
+			\boxed{w_{\text{récup}}=\left(w_{\text{réel}}-w_{\text{rév}}\right)-T_es_c}=25{,}7~\text{kJ}\cdot\text{kg}^{-1}
+		\end{align*}
+
+		\item Le surplus $w_{\text{réel}}-w_{\text{rév}}$ n'est pas entièrement perdu : une partie reste stockée dans le gaz sous forme d'enthalpie, à une température supérieure à $T_e$, et pourrait en principe être récupérée. La part définitivement perdue, que même une machine idéale ne pourrait pas récupérer, vaut $T_es_c$. Numériquement :
+		\begin{align*}
+			w_{\text{réel}}-w_{\text{rév}}=51{,}2~\text{kJ}\cdot\text{kg}^{-1} \qquad\text{et}\qquad T_es_c=25{,}4~\text{kJ}\cdot\text{kg}^{-1}
+		\end{align*}
+		Environ la moitié du surplus est donc irrémédiablement perdue. On a toujours $T_es_c<w_{\text{réel}}-w_{\text{rév}}$, puisque $\ln(1+u)<u$ et $T_e<T_s$.
+
+		\textit{Remarque pour le colleur : c'est un cas particulier du théorème de Gouy-Stodola, hors programme. Le travail définitivement perdu vaut $T_0S_c$, où $T_0$ est la température de l'environnement et $S_c$ l'entropie créée. Dans le sujet d'origine, le compresseur est un étage d'une compression étagée (exercice précédent) et l'excédent d'enthalpie est en fait cédé à l'eau des réfrigérants, ce qui crée encore de l'entropie.}
+	\end{enumerate}
+
+\end{enumerate}
+
+\end{correction}
